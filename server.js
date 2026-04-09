@@ -23,12 +23,12 @@ const PORT          = process.env.PORT || 3000;
 
 // ===================== MANUAL CONTENT (loaded once at startup) =====================
 const MANUAL_CONTENT = `
-GRICIUS LOGISTICS / VALTRANSA — VAIRUOTOJO VADOVAS 2025
+VAIRUOTOJO VADOVAS 2025
 
 ADMINISTRACIJOS TELEFONAI:
 - Bendra pagalba Europa (112)
-- Transporto planuotojas / Dispečeris: +370 656 66206
-- Draudiminiai atvejai / ДТП vadybininkas: +370 656 69809
+- Transporto planuotojas: +370 656 66206
+- Draudiminiai atvejai: +370 656 69809
 - Korteles ir kelių mokesčiai (Darius Gricius): +370 656 90811
 - Planšetai / Telemetrija: +370 602 94000
 - Vilkikų mechanikas (Rudys Paulius): +370 658 14901
@@ -36,16 +36,16 @@ ADMINISTRACIJOS TELEFONAI:
 - Puspriekabių mechanikas (Aivaras Ignatavičius): +370 667 39423
 - Techninis skyrius: +370 637 69400
 - HR (Nataliia Andriushchenko): +370 658 49162
-- HR (Valerija Sulejeva): +370 656 01395
+- HR (Khrystyna Radvilė): +370 656 01395
 - HR (Skaidra Blaževičienė): +370 636 21833
-- Mokymo centras (Saulius Mažrimas): +370 652 39045
+- Vairuotojų darbo organizavimo vadovas (Saulius Mažrimas): +370 652 39045
 - Mokymų vadybininkas (Jevgenij Burgan): +370 660 94905
-- Juristas (Giedrius Raudys): +370 656 78557
+- Juristas (gal kada toks ir bus ): +370 656 78557
 - Prancūzija inspekcija RU/FR: +33 9 50 53 44 65
 - Prancūzija inspekcija (kitas): +33 65148 2755
 
-AVARIJA / ДТП (6.1-6.6):
-1. Nedelsiant susisiekti su vadybininku (+370 656 66206)
+Auto įvykis (6.1-6.6):
+1. Nedelsiant susisiekti su vadybininku (+370 656 69809)
 2. Fotografuoti įvykio vietą, numerius, žalą
 3. Pildyti Europrotokolo deklaraciją (visada turėti tuščius blankus)
 4. DRAUDŽIAMA pasirašyti deklaraciją nesuprantama kalba
@@ -59,10 +59,10 @@ GEDIMAS KELYJE:
 4. Per 1 valandą nuo grįžimo - remonto prašymas su gedimų sąrašu
 
 PARKAVIMAS:
-- Lietuva: DRAUDŽIAMA sustoti Klaipėda-Vievis be leidimo (vagystės pavojus)
+- Europos parkingai nėra saugūs, todėl siūlome tikrintis vagysčių žemėlapyje (vagystės pavojus)
 - ES šalys: nemokamos aikštelės. Po poilsio tikrinti plombas, spynas, nelegalus
 - NVS šalys: tik mokamos saugomos stovėjimo aikštelės
-- Sustojus patikrinti ar nėra nusikabinęs priekabos nuo traktoriaus
+- Sustojus patikrinti ar nėra nusikabinęs priekabos nuo vilkiko
 - Jei įtariami nelegalai - pranešti vadybininkui ir kviesti policiją (112)
 
 TACHOGRAFO REGLAMENTAS:
@@ -76,41 +76,41 @@ TACHOGRAFO REGLAMENTAS:
 - Klaidos kodas 28: vairavimas be kortelės
 - Klaidos kodas 56: reikia pertraukos
 
-DOKUMENTAI REIDE:
+DOKUMENTAI REISE:
 - Vairuotojo pažymėjimas kat CE + 95 kodas
-- Vairuotojo kortelė (galiojanti iki reido pabaigos)
-- Pasas su visomis vizomis
-- Medicininė pažyma + Makrono deklaracija
+- Vairuotojo kortelė (galiojanti iki reiso pabaigos)
+- Pasas su visomis vizomis (jei reikia)
+- Medicininė pažyma 
 - A1 forma
-- Įgaliojimai traktoriui ir puspriekabei (Lenkijai)
+- Įgaliojimai vilkikui ir puspriekabei (Lenkijai)
 - HB ir H10 sertifikatai
-- Prieš reidą: tuščios CMR formos, paletų lapai, prastovos lapai, treikerio lapas
+- Prieš reisą: tuščios CMR formos, palečių lapai, prastovos lapai, puspriekabės lapas
 
-CMR NAKLADINĖ:
+CMR:
 - Privalomi grafai: 1-11, 16, 21, 23, 25
 - Po iškrovimo gavėjas pildymas: 24 grafa (laikas, antspaudas, parašas)
 - DRAUDŽIAMA taisyti be vadybininko leidimo
 - Nuskenuoti ir siųsti vadybininkui po iškrovimo
 
-TREIKERIO LAPAS:
-- Pildomas kiekvieno perdavimo metu
+TREILERIO LAPAS:
+- Pildomas kiekvieno perdavimo metu, taip pat žymėti FM programoje
 - Žymėti: visi pažeidimai, kuras, moto valandos, komplektacija
 - PRIVALOMI abu parašai: atiduodančio ir priimančio vairuotojo
 - Po perdavimo - SMS vadybininkui su duomenimis
 - 4 nuotraukos puspriekabės (priekis, galas, kairė, dešinė)
 
-PALETŲ APSIKEITIMAS:
-- Tik tarp euro paletų, nemazinti dažytų
-- Paletas krauti tik parkinge, ne įmonės teritorijoje (max 30min)
-- Privalomas antspauduotas A.Griciaus firmos lapas
-- Viena paleta = 13-15 EUR
-- Po apsimaino SMS vadybininkui
+PALEČIŲ APSIKEITIMAS:
+- Tik tarp euro palečių, neimti dažyti dažytų, supuvusių, sulaužytų
+- Paletes krauti tik parkinge, ne įmonės teritorijoje (max 30min)
+- Privalomas antspauduotas Gricius Logistics firminis lapas
+- Viena paletė = 13-15 EUR
+- Po keitimo būtina pranešti vadybininkui
 
 KROVINYS - PAKROVIMAS/IŠKROVIMAS:
 - Tikrinti: CMR, Invoice, Packing List, sertifikatus
 - Suskaičiuoti krovinį, tikrinti pakuotę, matuoti temperatūrą
 - Tentinė puspriekabė: 16 diržų, 32 plastikiniai kampai, 32 guminiai kilimėliai
-- Šaldytuvas: 2 štangos kiekvienai paletai
+- Šaldytuvas: 2 štangos kiekvienai paletei
 - DRAUDŽIAMA pasirašyti trūkumo/broko aktus be vadybininko leidimo
 - Be vadybininko leidimo nepalikti iškrovimo vietos
 
@@ -124,13 +124,13 @@ VAISTŲ PERVEŽIMAS (GDP):
 
 KELIŲ MOKESČIAI:
 - LT vinjetė SMS: LTD NUMERIS → +37066000120
-- LV vinjetė SMS: LVD NUMERIS
-- EE vinjetė SMS: EED NUMERIS
+- LV vinjetė SMS: LVD NUMERIS → +37066000120
+- EE vinjetė SMS: EED NUMERIS → +37066000120
 - Lenkija: DKV. Neveikia → e-TOLL PL programa
-- Čekija: Myto. Neveikia → keisti AS24 Eurotrafic degalinėje
-- Vokietija: Toll Collect. Neveikia → pirkti pirmoje Toll Collect degalinėje
-- Austrija: GoBox. Neveikia → keisti AS24 Eurotrafic
-- Belgija: SATELLIC/DKV - įjungti prieš įvažiuojant (žalias indikatorius)
+- Čekija: DKV. 
+- Vokietija: DKV. 
+- Austrija: DKV. 
+- Belgija: DKV 
 - Liuksemburgas, NL, DK, SE: www.eurovignette.eu
 
 PRANCŪZIJA - INSPEKCIJA:
@@ -139,16 +139,17 @@ PRANCŪZIJA - INSPEKCIJA:
 - Rekomenduojama laikyti paskutinį CMR su kuriuo atvykote į Prancūziją
 
 BANKO SĄSKAITA:
-- Revolut/Citadele: programa iš App Store/Google Play + identifikacija (LT SIM)
-- Paysera: www.paysera.lt → programa → identifikacija → 12 EUR (Maxima 13 kasa)
-- Banko filialai: H.Manto g.21, Klaipėda | Taikos pr.32A, Klaipėda
+
+- Artėja bankas - registruotis pas vadybininką, būtina SmartId
+
+
 
 ELGESYS ĮMONĖS TERITORIJOJE:
 - Greitis: max 10 km/h
 - Per 1 valandą: atiduoti dokumentus dispečeriui
 - Gedimas: per 1 valandą pateikti remonto prašymą mechanikams
 - Draudžiama: rūkyti ne tam skirtose vietose, alkoholis, blokuoti privažiavimus
-- Alkoholis: >0.2 promilės = 500 EUR bauda + nušalinimas nuo reido
+- Alkoholis: >0.0 promilės
 `;
 
 // ===================== SYSTEM PROMPT BUILDER =====================
