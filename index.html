@@ -150,7 +150,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="tabs">
     <button class="tab active" onclick="showTab('chat')" id="tab-chat">💬 Pagalbininkas</button>
     <button class="tab" onclick="showTab('docs')" id="tab-docs">📄 Dokumentai</button>
-    <button class="tab" onclick="showTab('accident')" id="tab-accident">🚨 ДТП</button>
+    <button class="tab" onclick="showTab('accident')" id="tab-accident">🚨 Eismo įvykiai</button>
     <button class="tab" onclick="showTab('contacts')" id="tab-contacts">📞 Kontaktai</button>
   </div>
 
@@ -165,7 +165,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <textarea id="chat-input" rows="1" placeholder="Rašykite klausimą..."></textarea>
       <button class="send-btn" id="send-btn" onclick="sendMsg()">➤</button>
     </div>
-    <div class="fn" id="footer-note">Gricius Logistics · Vairuotojo pagalbininkas 2025</div>
+    <div class="fn" id="footer-note"> Vairuotojo pagalbininkas 2025</div>
   </div>
 
   <!-- DOCS PANEL -->
@@ -173,8 +173,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="docs-wrap">
       <div class="doc-tabs">
         <button class="dt active" onclick="showDoc('cmr')" id="dt-cmr">📋 CMR</button>
-        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">🚛 Treikeris</button>
-        <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">📦 Paletai</button>
+        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">🚛 Puspriekabė</button>
+        <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">📦 Paletės</button>
         <button class="dt" onclick="showDoc('medicine')" id="dt-medicine">💊 Vaistai</button>
       </div>
       <div id="doc-cmr" class="doc-section active"></div>
@@ -531,7 +531,7 @@ function renderAccident() {
   document.getElementById('acc-steps').innerHTML = [
     ['Saugumas','Sustoti saugioje vietoje. Avarines šviesas. Įspėjamuosius trikampius.'],
     ['Fotografuoti','Abu TP numeriai, žala, bendra padėtis, kelio ženklai.'],
-    ['Skambinti','Vadybininkas: +370 656 66206 | ДТП vadybininkas: +370 656 69809'],
+    ['Skambinti','Žalų vadybininkas: +370 656 69809'],
     ['Deklaracija','Pildyti Europrotokolo deklaraciją. Nesuprantama kalba — nepasirašyti!'],
     ['Policija','Kviesti 112 jei: abu nevadina kaltės / nukentėjo tretieji / yra sužeistų.'],
     ['Bazėje','Aiškinamasis raštas: jei nekaltas → tech. skyriaus vadovui; jei kaltas → vadybininkui.'],
