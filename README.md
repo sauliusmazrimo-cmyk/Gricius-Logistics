@@ -1,11 +1,11 @@
-# Valtransa Driver Assistant
+# Gricius Logistics Driver Assistant
 
-AI pagalbininkas vairuotojams — Gricius Logistics / Valtransa
+AI pagalbininkas vairuotojams — Gricius Logistics
 
 ## Kaip paleisti Railway.app
 
 ### 1 žingsnis — GitHub
-1. Eik į **github.com** ir sukurk naują repository (pvz. `valtransa-assistant`)
+1. Eik į **github.com** ir sukurk naują repository (pvz. `gricius-assistant`)
 2. Įkelk visus šiuos failus į repository
 
 ### 2 žingsnis — Railway
@@ -21,11 +21,11 @@ Railway → tavo projektas → **Variables** → pridėk:
 |------------|---------|
 | `ANTHROPIC_API_KEY` | sk-ant-... (tavo Anthropic raktas) |
 | `APP_PASSWORD` | Tavo pasirinktas slaptažodis vairuotojams |
-| `SESSION_SECRET` | Bet koks atsitiktinis tekstas (pvz. `valtransa-xyz-2025`) |
+| `SESSION_SECRET` | Bet koks atsitiktinis tekstas (pvz. `gricius-xyz-2025`) |
 
 ### 4 žingsnis — Domain
 Railway → **Settings** → **Domains** → **Generate Domain**
-Gausite nuorodą tipo: `valtransa-assistant.up.railway.app`
+Gausite nuorodą tipo: `gricius-assistant.up.railway.app`
 
 Tą nuorodą duokite vairuotojams!
 

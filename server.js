@@ -9,14 +9,14 @@ app.use(express.static('public'));
 
 // Session setup
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'valtransa-secret-2025',
+  secret: process.env.SESSION_SECRET || 'gricius-secret-2025',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 8 * 60 * 60 * 1000 } // 8 hours
 }));
 
 // ===================== CONFIG (from environment variables) =====================
-const APP_PASSWORD  = process.env.APP_PASSWORD  || 'Valtransa2025';
+const APP_PASSWORD  = process.env.APP_PASSWORD  || 'Gricius2025';
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 const PORT          = process.env.PORT || 3000;
 
@@ -159,7 +159,7 @@ function buildSystemPrompt(customSituations) {
       ).join('\n\n')
     : '';
 
-  return `Tu esi Gricius Logistics / Valtransa patyręs vairuotojų konsultantas ir pagalbininkas. Turi 20 metų patirtį tarptautiniuose krovinių pervežimuose.
+  return `Tu esi Gricius Logistics / Gricius Logistics patyręs vairuotojų konsultantas ir pagalbininkas. Turi 20 metų patirtį tarptautiniuose krovinių pervežimuose.
 
 KALBA: Automatiškai atpažink klausimo kalbą ir atsakyk ta pačia kalba — lietuviškai, rusiškai arba angliškai. Niekada nemaišyk kalbų viename atsakyme.
 
@@ -296,7 +296,7 @@ app.post('/api/clear-history', (req, res) => {
 
 // ===================== START =====================
 app.listen(PORT, () => {
-  console.log(`✅ Valtransa Driver Assistant running on port ${PORT}`);
+  console.log(`✅ Gricius Logistics Driver Assistant running on port ${PORT}`);
   console.log(`🔑 App password: ${APP_PASSWORD}`);
   console.log(`🤖 Anthropic API key: ${ANTHROPIC_KEY ? 'SET ✓' : 'NOT SET ✗'}`);
 });

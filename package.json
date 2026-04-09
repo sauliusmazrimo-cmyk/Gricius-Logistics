@@ -1,7 +1,7 @@
 {
-  "name": "valtransa-driver-assistant",
+  "name": "gricius-driver-assistant",
   "version": "1.0.0",
-  "description": "Gricius Logistics / Valtransa driver AI assistant",
+  "description": "Gricius Logistics driver AI assistant",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
