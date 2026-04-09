@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Vairuotojo pagalbininkas | Gricius Logistics</title>
+<title>Vairuotojo pagalbininkas | </title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#eef1f6;min-height:100vh;display:flex;flex-direction:column}
@@ -139,7 +139,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="logo">🚛</div>
     <div class="hdr-txt">
       <h1 id="hdr-title">Vairuotojo pagalbininkas</h1>
-      <p id="hdr-sub">Gricius Logistics · 2025</p>
+      <p id="hdr-sub"> · 2025</p>
     </div>
     <div class="hdr-btns">
       <span class="lang-indicator" id="lang-ind">LT</span>
@@ -432,7 +432,7 @@ function renderDocs() {
   // CMR
   document.getElementById('doc-cmr').innerHTML = `
     <div class="doc-card">
-      <h3>📋 CMR nakladinė — kaip pildyti</h3>
+      <h3>📋 CMR — kaip pildyti</h3>
       <div class="warn"><span>⚠️</span><span>DRAUDŽIAMA taisyti be vadybininko leidimo!</span></div>
       <div class="fg">
         <div class="fg-n">1</div><div class="fg-d">Siuntėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div>
@@ -455,9 +455,9 @@ function renderDocs() {
   // Trailer
   document.getElementById('doc-trailer').innerHTML = `
     <div class="doc-card">
-      <h3>🚛 Treikerio lapas</h3>
+      <h3>🚛 Treilerio lapas</h3>
       <div class="warn"><span>⚠️</span><span>Be abiejų parašų — lapas negalioja! Abu vairuotojai atsako už pažeidimus.</span></div>
-      ${mkStep(1,'Kas pildyti','Kiekvienas vairuotojas, priimantis arba perduodantis puspriekabę, privalo užpildyti treikerio lapą.')}
+      ${mkStep(1,'Kas pildyti','Kiekvienas vairuotojas, priimantis arba perduodantis puspriekabę, privalo užpildyti treilerio lapą ir FM.')}
       ${mkStep(2,'Ką pažymėti','Visi išoriniai ir vidiniai pažeidimai, likusio kuro kiekis, moto valandos, komplektacija (4 štangos, spyna, atsarginis ratas).')}
       ${mkStep(3,'Parašai','PRIVALOMI abu parašai: vairuotojo kuris ATIDUODA ir vairuotojo kuris PRIIMA.')}
       ${mkStep(4,'4 nuotraukos','Priekis, galas, kairė, dešinė — siųsti kartu su treikerio lapu per planšetą.')}
@@ -467,19 +467,19 @@ function renderDocs() {
   // Pallets
   document.getElementById('doc-pallets').innerHTML = `
     <div class="doc-card">
-      <h3>📦 Paletų apsikeitimas</h3>
-      <div class="warn"><span>⚠️</span><span>Viena paleta = 13–15 EUR. Be antspauduoto dokumento — nuostoliai krenta vairuotojui!</span></div>
-      ${mkStep(1,'Kada keisti','Tik gavus vadybininko nurodymą. Tik tarp euro paletų. Nemazinti dažytų!')}
-      ${mkStep(2,'Kur krauti','Paletas krauti tik parkinge, ne įmonės teritorijoje. Max laikas — 30 min.')}
-      ${mkStep(3,'Dokumentas','Gavėjas/siuntėjas PRIVALO pasirašyti ir antspauduoti firminį A. Griciaus paletų lapą.')}
+      <h3>📦 Palečių apsikeitimas</h3>
+      <div class="warn"><span>⚠️</span><span>Viena paletė = 13–15 EUR. Be antspauduoto dokumento — nuostoliai vairuotojui!</span></div>
+      ${mkStep(1,'Kada keisti','Tik gavus vadybininko nurodymą. Tik tarp euro palečių. Neimti dažytų!')}
+      ${mkStep(2,'Kur krauti','Paletes krauti tik parkinge, ne įmonės teritorijoje. Max laikas — 30 min.')}
+      ${mkStep(3,'Dokumentas','Gavėjas/siuntėjas PRIVALO pasirašyti ir antspauduoti firminį Gricius Logistics palečių lapą.')}
       ${mkStep(4,'Pildymas','"changed" — kiek atiduota. "pallets back" — kiek grąžinta. Taisyti DRAUDŽIAMA!')}
-      ${mkStep(5,'SMS vadybininkui','Po kiekvieno apsimaino: kiek paketų pakeitėte, kiek grąžinote, kiek pakrovėte.')}
+      ${mkStep(5,'SMS vadybininkui','Po kiekvieno keitimo pranešimas vadybininkui : kiek papalečių pakeitėte, kiek grąžinote, kiek pakrovėte.')}
     </div>`;
 
   // Medicine
   document.getElementById('doc-medicine').innerHTML = `
     <div class="doc-card">
-      <h3>💊 Vaistų pervežimas (GDP)</h3>
+      <h3>💊 Vaistų pervežimas </h3>
       <div class="ok"><span>ℹ️</span><span>GDP — Gera platinimo praktika. Privaloma farmacijos kroviniams.</span></div>
       ${mkStep(1,'Puspriekabė','Švari, sausa, be kvapų. Dokumentuotas valymas min. kas 6 mėn.')}
       ${mkStep(2,'Prieš pakrovimą','Išvėsinti min. 1 valandą iš anksto. Vėsinimas dokumentuojamas registratoriumi.')}
@@ -541,8 +541,8 @@ function renderAccident() {
 // ===================== CONTACTS =====================
 const CONTACTS = [
   {icon:'🚨',role:'Bendra pagalba — Europa (24/7)',val:'112'},
-  {icon:'📞',role:'Dispečeris / Transporto planuotojas',val:'+370 656 66206'},
-  {icon:'📋',role:'Draudiminiai atvejai / ДТП',val:'+370 656 69809'},
+  {icon:'📞',role:'Transporto planuotojas',val:'+370 656 66206'},
+  {icon:'📋',role:'Draudiminiai atvejai ',val:'+370 656 69809'},
   {icon:'💳',role:'Korteles / kelių mokesčiai — Darius Gricius',val:'+370 656 90811'},
   {icon:'📱',role:'Planšetai / Telemetrija',val:'+370 602 94000'},
   {icon:'🔧',role:'Vilkikų mechanikas — Rudys Paulius',val:'+370 658 14901'},
@@ -550,11 +550,12 @@ const CONTACTS = [
   {icon:'🔧',role:'Puspriekabių mechanikas — Aivaras Ignatavičius',val:'+370 667 39423'},
   {icon:'🔧',role:'Techninis skyrius',val:'+370 637 69400'},
   {icon:'👤',role:'HR — Nataliia Andriushchenko',val:'+370 658 49162'},
-  {icon:'👤',role:'HR — Valerija Sulejeva',val:'+370 656 01395'},
+  {icon:'👤',role:'HR — Khrystyna Radvilė',val:'+370 656 01395'},
   {icon:'👤',role:'HR — Skaidra Blaževičienė',val:'+370 636 21833'},
-  {icon:'🎓',role:'Mokymo centras — Saulius Mažrimas',val:'+370 652 39045'},
+  {icon:'🎓',role:'Vairuotojų darbo organizavimo vadovas — Saulius Mažrimas',val:'+370 652 39045'},
   {icon:'🎓',role:'Mokymų vadybininkas — Jevgenij Burgan',val:'+370 660 94905'},
-  {icon:'⚖️',role:'Juristas — Giedrius Raudys',val:'+370 656 78557'},
+  {icon:'🎓',role:'Mokymų vadybininkas — Vilma Rustamova',val:'+370 659 05616'},
+  {icon:'⚖️',role:'Juristas — Nebėra',val:'+370 656 78557'},
   {icon:'🇫🇷',role:'Prancūzija — inspekcija (RU/FR)',val:'+33 9 50 53 44 65'},
 ];
 
