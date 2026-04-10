@@ -23,7 +23,7 @@ const PORT          = process.env.PORT || 3000;
 
 // ===================== MANUAL CONTENT =====================
 const MANUAL_CONTENT = `
-VAIRUOTOJO VADOVAS 2025
+VAIRUOTOJO VADOVAS 2026
 
 ADMINISTRACIJOS TELEFONAI:
 - Bendra pagalba Europa: 112
@@ -113,7 +113,7 @@ Jei radote jau apgadintą vilkiką/puspriekabę — fotografuoti ir nedelsiant i
   },
   {
     title: "Techninis gedimas kelyje",
-    keywords: ["gedin", "padang", "varikl", "stabdž", "evakuator", "limp mode", "šaldytuv", "štang", "поломк", "шин", "двигател", "breakdown", "tyre", "engine", "brake", "prakiurus"],
+    keywords: ["gedim", "padang", "varikl", "stabdž", "evakuator", "limp mode", "šaldytuv", "štang", "поломк", "шин", "двигател", "breakdown", "tyre", "engine", "brake", "prakiurus"],
     answer: `TECHNINIS GEDIMAS — KĄ DARYTI:
 
 1. Sustoti saugioje vietoje → avarines šviesas → trikampis
@@ -308,11 +308,11 @@ PERKROVA:
   },
   {
     title: "Vagystės / nelegalai",
-    keywords: ["vagyst", "nelegali", "kuro vagyst", "lipa", "nelegal", "krovinio vagyst", "кража", "нелегал", "theft", "stowaway", "stolen"],
+    keywords: ["vagyst", "nelegal", "kuro vagyst", "lipa", "nelegal", "krovinio vagyst", "кража", "нелегал", "theft", "stowaway", "stolen"],
     answer: `VAGYSTĖS / NELEGALAI — KĄ DARYTI:
 
 NELEGALAI PUSPRIEKABĖJE:
-🚨 NEATIDARINĖTI puspriekabės pats
+🚨 NEATIDARINĖK puspriekabės pats
 🚨 Nedelsiant skambinti vadybininkui
 🚨 Kviesti policiją: 112
 → Stebėti aplinką ypač: FR, BE, UK
@@ -332,7 +332,7 @@ PREVENCIJA:
 ✅ Naudoti vagysčių žemėlapį
 ✅ Rinktis saugius, apšviestus parkingus
 
-📞 Vadybininkas: +370 656 66206
+📞 Vadybininkas: 
 📞 Žalų skyrius: +370 656 69809
 🚨 Policija: 112`
   },
@@ -357,7 +357,7 @@ PRANCŪZIJA:
 → Turėti SIPSI deklaraciją, A1 formą, darbo sutarties kopiją
 → Problemos: +33 9 50 53 44 65
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: `
   },
   {
     title: "Oro sąlygos / blogas oras",
@@ -380,7 +380,7 @@ JEIGU NESAUGU → STOTI ir laukti
 → Tikrinti vietinius įspėjimus (weather apps)
 → Informuoti vadybininką
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: `
   },
   {
     title: "Sveikata / trauma / blogai jaučiasi",
@@ -403,7 +403,7 @@ SVARBU: Nedirbti per jėgą — tai pavojinga ir tau, ir kitiems!
 Visais atvejais informuoti vadybininką bet kokiu paros metu.
 
 🚨 Pagalba Europa: 112
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: `
   },
   {
     title: "Puspriekabės keitimas / perkabinimas",
@@ -422,7 +422,7 @@ KOMPLEKTACIJA TIKRINTI:
 ✅ Atsarginis ratas
 ✅ TIR kabelis (jei taikoma)
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: `
   }
 ];
 
