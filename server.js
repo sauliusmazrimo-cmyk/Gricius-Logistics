@@ -27,7 +27,6 @@ VAIRUOTOJO VADOVAS 2025
 
 ADMINISTRACIJOS TELEFONAI:
 - Bendra pagalba Europa: 112
-- Transporto planuotojas: +370 656 66206
 - Draudiminiai atvejai / Žalų skyrius: +370 656 69809
 - Korteles ir kelių mokesčiai (Darius Gricius): +370 656 90811
 - Planšetai / Telemetrija: +370 602 94000
