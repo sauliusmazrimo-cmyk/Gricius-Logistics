@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CMR Nakladinė | Gricius Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b35;--red:#c0392b;--gold:#e8932a;--white:#fff;--gray:#f4f5f7;--border:#dde2ec;--text:#1a2030;--muted:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;color:var(--text)}
+
+/* HEADER */
+.header{background:var(--navy);color:#fff;padding:0 16px;display:flex;align-items:center;gap:12px;height:54px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.header-icon{width:32px;height:32px;background:var(--red);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.header-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;letter-spacing:0.5px}
+.header-sub{font-size:10px;opacity:.5;letter-spacing:1px;text-transform:uppercase;margin-left:auto}
+.back-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.back-btn:hover{background:rgba(255,255,255,.2)}
+
+/* LANG TABS */
+.lang-bar{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:center;gap:4px;padding:8px}
+.lb{padding:5px 16px;border:1px solid rgba(255,255,255,.2);border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.5);font-family:'Barlow',sans-serif;transition:.15s}
+.lb.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* MAIN */
+.main{max-width:780px;margin:0 auto;padding:14px 12px 30px}
+
+/* STATUS BAR */
+.status-bar{background:#fff;border-radius:12px;border:1px solid var(--border);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.status-icon{width:36px;height:36px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.status-text h3{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--navy)}
+.status-text p{font-size:12px;color:var(--muted);margin-top:1px}
+.progress-wrap{flex:1;text-align:right}
+.progress-num{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--navy)}
+.progress-label{font-size:10px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase}
+.progress-bar{height:4px;background:var(--gray);border-radius:2px;margin-top:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--red);border-radius:2px;transition:.4s}
+
+/* WARN */
+.warn-block{background:#fff8e6;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#7a5200;display:flex;gap:8px}
+
+/* CMR GRID */
+.cmr-grid{display:grid;gap:8px}
+
+/* FIELD CARD */
+.field-card{background:#fff;border-radius:12px;border:1.5px solid var(--border);overflow:hidden;transition:.2s;cursor:pointer}
+.field-card:hover{border-color:var(--navy);box-shadow:0 2px 12px rgba(13,27,53,.1)}
+.field-card.active{border-color:var(--red);box-shadow:0 2px 16px rgba(192,57,43,.15)}
+.field-card.done{border-color:#27ae60}
+
+.field-header{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.field-num{width:34px;height:34px;border-radius:8px;background:var(--navy);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:0.3px}
+.field-card.done .field-num{background:#27ae60}
+.field-card.active .field-num{background:var(--red)}
+.field-info{flex:1}
+.field-name{font-size:13px;font-weight:700;color:var(--navy)}
+.field-card.active .field-name{color:var(--red)}
+.field-badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;margin-top:2px}
+.req{background:#ffe0e0;color:var(--red)}.opt{background:#e8f4e8;color:#27ae60}
+.field-arrow{font-size:12px;color:var(--muted);transition:.2s}
+.field-card.active .field-arrow{transform:rotate(180deg);color:var(--red)}
+.field-done-icon{font-size:16px;color:#27ae60}
+
+/* FIELD BODY */
+.field-body{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.field-card.active .field-body{display:block}
+
+.field-desc{font-size:13px;color:var(--muted);margin:10px 0 8px;line-height:1.55}
+
+.example-block{background:var(--gray);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.example-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.example-val{font-size:13px;color:var(--navy);font-weight:600;line-height:1.5}
+.example-val .hl{background:#fff3cd;padding:1px 4px;border-radius:4px;font-weight:700}
+
+.input-wrap{margin-top:8px}
+.input-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:4px}
+.cmr-input{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Barlow',sans-serif;outline:none;background:#fff;color:var(--text);transition:.2s}
+.cmr-input:focus{border-color:var(--navy);background:#fff}
+.cmr-textarea{resize:vertical;min-height:60px}
+
+.tip-block{background:#e8f0fe;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:12px;color:#1a3a6b;display:flex;gap:6px}
+
+.btn-done{width:100%;padding:10px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;font-family:'Barlow',sans-serif;cursor:pointer;margin-top:10px;transition:.15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-done:hover{background:var(--red)}
+.btn-done.undone{background:var(--gray);color:var(--muted)}
+.btn-done.undone:hover{background:#e0e0e0}
+
+/* SPECIAL: TWO-SIDE NOTE */
+.side-note{background:var(--navy);color:#fff;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:12.5px;line-height:1.6}
+.side-note strong{color:var(--gold)}
+
+/* SIGNATURE SECTION */
+.sig-section{background:#fff;border-radius:12px;border:2px solid var(--red);padding:14px;margin-top:8px}
+.sig-section h4{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--red);margin-bottom:8px}
+
+/* SUMMARY */
+.summary-card{background:var(--navy);border-radius:12px;padding:16px;margin-top:14px;color:#fff}
+.summary-card h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;margin-bottom:12px;letter-spacing:0.5px}
+.summary-list{display:flex;flex-direction:column;gap:6px}
+.sl-item{display:flex;gap:8px;align-items:flex-start;font-size:13px}
+.sl-num{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Barlow Condensed',sans-serif}
+.sl-item.ok .sl-num{background:rgba(39,174,96,.3);color:#27ae60}
+.sl-text{color:rgba(255,255,255,.7);line-height:1.4}
+.sl-item.ok .sl-text{color:rgba(255,255,255,.9)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-icon">📋</div>
+  <div class="header-title">CMR Nakladinė</div>
+  <a href="/" class="back-btn">← Grįžti</a>
+</div>
+
+<div class="lang-bar">
+  <button class="lb active" onclick="setLang('lt')">LT</button>
+  <button class="lb" onclick="setLang('ru')">RU</button>
+  <button class="lb" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="main">
+
+  <div class="status-bar">
+    <div class="status-icon">📋</div>
+    <div class="status-text">
+      <h3 id="status-title">Pildykite CMR nakladinę</h3>
+      <p id="status-sub">Paspauskite ant grafos — pamatysite pavyzdį</p>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-num"><span id="done-count">0</span>/<span id="total-count">13</span></div>
+      <div class="progress-label" id="progress-label">Užpildyta</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="warn-block">
+    <span>⚠️</span>
+    <span id="warn-text">DRAUDŽIAMA taisyti dokumentus be vadybininko leidimo! Rašyti aiškiai ir įskaitomai. Kiekviena grafa svarbi.</span>
+  </div>
+
+  <div class="cmr-grid" id="cmr-fields"></div>
+
+  <div class="summary-card" id="summary-card" style="display:none">
+    <h3 id="summary-title">✅ Kontrolinis sąrašas</h3>
+    <div class="summary-list" id="summary-list"></div>
+  </div>
+
+</div>
+
+<script>
+let LANG = 'lt';
+let doneFields = new Set();
+
+const FIELDS = {
+  lt: [
+    {
+      num:'1', name:'Siuntėjas', req:true,
+      desc:'Pilnas siuntėjo pavadinimas, adresas, pašto indeksas, šalis.',
+      example:'UAB "Cargo Partner"\nPramonės g. 15, LT-44159 Kaunas\nLietuva',
+      tip:'Tiksliai kaip įrašyta sąskaitoje (Invoice). Jei skiriasi — pranešti vadybininkui.',
+      placeholder:'Įmonės pavadinimas\nAdresas\nŠalis',
+      input:'textarea'
+    },
+    {
+      num:'2', name:'Gavėjas', req:true,
+      desc:'Pilnas gavėjo pavadinimas, adresas, pašto indeksas, šalis.',
+      example:'Müller GmbH\nIndustriestraße 45, 80339 München\nDeutschland',
+      tip:'Tiksliai kaip CMR dokumente. Jei yra skirtumų su Invoice — patikrinti su vadybininku.',
+      placeholder:'Įmonės pavadinimas\nAdresas\nŠalis',
+      input:'textarea'
+    },
+    {
+      num:'3', name:'Iškrovimo vieta', req:true,
+      desc:'Tikslus iškrovimo adresas — gatvė, miestas, šalis.',
+      example:'Rosenstraße 12, 80331 München, Deutschland',
+      tip:'Gali skirtis nuo gavėjo adreso. Jei skiriasi — tai normalu, bet patikrinti su vadybininku.',
+      placeholder:'Gatvė, miestas, šalis',
+      input:'input'
+    },
+    {
+      num:'4', name:'Pakrovimo vieta ir data', req:true,
+      desc:'Tikslus pakrovimo adresas ir pakrovimo data.',
+      example:'Pramonės g. 15, Kaunas, Lietuva\n2026-04-10',
+      tip:'Data turi sutapti su faktine pakrovimo data. Laiką rašyti jei reikalauja siuntėjas.',
+      placeholder:'Adresas + data',
+      input:'textarea'
+    },
+    {
+      num:'5', name:'Lydimieji dokumentai', req:true,
+      desc:'Nurodomi visi dokumentai lydintys krovinį: Invoice numeris ir data, TIR numeris jei yra.',
+      example:'Invoice Nr. 2024-1589, 2026-04-10\nPacking List Nr. PL-2589',
+      tip:'Sutrumpintai: tik numeris ir data. Jei yra TIR — rašyti TIR Nr.',
+      placeholder:'Invoice Nr. ..., data\nTIR Nr. ... (jei yra)',
+      input:'textarea'
+    },
+    {
+      num:'6–11', name:'Krovinio aprašymas', req:true,
+      desc:'6: Ženklai ir numeriai. 7: Pakuočių skaičius. 8: Pakuotės rūšis. 9: Krovinio pavadinimas. 10: Statistinis numeris. 11: Bruto svoris (kg).',
+      example:'7 paletės\nEURO paletės\nElektros prietaisai\nBruto: 3 250 kg\nPlombos Nr.: GL-2024-789',
+      tip:'Skaičiuokite pakuotes pakrovimo metu. Jei svoris skiriasi nuo dokumentų — nedelsiant pranešti.',
+      placeholder:'Kiekis + pakuotė + pavadinimas + svoris',
+      input:'textarea'
+    },
+    {
+      num:'13', name:'Siuntėjo instrukcijos', req:false,
+      desc:'Muitinės procedūros, specialios instrukcijos siuntėjo.',
+      example:'T1 tranzitas\nCMR konvencija\nEUR.1 sertifikatas',
+      tip:'Jei tuščia — nieko nerašyti. Pildoma tik kai siuntėjas aiškiai nurodo.',
+      placeholder:'Muitinės procedūra (jei reikia)',
+      input:'input'
+    },
+    {
+      num:'16', name:'Vežėjo rekvizitai', req:true,
+      desc:'Turi būti A. Griciaus autotransporto įmonės rekvizitai. Tikrinti ar teisingai užpildyta.',
+      example:'A. Griciaus autotransporto įmonė\nMinijos g. 117, LT-93234 Klaipėda\nLietuva',
+      tip:'Jei siuntėjas neužpildė arba užpildė neteisingai — įrašyti savo ranka.',
+      placeholder:'A. Griciaus autotransporto įmonė\nMinijos g. 117, Klaipėda',
+      input:'textarea',
+      side:'siuntėjas',
+      prefill:'A. Griciaus autotransporto įmonė\nMinijos g. 117, LT-93234 Klaipėda, Lietuva'
+    },
+    {
+      num:'18', name:'Vežėjo pastabos', req:false,
+      desc:'Vežėjo išlygos ir pastabos apie krovinio būklę pakrovimo metu.',
+      example:'Pakuotė pažeista dėžė Nr. 3\nKrovinio temperautūra pakrovimo metu: +4°C\nPriimta be patikrinimo',
+      tip:'Jei pastebėjote pažeidimus — BŪTINAI čia įrašyti. Tai jūsų apsauga!',
+      placeholder:'Pastabos apie krovinio būklę (jei yra)',
+      input:'textarea'
+    },
+    {
+      num:'21', name:'Sudarymo vieta ir data', req:true,
+      desc:'Vieta kur buvo surašyta CMR nakladinė ir surašymo data.',
+      example:'Kaunas, 2026-04-10',
+      tip:'Dažniausiai tai pakrovimo vieta ir data. Turi sutapti su 4 grafa.',
+      placeholder:'Miestas, data',
+      input:'input'
+    },
+    {
+      num:'22', name:'Siuntėjo parašas', req:true,
+      desc:'Siuntėjo parašas ir antspaudas po pakrovimo. PILDOMA SIUNTĖJO.',
+      example:'— Siuntėjas pasirašo ir uždeda antspaudą —',
+      tip:'Jei siuntėjas nepasirašė arba nėra antspaudo — NEDELSIANT pranešti vadybininkui.',
+      input:'none',
+      isSignature: true,
+      sigNote:'Šią grafą pildyti ir pasirašyti turi SIUNTĖJAS po pakrovimo.'
+    },
+    {
+      num:'23', name:'Vežėjo parašas (JŪSŲ)', req:true,
+      desc:'Vairuotojo pavardė, parašas ir vežėjo antspaudas. TAI JŪSŲ GRAFA.',
+      example:'Vardenis Pavardenis\n[parašas]\nA. Griciaus autotransporto įmonė [antspaudas]',
+      tip:'Pasirašote KAI viskas patikrinta ir sutampa su dokumentais. Pasirašę prisiimate atsakomybę!',
+      input:'none',
+      isSignature:true,
+      sigNote:'Šią grafą pildyti ir pasirašyti turi VAIRUOTOJAS. Pasirašykite tik kai viskas patikrinta!'
+    },
+    {
+      num:'24', name:'Gavėjo parašas (PO IŠKROVIMO)', req:true,
+      desc:'Gavėjas užpildo PO iškrovimo: laikas, data, parašas, antspaudas ir atsakingo asmens vardas.',
+      example:'2026-04-11 14:30\nHans Müller\n[parašas + antspaudas]',
+      tip:'Jei gavėjas atsisako pasirašyti ar nėra antspaudo — NEDELSIANT pranešti vadybininkui ir NEPALIKTI vietos.',
+      input:'none',
+      isSignature:true,
+      sigNote:'Šią grafą PILDYTI GAVĖJAS po iškrovimo. Tikrinkite ar užpildyta prieš išvažiuodami!'
+    },
+    {
+      num:'25', name:'Transporto priemonių numeriai', req:true,
+      desc:'Valstybiniai numeriai: vilkiko ir puspriekabės.',
+      example:'Vilkikas: ABC 123\nPuspriekabė: DEF 456',
+      tip:'Rašyti abu numerius. Tiksliai kaip registracijos dokumentuose.',
+      placeholder:'Vilkikas: ...\nPuspriekabė: ...',
+      input:'textarea'
+    },
+  ],
+  ru: [
+    {num:'1',name:'Отправитель',req:true,desc:'Полное название, адрес, почтовый индекс, страна отправителя.',example:'UAB "Cargo Partner"\nPramonės g. 15, LT-44159 Kaunas\nLitva',tip:'Точно как в счёте-фактуре (Invoice). Если отличается — сообщить менеджеру.',placeholder:'Название компании\nАдрес\nСтрана',input:'textarea'},
+    {num:'2',name:'Получатель',req:true,desc:'Полное название, адрес, почтовый индекс, страна получателя.',example:'Müller GmbH\nIndustriestraße 45, 80339 München\nDeutschland',tip:'Точно как в CMR. Если есть расхождения с Invoice — проверить с менеджером.',placeholder:'Название компании\nАдрес\nСтрана',input:'textarea'},
+    {num:'3',name:'Место разгрузки',req:true,desc:'Точный адрес разгрузки — улица, город, страна.',example:'Rosenstraße 12, 80331 München, Deutschland',tip:'Может отличаться от адреса получателя — это нормально, но проверить с менеджером.',placeholder:'Улица, город, страна',input:'input'},
+    {num:'4',name:'Место и дата погрузки',req:true,desc:'Точный адрес погрузки и дата погрузки.',example:'Pramonės g. 15, Kaunas, Litva\n2026-04-10',tip:'Дата должна совпадать с фактической датой погрузки.',placeholder:'Адрес + дата',input:'textarea'},
+    {num:'5',name:'Сопроводительные документы',req:true,desc:'Указываются все документы: номер и дата Invoice, номер TIR если есть.',example:'Invoice Nr. 2024-1589, 2026-04-10\nPacking List Nr. PL-2589',tip:'Кратко: только номер и дата. Если есть TIR — указать номер TIR.',placeholder:'Invoice Nr. ..., дата\nTIR Nr. ... (если есть)',input:'textarea'},
+    {num:'6–11',name:'Описание груза',req:true,desc:'7: Количество мест. 8: Вид упаковки. 9: Наименование груза. 11: Вес брутто (кг). Номер пломбы.',example:'7 поддонов\nEURO паллеты\nЭлектроприборы\nБрутто: 3 250 кг\nПломба: GL-2024-789',tip:'Считайте места при погрузке. Если вес отличается от документов — немедленно сообщить.',placeholder:'Кол-во + тип + наименование + вес',input:'textarea'},
+    {num:'13',name:'Указания отправителя',req:false,desc:'Таможенные процедуры, специальные инструкции.',example:'T1 транзит\nCMR конвенция',tip:'Если пусто — ничего не писать. Заполняется только по указанию отправителя.',placeholder:'Таможенная процедура (если нужно)',input:'input'},
+    {num:'16',name:'Реквизиты перевозчика',req:true,desc:'Должны быть реквизиты A. Griciaus autotransporto įmonė.',example:'A. Griciaus autotransporto įmonė\nMinijos g. 117, LT-93234 Klaipėda\nLitva',tip:'Если отправитель не заполнил или заполнил неверно — вписать самостоятельно.',placeholder:'A. Griciaus autotransporto įmonė\nMinijos g. 117, Klaipėda',input:'textarea',prefill:'A. Griciaus autotransporto įmonė\nMinijos g. 117, LT-93234 Klaipėda, Litva'},
+    {num:'18',name:'Замечания перевозчика',req:false,desc:'Оговорки и замечания о состоянии груза при погрузке.',example:'Повреждена упаковка коробки №3\nТемпература при погрузке: +4°C',tip:'Если заметили повреждения — ОБЯЗАТЕЛЬНО записать. Это ваша защита!',placeholder:'Замечания о состоянии груза (если есть)',input:'textarea'},
+    {num:'21',name:'Место и дата составления',req:true,desc:'Место где составлена накладная и дата.',example:'Kaunas, 2026-04-10',tip:'Обычно это место погрузки и та же дата. Должно совпадать с графой 4.',placeholder:'Город, дата',input:'input'},
+    {num:'22',name:'Подпись отправителя',req:true,desc:'Подпись и печать отправителя после погрузки. ЗАПОЛНЯЕТ ОТПРАВИТЕЛЬ.',example:'— Отправитель подписывает и ставит печать —',tip:'Если не подписал или нет печати — НЕМЕДЛЕННО сообщить менеджеру.',input:'none',isSignature:true,sigNote:'Эту графу заполняет и подписывает ОТПРАВИТЕЛЬ после погрузки.'},
+    {num:'23',name:'Подпись водителя (ВЫ)',req:true,desc:'Фамилия водителя, подпись и печать перевозчика. ЭТО ВАША ГРАФА.',example:'Vardenis Pavardenis\n[подпись]\nA. Griciaus autotransporto įmonė [печать]',tip:'Подписывать ТОЛЬКО когда всё проверено и совпадает. Подпись = ответственность!',input:'none',isSignature:true,sigNote:'Эту графу заполняет и подписывает ВОДИТЕЛЬ. Подписывайте только после проверки!'},
+    {num:'24',name:'Подпись получателя (ПОСЛЕ РАЗГРУЗКИ)',req:true,desc:'Получатель заполняет ПОСЛЕ разгрузки: время, дата, подпись, печать, имя.',example:'2026-04-11 14:30\nHans Müller\n[подпись + печать]',tip:'Если получатель отказывается — НЕМЕДЛЕННО сообщить менеджеру. Не уезжать без подписи!',input:'none',isSignature:true,sigNote:'Эту графу заполняет ПОЛУЧАТЕЛЬ после разгрузки. Проверьте до отъезда!'},
+    {num:'25',name:'Номера транспортных средств',req:true,desc:'Государственные номера тягача и полуприцепа.',example:'Тягач: ABC 123\nПолуприцеп: DEF 456',tip:'Указать оба номера. Точно как в регистрационных документах.',placeholder:'Тягач: ...\nПолуприцеп: ...',input:'textarea'},
+  ],
+  en: [
+    {num:'1',name:'Consignor',req:true,desc:'Full name, address, postal code, country of the consignor.',example:'UAB "Cargo Partner"\nPramonės g. 15, LT-44159 Kaunas\nLithuania',tip:'Exactly as on the Invoice. If different — notify your manager.',placeholder:'Company name\nAddress\nCountry',input:'textarea'},
+    {num:'2',name:'Consignee',req:true,desc:'Full name, address, postal code, country of the consignee.',example:'Müller GmbH\nIndustriestraße 45, 80339 München\nGermany',tip:'Exactly as on CMR. If different from Invoice — check with manager.',placeholder:'Company name\nAddress\nCountry',input:'textarea'},
+    {num:'3',name:'Place of delivery',req:true,desc:'Exact delivery address — street, city, country.',example:'Rosenstraße 12, 80331 München, Germany',tip:'May differ from consignee address — that is normal, but verify with manager.',placeholder:'Street, city, country',input:'input'},
+    {num:'4',name:'Place and date of loading',req:true,desc:'Exact loading address and loading date.',example:'Pramonės g. 15, Kaunas, Lithuania\n2026-04-10',tip:'Date must match the actual loading date.',placeholder:'Address + date',input:'textarea'},
+    {num:'5',name:'Documents attached',req:true,desc:'All accompanying documents: Invoice number and date, TIR number if applicable.',example:'Invoice Nr. 2024-1589, 2026-04-10\nPacking List Nr. PL-2589',tip:'Briefly: number and date only. If TIR — add TIR number.',placeholder:'Invoice Nr. ..., date\nTIR Nr. ... (if applicable)',input:'textarea'},
+    {num:'6–11',name:'Goods description',req:true,desc:'7: Number of packages. 8: Type of packaging. 9: Goods description. 11: Gross weight (kg). Seal number.',example:'7 pallets\nEURO pallets\nElectrical equipment\nGross: 3,250 kg\nSeal: GL-2024-789',tip:'Count packages during loading. If weight differs from documents — notify immediately.',placeholder:'Qty + type + description + weight',input:'textarea'},
+    {num:'13',name:'Consignor instructions',req:false,desc:'Customs procedures, special instructions from consignor.',example:'T1 transit\nCMR convention',tip:'If empty — leave blank. Fill only when explicitly instructed.',placeholder:'Customs procedure (if required)',input:'input'},
+    {num:'16',name:'Carrier details',req:true,desc:'Must contain A. Griciaus autotransporto įmonė details.',example:'A. Griciaus autotransporto įmonė\nMinijos g. 117, LT-93234 Klaipėda\nLithuania',tip:'If not filled or incorrect — write in yourself.',placeholder:'A. Griciaus autotransporto įmonė\nMinijos g. 117, Klaipėda',input:'textarea',prefill:'A. Griciaus autotransporto įmonė\nMinijos g. 117, LT-93234 Klaipėda, Lithuania'},
+    {num:'18',name:'Carrier reservations',req:false,desc:'Carrier observations and reservations about cargo condition at loading.',example:'Box No.3 packaging damaged\nTemperature at loading: +4°C',tip:'If you notice damage — MUST be noted here. This is your protection!',placeholder:'Notes on cargo condition (if any)',input:'textarea'},
+    {num:'21',name:'Place and date of issue',req:true,desc:'Place where CMR was drawn up and the date.',example:'Kaunas, 2026-04-10',tip:'Usually the loading location and same date. Should match field 4.',placeholder:'City, date',input:'input'},
+    {num:'22',name:'Consignor signature',req:true,desc:'Consignor signature and stamp after loading. FILLED BY CONSIGNOR.',example:'— Consignor signs and stamps —',tip:'If not signed or no stamp — IMMEDIATELY notify manager.',input:'none',isSignature:true,sigNote:'This field must be filled and signed by the CONSIGNOR after loading.'},
+    {num:'23',name:'Carrier signature (YOU)',req:true,desc:'Driver surname, signature and carrier stamp. THIS IS YOUR FIELD.',example:'Vardenis Pavardenis\n[signature]\nA. Griciaus autotransporto įmonė [stamp]',tip:'Sign ONLY when everything is verified and matches. Signature = responsibility!',input:'none',isSignature:true,sigNote:'This field must be filled and signed by the DRIVER. Sign only after verification!'},
+    {num:'24',name:'Consignee signature (AFTER UNLOADING)',req:true,desc:'Consignee fills AFTER unloading: time, date, signature, stamp, name.',example:'2026-04-11 14:30\nHans Müller\n[signature + stamp]',tip:'If consignee refuses — IMMEDIATELY notify manager. Do NOT leave without signature!',input:'none',isSignature:true,sigNote:'This field is filled by the CONSIGNEE after unloading. Verify before leaving!'},
+    {num:'25',name:'Vehicle registration numbers',req:true,desc:'Registration numbers of truck and trailer.',example:'Truck: ABC 123\nTrailer: DEF 456',tip:'Both numbers required. Exactly as in registration documents.',placeholder:'Truck: ...\nTrailer: ...',input:'textarea'},
+  ]
+};
+
+const UI = {
+  lt:{statusTitle:'Pildykite CMR nakladinę',statusSub:'Paspauskite ant grafos — pamatysite pavyzdį',warn:'DRAUDŽIAMA taisyti be vadybininko leidimo! Kiekviena grafa svarbi.',progressLabel:'Užpildyta',exLabel:'Pavyzdys:',tipLabel:'💡 Patarimas:',btnDone:'✓ Pažymėti kaip užpildyta',btnUndone:'↩ Atžymėti',summaryTitle:'✅ Kontrolinis sąrašas',inputLabel:'Jūsų įrašas:'},
+  ru:{statusTitle:'Заполните CMR накладную',statusSub:'Нажмите на графу — увидите пример',warn:'ЗАПРЕЩЕНО исправлять без разрешения менеджера! Каждая графа важна.',progressLabel:'Заполнено',exLabel:'Пример:',tipLabel:'💡 Совет:',btnDone:'✓ Отметить как заполнено',btnUndone:'↩ Снять отметку',summaryTitle:'✅ Контрольный список',inputLabel:'Ваша запись:'},
+  en:{statusTitle:'Fill in the CMR consignment note',statusSub:'Tap a field to see an example',warn:'FORBIDDEN to correct without manager permission! Every field matters.',progressLabel:'Completed',exLabel:'Example:',tipLabel:'💡 Tip:',btnDone:'✓ Mark as completed',btnUndone:'↩ Unmark',summaryTitle:'✅ Checklist',inputLabel:'Your entry:'},
+};
+
+let activeField = null;
+
+function setLang(l) {
+  LANG = l;
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('active', b.textContent===l.toUpperCase()));
+  doneFields.clear();
+  activeField = null;
+  render();
+}
+
+function render() {
+  const u = UI[LANG];
+  const fields = FIELDS[LANG];
+  document.getElementById('status-title').textContent = u.statusTitle;
+  document.getElementById('status-sub').textContent = u.statusSub;
+  document.getElementById('warn-text').textContent = u.warn;
+  document.getElementById('progress-label').textContent = u.progressLabel;
+  document.getElementById('total-count').textContent = fields.length;
+  updateProgress();
+
+  const container = document.getElementById('cmr-fields');
+  container.innerHTML = '';
+  fields.forEach((f, i) => {
+    const card = document.createElement('div');
+    card.className = 'field-card' + (activeField===i?' active':'') + (doneFields.has(i)?' done':'');
+    card.id = 'card-'+i;
+
+    let bodyHTML = '';
+
+    if (f.input !== 'none') {
+      bodyHTML += `<div class="field-desc">${f.desc}</div>`;
+      bodyHTML += `<div class="example-block"><div class="example-label">${UI[LANG].exLabel}</div><div class="example-val">${f.example.replace(/\n/g,'<br>')}</div></div>`;
+      if (f.tip) bodyHTML += `<div class="tip-block"><span>💡</span><span>${f.tip}</span></div>`;
+      if (f.input === 'textarea') {
+        bodyHTML += `<div class="input-wrap"><div class="input-label">${UI[LANG].inputLabel}</div><textarea class="cmr-input cmr-textarea" id="inp-${i}" placeholder="${(f.placeholder||'').replace(/\n/g,'&#10;')}" rows="3">${f.prefill||''}</textarea></div>`;
+      } else if (f.input === 'input') {
+        bodyHTML += `<div class="input-wrap"><div class="input-label">${UI[LANG].inputLabel}</div><input class="cmr-input" id="inp-${i}" type="text" placeholder="${f.placeholder||''}"></div>`;
+      }
+    } else if (f.isSignature) {
+      bodyHTML += `<div class="field-desc">${f.desc}</div>`;
+      bodyHTML += `<div class="sig-section"><h4>${f.num === '23' ? '✍️ JŪSŲ PARAŠAS' : f.num === '24' ? '📋 GAVĖJO PARAŠAS' : '📋 SIUNTĖJO PARAŠAS'}</h4><div style="font-size:13px;color:var(--muted);line-height:1.6">${f.sigNote}</div></div>`;
+      if (f.example && f.example !== '— Siuntėjas pasirašo ir uždeda antspaudą —' && f.example !== '— Отправитель подписывает и ставит печать —' && f.example !== '— Consignor signs and stamps —') {
+        bodyHTML += `<div class="example-block" style="margin-top:8px"><div class="example-label">${UI[LANG].exLabel}</div><div class="example-val">${f.example.replace(/\n/g,'<br>')}</div></div>`;
+      }
+      if (f.tip) bodyHTML += `<div class="tip-block" style="margin-top:8px"><span>💡</span><span>${f.tip}</span></div>`;
+    }
+
+    const isDone = doneFields.has(i);
+    bodyHTML += `<button class="btn-done${isDone?' undone':''}" onclick="toggleDone(${i},event)">${isDone ? UI[LANG].btnUndone : UI[LANG].btnDone}</button>`;
+
+    card.innerHTML = `
+      <div class="field-header" onclick="toggleCard(${i})">
+        <div class="field-num">${f.num}</div>
+        <div class="field-info">
+          <div class="field-name">${f.name}</div>
+          <span class="field-badge ${f.req?'req':'opt'}">${f.req?(LANG==='ru'?'Обязательно':LANG==='en'?'Required':'Privaloma'):(LANG==='ru'?'Доп.':LANG==='en'?'Optional':'Papild.')}</span>
+        </div>
+        ${isDone ? '<span class="field-done-icon">✅</span>' : '<span class="field-arrow">▼</span>'}
+      </div>
+      <div class="field-body">${bodyHTML}</div>`;
+
+    container.appendChild(card);
+  });
+
+  renderSummary();
+}
+
+function toggleCard(i) {
+  activeField = activeField === i ? null : i;
+  render();
+  if (activeField !== null) {
+    setTimeout(() => { document.getElementById('card-'+i)?.scrollIntoView({behavior:'smooth',block:'nearest'}); }, 100);
+  }
+}
+
+function toggleDone(i, e) {
+  e.stopPropagation();
+  if (doneFields.has(i)) doneFields.delete(i);
+  else { doneFields.add(i); activeField = null; }
+  render();
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = FIELDS[LANG].length;
+  const done = doneFields.size;
+  document.getElementById('done-count').textContent = done;
+  document.getElementById('total-count').textContent = total;
+  document.getElementById('progress-fill').style.width = (done/total*100)+'%';
+}
+
+function renderSummary() {
+  const fields = FIELDS[LANG];
+  const total = fields.length;
+  const done = doneFields.size;
+  const card = document.getElementById('summary-card');
+  const list = document.getElementById('summary-list');
+  document.getElementById('summary-title').textContent = UI[LANG].summaryTitle + ` (${done}/${total})`;
+  card.style.display = 'block';
+  list.innerHTML = fields.map((f,i) => `
+    <div class="sl-item${doneFields.has(i)?' ok':''}">
+      <div class="sl-num">${doneFields.has(i)?'✓':f.num}</div>
+      <div class="sl-text">${f.name}${f.req?'':' ★'}</div>
+    </div>`).join('');
+}
+
+render();
+</script>
+</body>
+</html>
