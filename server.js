@@ -108,7 +108,7 @@ SVARBU: Nepasirašyti deklaracijos nesuprantama kalba!
 Jei radote jau apgadintą vilkiką/puspriekabę — fotografuoti ir nedelsiant informuoti vadybininką.
 
 📞 Žalų skyrius: +370 656 69809
-📞 Vadybininkas: +370 656 66206
+📞 Vadybininkas:--> numeris planšetėje
 🚨 Policija: 112`
   },
   {
@@ -197,7 +197,7 @@ SPRENDIMAI:
 ✅ Turėti atsarginį planą (spausdintas maršrutas)
 ✅ Jei klaida adrese — informuoti vadybininką ir paprašyti pagalbos
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: 
   },
   {
     title: "Kuras / degalai",
@@ -256,7 +256,7 @@ JEIGU VIRŠIJOTE LAIKĄ:
 2. Pasidaryti spausdinį ir parašyti priežastį (vardas, pavardė, kortelės nr., laikas)
 3. Saugoti spaustinius 56 dienas
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: --> numeris planšetėje
   },
   {
     title: "Darbo laikas / tachografas",
@@ -304,7 +304,7 @@ PERKROVA:
 → Jei svoris per didelis — NEVAŽIUOTI, informuoti vadybininką
 → Max ES: 40t bendra, 11.5t ašiai
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: --> numeris planšetėje`
   },
   {
     title: "Vagystės / nelegalai",
@@ -332,7 +332,7 @@ PREVENCIJA:
 ✅ Naudoti vagysčių žemėlapį
 ✅ Rinktis saugius, apšviestus parkingus
 
-📞 Vadybininkas: +370 656 66206
+📞 Vadybininkas --> numeris planšetėje
 📞 Žalų skyrius: +370 656 69809
 🚨 Policija: 112`
   },
@@ -357,7 +357,7 @@ PRANCŪZIJA:
 → Turėti SIPSI deklaraciją, A1 formą, darbo sutarties kopiją
 → Problemos: +33 9 50 53 44 65
 
-📞 Vadybininkas: +370 656 66206`
+
   },
   {
     title: "Oro sąlygos / blogas oras",
@@ -380,7 +380,7 @@ JEIGU NESAUGU → STOTI ir laukti
 → Tikrinti vietinius įspėjimus (weather apps)
 → Informuoti vadybininką
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: --> numeris planšetėje
   },
   {
     title: "Sveikata / trauma / blogai jaučiasi",
@@ -403,7 +403,7 @@ SVARBU: Nedirbti per jėgą — tai pavojinga ir tau, ir kitiems!
 Visais atvejais informuoti vadybininką bet kokiu paros metu.
 
 🚨 Pagalba Europa: 112
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: --> numeris planšetėje
   },
   {
     title: "Puspriekabės keitimas / perkabinimas",
@@ -422,7 +422,7 @@ KOMPLEKTACIJA TIKRINTI:
 ✅ Atsarginis ratas
 ✅ TIR kabelis (jei taikoma)
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas: --> numeris planšetėje
   }
 ];
 
