@@ -178,6 +178,23 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
     </div>
     <div class="login-divider"></div>
     <div class="login-desc" id="login-desc">Vairuotojo pagalbininkas kelyje — prisijunkite, kad galėtumėte naudotis.</div>
+    <!-- NFC LOGIN -->
+    <div id="nfc-section">
+      <div id="nfc-status" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;margin-bottom:14px;text-align:center">
+        <div style="font-size:32px;margin-bottom:6px">📡</div>
+        <div id="nfc-text" style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5">Prikabinkite NFC raktą prie telefono</div>
+        <div id="nfc-name" style="font-size:15px;font-weight:700;color:#fff;margin-top:4px;display:none"></div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div style="display:flex;align-items:center;gap:10px;margin:10px 0">
+      <div style="flex:1;height:1px;background:rgba(255,255,255,.1)"></div>
+      <span id="or-text" style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px">ARBA</span>
+      <div style="flex:1;height:1px;background:rgba(255,255,255,.1)"></div>
+    </div>
+
+    <!-- PASSWORD LOGIN -->
     <input type="password" id="pw-input" class="login-input" placeholder="• • • • • • • •" autocomplete="current-password">
     <button class="login-btn" id="login-btn" onclick="doLogin()">Prisijungti</button>
     <div class="login-error" id="login-error">Neteisingas slaptažodis</div>
@@ -351,9 +368,8 @@ async function doLogin() {
   try {
     const r = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({password:pw}) });
     if (r.ok) {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app-screen').style.display = 'flex';
-      initApp();
+      const d = await r.json();
+      enterApp(d.name || '');
     } else {
       document.getElementById('login-error').style.display = 'block';
       document.getElementById('pw-input').value = '';
@@ -363,9 +379,55 @@ async function doLogin() {
   btn.textContent = loginTexts[LANG].btn;
 }
 
+function enterApp(name) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'flex';
+  initApp(name);
+}
+
+// NFC Web API
+async function startNFC() {
+  if (!('NDEFReader' in window)) return; // NFC not supported
+  try {
+    const reader = new NDEFReader();
+    await reader.scan();
+    reader.onreading = async (event) => {
+      // Try serial number first
+      let uid = event.serialNumber ? event.serialNumber.toUpperCase().replace(/:/g,'') : '';
+      if (!uid) return;
+      const statusEl = document.getElementById('nfc-text');
+      const nameEl = document.getElementById('nfc-name');
+      statusEl.textContent = 'Tikrinama...';
+      try {
+        const r = await fetch('/api/nfc-login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({nfcId: uid}) });
+        const d = await r.json();
+        if (d.ok) {
+          nameEl.textContent = '✅ ' + d.name;
+          nameEl.style.display = 'block';
+          statusEl.textContent = 'Prisijungta sėkmingai!';
+          setTimeout(() => enterApp(d.name), 800);
+        } else {
+          statusEl.textContent = '❌ Raktas neatpažintas. Bandykite slaptažodžiu.';
+          setTimeout(() => { statusEl.textContent = 'Prikabinkite NFC raktą prie telefono'; }, 3000);
+        }
+      } catch(e) { statusEl.textContent = 'Klaida. Bandykite slaptažodžiu.'; }
+    };
+  } catch(e) {
+    // NFC not available or permission denied - hide NFC section
+    const nfcSec = document.getElementById('nfc-section');
+    if (nfcSec) nfcSec.style.display = 'none';
+  }
+}
+
 async function doLogout() { await fetch('/api/logout',{method:'POST'}); location.reload(); }
 
-function initApp() { renderTopics(); renderDocs(); renderAccident(); renderContacts(); updateLangInd(); addBotMsg(greeting()); }
+function initApp(driverName) {
+  renderTopics(); renderDocs(); renderAccident(); renderContacts(); updateLangInd();
+  if (driverName) {
+    document.getElementById('hdr-brand').innerHTML = 'Gricius Logistics <span>' + driverName + '</span>';
+  }
+  addBotMsg(greeting());
+}
 
 function greeting() {
   return {
@@ -459,7 +521,7 @@ function mkStep(n,t,b) {
 function renderDocs() {
   document.getElementById('doc-cmr').innerHTML = `
     <div class="doc-card">
-      <div class="doc-card-header"><div class="icon">📋</div><h3>CMR blankas— kaip pildyti</h3></div>
+      <div class="doc-card-header"><div class="icon">📋</div><h3>CMR nakladinė — kaip pildyti</h3></div>
       <div class="warn"><span>⚠️</span><span>DRAUDŽIAMA taisyti be vadybininko leidimo!</span></div>
       <div class="fg">
         <div class="fg-n">1</div><div class="fg-d">Siuntėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div>
@@ -556,7 +618,7 @@ function renderAccident() {
 
 const CONTACTS = [
   {icon:'🚨',role:'Bendra pagalba — Europa 24/7',val:'112'},
-  {icon:'📞',role:'Transporto planuotojas',val:'+370 656 66206'},
+  {icon:'📞',role:'Transporto planuotojas / Dispečeris',val:'+370 656 66206'},
   {icon:'📋',role:'Draudiminiai atvejai / Žalos',val:'+370 656 69809'},
   {icon:'💳',role:'Korteles / Kelių mokesčiai — Darius Gricius',val:'+370 656 90811'},
   {icon:'📱',role:'Planšetai / Telemetrija',val:'+370 602 94000'},
@@ -597,12 +659,9 @@ document.getElementById('chat-input').addEventListener('keydown', e => {
   if (e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
 });
 
+startNFC();
 fetch('/api/auth-check').then(r=>r.json()).then(d=>{
-  if(d.authenticated){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('app-screen').style.display='flex';
-    initApp();
-  }
+  if(d.authenticated){ enterApp(d.name||''); }
 });
 </script>
 </body>
