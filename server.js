@@ -10,20 +10,20 @@ app.use(express.static('.'));
 
 // Session setup
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'gricius-secret-2025',
+  secret: process.env.SESSION_SECRET || 'gricius-secret-2026',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 8 * 60 * 60 * 1000 } // 8 hours
 }));
 
 // ===================== CONFIG =====================
-const APP_PASSWORD  = process.env.APP_PASSWORD  || 'Gricius2025';
+const APP_PASSWORD  = process.env.APP_PASSWORD  || 'Gricius2026';
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 const PORT          = process.env.PORT || 3000;
 
 // ===================== MANUAL CONTENT =====================
 const MANUAL_CONTENT = `
-VAIRUOTOJO VADOVAS 2025
+VAIRUOTOJO VADOVAS 2026
 
 ADMINISTRACIJOS TELEFONAI:
 - Bendra pagalba Europa: 112
