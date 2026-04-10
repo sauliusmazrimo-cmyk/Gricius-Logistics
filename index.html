@@ -38,19 +38,19 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
 .ll.active{background:rgba(192,57,43,.3);color:#fff;border-color:rgba(192,57,43,.5)}
 .ll:hover:not(.active){color:#fff}
 #app-screen{display:none;flex-direction:column;min-height:100vh}
-.header{background:linear-gradient(90deg,var(--navy),var(--navy2));color:#fff;padding:0 16px;display:flex;align-items:center;gap:12px;height:58px;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.header{background:linear-gradient(90deg,var(--navy),var(--navy2));color:#fff;padding:0 16px;display:flex;align-items:center;gap:12px;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.4)}
 .header-logo{display:flex;align-items:center;gap:10px;flex:1}
 .header-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--red),#a93226);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.header-brand{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.header-brand{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
 .header-brand span{display:block;font-size:10px;font-weight:500;letter-spacing:1.5px;opacity:.45;text-transform:uppercase;font-family:'Barlow',sans-serif}
 .hdr-btns{display:flex;gap:6px;align-items:center}
 .lang-ind{font-size:10px;font-weight:800;color:rgba(255,255,255,.5);padding:3px 8px;border:1px solid rgba(255,255,255,.12);border-radius:4px;letter-spacing:1.5px}
 .logout-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:600;transition:.15s}
 .logout-btn:hover{background:rgba(255,255,255,.07);color:#fff}
-.tabs{display:flex;background:linear-gradient(90deg,#0f1e3a,#152448);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:58px;z-index:100;overflow-x:auto}
+.tabs{display:flex;background:linear-gradient(90deg,#0f1e3a,#152448);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:64px;z-index:100;overflow-x:auto}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:1;min-width:80px;padding:12px 6px;font-size:11px;font-weight:700;color:rgba(255,255,255,.35);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:.2s;text-align:center;white-space:nowrap;font-family:'Barlow',sans-serif;letter-spacing:.5px;text-transform:uppercase}
-.tab.active{color:#fff;border-bottom-color:var(--gold)}
+.tab{flex:1;min-width:90px;padding:14px 8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.4);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;text-align:center;white-space:nowrap;font-family:'Barlow',sans-serif;letter-spacing:.5px;text-transform:uppercase}
+.tab.active{color:#fff;border-bottom-color:var(--gold);background:rgba(255,255,255,.04)}
 .tab:hover:not(.active){color:rgba(255,255,255,.65)}
 .panel{display:none;flex:1;flex-direction:column}.panel.active{display:flex}
 .chat-wrap{flex:1;max-width:740px;width:100%;margin:0 auto;display:flex;flex-direction:column;padding:12px 12px 0}
@@ -65,7 +65,7 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
 .quick-topics{display:flex;flex-wrap:wrap;gap:6px}
 .qt{padding:6px 13px;background:#fff;border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;color:var(--navy);white-space:nowrap;font-family:'Barlow',sans-serif}
 .qt:hover{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-color:var(--navy);transform:translateY(-1px)}
-#chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:8px;min-height:200px;max-height:calc(100vh - 310px)}
+#chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:8px;min-height:200px;max-height:calc(100vh - 320px)}
 #chat-messages::-webkit-scrollbar{width:4px}
 #chat-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .msg{display:flex;gap:8px;animation:mIn .25s ease}
@@ -217,7 +217,7 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
       <div class="section-header"><span class="sh-icon">&#x1F4C4;</span><h2>Dokument&#371; instrukcijos</h2></div>
       <div class="doc-tabs">
         <button class="dt active" onclick="showDoc('cmr')" id="dt-cmr">&#x1F4CB; CMR</button>
-        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">&#x1F69B; Treileris</button>
+        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">&#x1F69B; Puspriekabė</button>
         <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">&#x1F4E6; Palet&#279;s</button>
         <button class="dt" onclick="showDoc('medicine')" id="dt-medicine">&#x1F48A; Vaistai</button>
       </div>
