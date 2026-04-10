@@ -27,7 +27,7 @@ VAIRUOTOJO VADOVAS 2026
 
 ADMINISTRACIJOS TELEFONAI:
 - Bendra pagalba Europa: 112
-- Transporto planuotojas: +370 656 66206
+- Planuotojas: +370 656 66206
 - Draudiminiai atvejai / Žalų skyrius: +370 656 69809
 - Korteles ir kelių mokesčiai (Darius Gricius): +370 656 90811
 - Planšetai / Telemetrija: +370 602 94000
@@ -35,9 +35,10 @@ ADMINISTRACIJOS TELEFONAI:
 - Vilkikų mechanikas (Robertas Žilys): +370 658 14200
 - Puspriekabių mechanikas (Aivaras Ignatavičius): +370 667 39423
 - Techninis skyrius (24/7): +370 637 69400
-- HR (Nataliia Andriushchenko): +370 658 49162
-- HR (Khrystyna Radvilė): +370 656 01395
-- HR (Skaidra Blaževičienė): +370 636 21833
+- HR (Nataliia Andriushchenko/dokumentai): +370 658 49162
+- HR (Natalja Antanaitienė /atranka): +370 656 25613
+- HR (Khrystyna Radvilė/ dokumentai): +370 656 01395
+- HR (Skaidra Blaževičienė/ atranka): +370 636 21833
 - Vairuotojų darbo organizavimo vadovas (Saulius Mažrimas): +370 652 39045
 - Mokymų vadybininkas (Jevgenij Burgan): +370 660 94905
 - Mokymų vadybininkė (Vilma Rustamova): +370 659 05616
@@ -59,6 +60,8 @@ TACHOGRAFO REGLAMENTAS:
 DOKUMENTAI REISE:
 - Vairuotojo pažymėjimas kat CE + 95 kodas
 - Vairuotojo kortelė (galiojanti iki reiso pabaigos)
+- Raudonas lapas
+- Europos sveikatos kortelė
 - Pasas su visomis vizomis (jei reikia)
 - Medicininė pažyma
 - A1 forma
@@ -304,7 +307,7 @@ PERKROVA:
 → Jei svoris per didelis — NEVAŽIUOTI, informuoti vadybininką
 → Max ES: 40t bendra, 11.5t ašiai
 
-📞 Vadybininkas: +370 656 66206`
+📞 Vadybininkas' 
   },
   {
     title: "Vagystės / nelegalai",
@@ -331,6 +334,8 @@ PREVENCIJA:
 ✅ Tikrinti plombas ir balną po kiekvieno sustojimo
 ✅ Naudoti vagysčių žemėlapį
 ✅ Rinktis saugius, apšviestus parkingus
+✅ Geriausia nakvynė - be krovinio. Stenkis išsikrauti 
+
 
 📞 Vadybininkas: 
 📞 Žalų skyrius: +370 656 69809
@@ -349,6 +354,7 @@ PREVENCIJA:
 DOKUMENTAI KURIUOS GALI PRAŠYTI:
 • Vairuotojo pažymėjimas + 95 kodas
 • Tachografo kortelė
+• IMI Deklaracija 
 • Pasas / asmens dokumentas
 • CMR ir krovinio dokumentai
 • Transporto priemonės dokumentai
