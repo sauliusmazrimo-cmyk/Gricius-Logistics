@@ -23,7 +23,7 @@ const PORT          = process.env.PORT || 3000;
 
 // ===================== MANUAL CONTENT =====================
 const MANUAL_CONTENT = `
-VAIRUOTOJO VADOVAS 2026
+VAIRUOTOJO VADOVAS 2025
 
 ADMINISTRACIJOS TELEFONAI:
 - Bendra pagalba Europa: 112
@@ -113,7 +113,7 @@ Jei radote jau apgadintą vilkiką/puspriekabę — fotografuoti ir nedelsiant i
   },
   {
     title: "Techninis gedimas kelyje",
-    keywords: ["gedin", "padang", "varikl", "stabdž", "evakuator", "limp mode", "šaldytuv", "štang", "поломк", "шин", "двигател", "breakdown", "tyre", "engine", "brake", "prakiurus"],
+    keywords: ["gedim", "padang", "varikl", "stabdž", "evakuator", "limp mode", "šaldytuv", "štang", "поломк", "шин", "двигател", "breakdown", "tyre", "engine", "brake", "prakiurus"],
     answer: `TECHNINIS GEDIMAS — KĄ DARYTI:
 
 1. Sustoti saugioje vietoje → avarines šviesas → trikampis
@@ -439,13 +439,19 @@ KALBA: Automatiškai atpažink klausimo kalbą ir atsakyk ta pačia kalba — li
 PRIORITETAI:
 1. Jei klausimas atitinka bet kurią iš "PATVIRTINTŲ SITUACIJŲ" — naudok TIK tą atsakymą, nekeisk jo
 2. Jei situacijos nėra sąraše — atsakyk remdamasis vadovo turiniu ir savo patirtimi
-3. Visada baik atsakymą su aktualiais kontaktais
+3. Kontaktus rašyk TIK jei jie yra situacijos atsakyme arba vadove — niekada nesugalvok kontaktų
 
 ATSAKYMO STILIUS:
 - Vairuotojas skaito telefonu kelyje — būk TRUMPAS ir KONKRETUS
 - Pradėk nuo "KĄ DARYTI DABAR" (numeruoti žingsniai)
 - Jei situacija pavojinga — pirmiausia saugumas
 - Kontaktus rašyk aiškiai su numeriais
+
+DRAUDŽIAMA:
+- Žodį "vadybininkas" rašyti su telefono numeriu — rašyk tik "informuoti vadybininką" be numerio, išskyrus kai numeris yra situacijos atsakyme
+- Sugalvoti žodžius ar vietas kurių nėra vadove ("šėrimo vietos", "poilsio namai" ir pan.)
+- Rašyti informaciją kurios nėra vadove — geriau "kreipkitės į vadybininką"
+- Naudoti markdown simbolius (**tekstas**) — rašyti paprastai be žvaigždučių
 
 PATVIRTINTOS SITUACIJOS IR ATSAKYMAI:
 ${situationsText}
