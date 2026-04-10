@@ -255,8 +255,8 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
       </div>
       <div class="doc-tabs">
         <button class="dt active" onclick="showDoc('cmr')" id="dt-cmr">📋 CMR</button>
-        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">🚛 Treikeris</button>
-        <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">📦 Paletai</button>
+        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">🚛 Vilkikas</button>
+        <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">📦 Paletės</button>
         <button class="dt" onclick="showDoc('medicine')" id="dt-medicine">💊 Vaistai</button>
       </div>
       <div id="doc-cmr" class="doc-section active"></div>
@@ -521,7 +521,7 @@ function mkStep(n,t,b) {
 function renderDocs() {
   document.getElementById('doc-cmr').innerHTML = `
     <div class="doc-card">
-      <div class="doc-card-header"><div class="icon">📋</div><h3>CMR nakladinė — kaip pildyti</h3></div>
+      <div class="doc-card-header"><div class="icon">📋</div><h3>CMR blankas — kaip pildyti</h3></div>
       <div class="warn"><span>⚠️</span><span>DRAUDŽIAMA taisyti be vadybininko leidimo!</span></div>
       <div class="fg">
         <div class="fg-n">1</div><div class="fg-d">Siuntėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div>
@@ -530,7 +530,7 @@ function renderDocs() {
         <div class="fg-n">4</div><div class="fg-d">Pakrovimo vieta (adresas, šalis) <span class="badge req">Privaloma</span></div>
         <div class="fg-n">5</div><div class="fg-d">Lydimieji dokumentai (Invoice Nr, data; TIR Nr, data) <span class="badge req">Privaloma</span></div>
         <div class="fg-n">6–11</div><div class="fg-d">Krovinio pavadinimas, pakuočių sk., brt. svoris, plombos Nr. <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">16</div><div class="fg-d">Vežėjo rekvizitai — A. Griciaus autotransporto įmonė <span class="badge req">Privaloma</span></div>
+        <div class="fg-n">16</div><div class="fg-d">Vežėjo rekvizitai — UAB Gricius Logistics  <span class="badge req">Privaloma</span></div>
         <div class="fg-n">18</div><div class="fg-d">Vežėjo pastabos ir išlygos <span class="badge opt">Papild.</span></div>
         <div class="fg-n">21</div><div class="fg-d">Vieta ir data <span class="badge req">Privaloma</span></div>
         <div class="fg-n">22</div><div class="fg-d">Siuntėjas: parašas ir antspaudas po pakrovimo <span class="badge req">Privaloma</span></div>
@@ -538,14 +538,14 @@ function renderDocs() {
         <div class="fg-n">24</div><div class="fg-d"><strong>GAVĖJAS</strong> pildymas po iškrovimo: laikas, antspaudas, parašas <span class="badge req">Privaloma</span></div>
         <div class="fg-n">25</div><div class="fg-d">Transporto priemonių valst. Nr. <span class="badge req">Privaloma</span></div>
       </div>
-      <div class="ok"><span>✅</span><span>Po iškrovimo NUSKENUOTI visus dokumentus planšetu ir siųsti vadybininkui. Be vadybininko leidimo — nepalikti iškrovimo vietos!</span></div>
+      <div class="ok"><span>✅</span><span>Po iškrovimo NUSKENUOTI visus dokumentus planšetu ir siųsti vadybininkui. Dokumentus sudėti į dokumentų voką. Be vadybininko leidimo — nepalikti iškrovimo vietos!</span></div>
     </div>`;
 
   document.getElementById('doc-trailer').innerHTML = `
     <div class="doc-card">
       <div class="doc-card-header"><div class="icon">🚛</div><h3>Treilerio lapas</h3></div>
       <div class="warn"><span>⚠️</span><span>Be abiejų parašų — lapas negalioja!</span></div>
-      ${mkStep(1,'Kas pildyti','Kiekvienas vairuotojas, priimantis arba perduodantis puspriekabę — pildyti FM programoje.')}
+      ${mkStep(1,'Kas pildyti','Kiekvienas vairuotojas, priimantis arba perduodantis puspriekabę — pildyti FM programoje/Perdavimo/Priėmimo aktas.')}
       ${mkStep(2,'Ką pažymėti','Visi išoriniai ir vidiniai pažeidimai, likusio kuro kiekis, moto valandos, komplektacija (4 štangos, spyna, atsarginis ratas).')}
       ${mkStep(3,'Parašai','PRIVALOMI abu parašai: vairuotojo kuris ATIDUODA ir vairuotojo kuris PRIIMA.')}
       ${mkStep(4,'4 nuotraukos','Priekis, galas, kairė, dešinė — siųsti kartu su lapu per planšetą vadybininkui.')}
@@ -558,7 +558,7 @@ function renderDocs() {
       <div class="warn"><span>⚠️</span><span>1 paletė = 13–15 EUR. Be antspauduoto dokumento — nuostoliai vairuotojui!</span></div>
       ${mkStep(1,'Kada keisti','Tik gavus vadybininko nurodymą. Tik euro paletės. Neimti dažytų, supuvusių, sulaužytų!')}
       ${mkStep(2,'Kur krauti','Tik parkinge — ne įmonės teritorijoje. Max laikas: 30 min.')}
-      ${mkStep(3,'Dokumentas','Gavėjas/siuntėjas PRIVALO pasirašyti ir antspauduoti firminį Gricius Logistics paletių lapą.')}
+      ${mkStep(3,'Dokumentas','Gavėjas/siuntėjas NE/PRIVALO pasirašyti ir antspauduoti firminį Gricius Logistics palečių lapą.')}
       ${mkStep(4,'Pildymas','"changed" — kiek atiduota. "pallets back" — kiek grąžinta. Taisyti DRAUDŽIAMA!')}
       ${mkStep(5,'Pranešimas','Po kiekvieno keitimo — pranešimas vadybininkui: kiek pakeitėte, kiek grąžinote, kiek pakrovėte.')}
     </div>`;
@@ -618,7 +618,7 @@ function renderAccident() {
 
 const CONTACTS = [
   {icon:'🚨',role:'Bendra pagalba — Europa 24/7',val:'112'},
-  {icon:'📞',role:'Transporto planuotojas / Dispečeris',val:'+370 656 66206'},
+  {icon:'📞',role:'Transporto planuotojas',val:'+370 656 66206'},
   {icon:'📋',role:'Draudiminiai atvejai / Žalos',val:'+370 656 69809'},
   {icon:'💳',role:'Korteles / Kelių mokesčiai — Darius Gricius',val:'+370 656 90811'},
   {icon:'📱',role:'Planšetai / Telemetrija',val:'+370 602 94000'},
@@ -626,9 +626,10 @@ const CONTACTS = [
   {icon:'🔧',role:'Vilkikų mechanikas — Robertas Žilys',val:'+370 658 14200'},
   {icon:'🔧',role:'Puspriekabių mechanikas — Aivaras Ignatavičius',val:'+370 667 39423'},
   {icon:'🔧',role:'Techninis skyrius 24/7',val:'+370 637 69400'},
-  {icon:'👤',role:'HR — Nataliia Andriushchenko',val:'+370 658 49162'},
-  {icon:'👤',role:'HR — Khrystyna Radvilė',val:'+370 656 01395'},
-  {icon:'👤',role:'HR — Skaidra Blaževičienė',val:'+370 636 21833'},
+  {icon:'👤',role:'HR — Nataliia Andriushchenko/dokumentai',val:'+370 658 49162'},
+  {icon:'👤',role:'HR — Khrystyna Radvilė/dokumentai',val:'+370 656 01395'},
+  {icon:'👤',role:'HR — Skaidra Blaževičienė/atranka',val:'+370 636 21833'},
+  {icon:'👤',role:'HR — Natalja Antanaitienė/atranka',val:'+370 656 25613'},
   {icon:'🎓',role:'Vairuotojų darbo org. vadovas — Saulius Mažrimas',val:'+370 652 39045'},
   {icon:'🎓',role:'Mokymų vadybininkas — Jevgenij Burgan',val:'+370 660 94905'},
   {icon:'🎓',role:'Mokymų vadybininkė — Vilma Rustamova',val:'+370 659 05616'},
