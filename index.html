@@ -4,198 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Vairuotojo pagalbininkas | Gricius Logistics</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0d1b35;
-  --navy2: #142040;
-  --red: #c0392b;
-  --red2: #e74c3c;
-  --gold: #e8932a;
-  --white: #ffffff;
-  --gray: #f4f5f7;
-  --gray2: #e8eaee;
-  --text: #1a2030;
-  --muted: #6b7280;
-  --border: #dde2ec;
-}
+:root{--navy:#0d1b35;--navy2:#142040;--red:#c0392b;--red2:#e74c3c;--gold:#e8932a;--gray:#f4f5f7;--text:#1a2030;--muted:#6b7280;--border:#dde2ec}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;display:flex;flex-direction:column;color:var(--text)}
-
-/* ===== LOGIN ===== */
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:var(--navy);position:relative;overflow:hidden}
-#login-screen::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-#login-screen::after{content:'';position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(192,57,43,0.15) 0%,transparent 70%)}
-
-.login-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:40px 36px;max-width:380px;width:100%;text-align:center;position:relative;z-index:1}
-.login-logo-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:28px}
-.login-logo-icon{width:48px;height:48px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px}
-.login-logo-text{text-align:left}
-.login-logo-text .brand{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--white);letter-spacing:0.5px;line-height:1}
-.login-logo-text .sub{font-size:11px;color:rgba(255,255,255,0.5);font-weight:500;letter-spacing:1px;text-transform:uppercase}
-.login-divider{width:40px;height:2px;background:var(--red);margin:0 auto 20px}
-.login-desc{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:24px;line-height:1.6}
-.login-input{width:100%;padding:14px 18px;border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;font-size:16px;font-family:'Barlow',sans-serif;outline:none;margin-bottom:12px;text-align:center;letter-spacing:3px;background:rgba(255,255,255,0.07);color:var(--white);transition:.2s}
-.login-input::placeholder{letter-spacing:2px;color:rgba(255,255,255,0.3)}
-.login-input:focus{border-color:var(--red);background:rgba(255,255,255,0.1)}
-.login-btn{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:'Barlow',sans-serif;cursor:pointer;transition:.2s;letter-spacing:0.5px;text-transform:uppercase}
-.login-btn:hover{background:var(--red2);transform:translateY(-1px)}
-.login-btn:active{transform:scale(.98)}
+#login-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(192,57,43,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(232,147,42,.08) 0%,transparent 50%)}
+#login-screen::after{content:'';position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(192,57,43,.12) 0%,transparent 70%)}
+.login-card{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:44px 38px;max-width:400px;width:100%;text-align:center;position:relative;z-index:1;box-shadow:0 40px 80px rgba(0,0,0,.4);animation:cIn .5s ease}
+@keyframes cIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.login-logo-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:30px}
+.login-logo-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--red),#a93226);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(192,57,43,.4);flex-shrink:0}
+.brand{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:800;color:#fff;letter-spacing:.5px;text-transform:uppercase}
+.brandsub{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.login-line{width:44px;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:2px;margin:0 auto 22px}
+.login-desc{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.7}
+.nfc-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 16px;margin-bottom:16px;text-align:center}
+.nfc-icon{font-size:32px;margin-bottom:7px;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+#nfc-text{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
+#nfc-name{font-size:14px;font-weight:700;color:#fff;margin-top:5px;display:none}
+.divider{display:flex;align-items:center;gap:10px;margin:14px 0}
+.div-line{flex:1;height:1px;background:rgba(255,255,255,.08)}
+.div-txt{font-size:10px;color:rgba(255,255,255,.25);letter-spacing:1.5px;font-weight:700}
+.login-input{width:100%;padding:14px 18px;border:1.5px solid rgba(255,255,255,.1);border-radius:11px;font-size:16px;font-family:'Barlow',sans-serif;outline:none;margin-bottom:12px;text-align:center;letter-spacing:3px;background:rgba(255,255,255,.07);color:#fff;transition:.2s}
+.login-input:focus{border-color:rgba(192,57,43,.6);background:rgba(255,255,255,.1)}
+.login-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--red),#a93226);color:#fff;border:none;border-radius:11px;font-size:14px;font-weight:800;font-family:'Barlow',sans-serif;cursor:pointer;transition:.2s;letter-spacing:.8px;text-transform:uppercase;box-shadow:0 6px 20px rgba(192,57,43,.35)}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(192,57,43,.45)}
 .login-error{color:#ff6b6b;font-size:13px;margin-top:8px;display:none}
-.login-langs{display:flex;justify-content:center;gap:8px;margin-top:24px}
-.ll{padding:6px 16px;border:1px solid rgba(255,255,255,0.2);border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,0.6);transition:.15s;font-family:'Barlow',sans-serif}
-.ll.active{background:var(--red);color:#fff;border-color:var(--red)}
-.ll:hover:not(.active){border-color:rgba(255,255,255,0.5);color:#fff}
-
-/* ===== APP ===== */
+.login-langs{display:flex;justify-content:center;gap:8px;margin-top:22px}
+.ll{padding:6px 16px;border:1px solid rgba(255,255,255,.15);border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.5);transition:.15s;font-family:'Barlow',sans-serif}
+.ll.active{background:rgba(192,57,43,.3);color:#fff;border-color:rgba(192,57,43,.5)}
+.ll:hover:not(.active){color:#fff}
 #app-screen{display:none;flex-direction:column;min-height:100vh}
-
-/* HEADER */
-.header{background:var(--navy);color:#fff;padding:0 16px;display:flex;align-items:center;gap:12px;height:58px;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.header{background:linear-gradient(90deg,var(--navy),var(--navy2));color:#fff;padding:0 16px;display:flex;align-items:center;gap:12px;height:58px;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.4)}
 .header-logo{display:flex;align-items:center;gap:10px;flex:1}
-.header-icon{width:34px;height:34px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.header-brand{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:0.5px;line-height:1}
-.header-brand span{display:block;font-size:10px;font-weight:500;letter-spacing:1.5px;opacity:0.5;text-transform:uppercase;font-family:'Barlow',sans-serif}
+.header-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--red),#a93226);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.header-brand{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.header-brand span{display:block;font-size:10px;font-weight:500;letter-spacing:1.5px;opacity:.45;text-transform:uppercase;font-family:'Barlow',sans-serif}
 .hdr-btns{display:flex;gap:6px;align-items:center}
-.lang-ind{font-size:11px;font-weight:700;color:rgba(255,255,255,.6);padding:3px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;letter-spacing:1px}
-.logout-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;transition:.15s;font-family:'Barlow',sans-serif;font-weight:600}
-.logout-btn:hover{background:rgba(255,255,255,.08);color:#fff}
-
-/* TABS */
-.tabs{display:flex;background:var(--navy2);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:58px;z-index:100;overflow-x:auto}
-.tab{flex:1;min-width:80px;padding:12px 6px;font-size:11px;font-weight:700;color:rgba(255,255,255,.4);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;transition:.15s;text-align:center;white-space:nowrap;font-family:'Barlow',sans-serif;letter-spacing:0.3px;text-transform:uppercase}
-.tab.active{color:#fff;border-bottom-color:var(--red)}
-.tab:hover:not(.active){color:rgba(255,255,255,.7)}
-
-/* PANELS */
+.lang-ind{font-size:10px;font-weight:800;color:rgba(255,255,255,.5);padding:3px 8px;border:1px solid rgba(255,255,255,.12);border-radius:4px;letter-spacing:1.5px}
+.logout-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:600;transition:.15s}
+.logout-btn:hover{background:rgba(255,255,255,.07);color:#fff}
+.tabs{display:flex;background:linear-gradient(90deg,#0f1e3a,#152448);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:58px;z-index:100;overflow-x:auto}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1;min-width:80px;padding:12px 6px;font-size:11px;font-weight:700;color:rgba(255,255,255,.35);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:.2s;text-align:center;white-space:nowrap;font-family:'Barlow',sans-serif;letter-spacing:.5px;text-transform:uppercase}
+.tab.active{color:#fff;border-bottom-color:var(--gold)}
+.tab:hover:not(.active){color:rgba(255,255,255,.65)}
 .panel{display:none;flex:1;flex-direction:column}.panel.active{display:flex}
-
-/* CHAT */
 .chat-wrap{flex:1;max-width:740px;width:100%;margin:0 auto;display:flex;flex-direction:column;padding:12px 12px 0}
-#chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:8px;min-height:260px;max-height:calc(100vh - 290px)}
-.msg{display:flex;gap:8px;animation:fi .25s ease}
-@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.welcome-banner{background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;animation:sIn .4s ease}
+@keyframes sIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.wb-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),#f5a623);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wb-text h3{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#fff}
+.wb-text p{font-size:12px;color:rgba(255,255,255,.45);margin-top:2px}
+.topics-wrap{padding:8px 0 6px}
+.topics-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.topics-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.quick-topics{display:flex;flex-wrap:wrap;gap:6px}
+.qt{padding:6px 13px;background:#fff;border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;color:var(--navy);white-space:nowrap;font-family:'Barlow',sans-serif}
+.qt:hover{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-color:var(--navy);transform:translateY(-1px)}
+#chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:8px;min-height:200px;max-height:calc(100vh - 310px)}
+#chat-messages::-webkit-scrollbar{width:4px}
+#chat-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.msg{display:flex;gap:8px;animation:mIn .25s ease}
+@keyframes mIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 .msg.user{flex-direction:row-reverse}
-.av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;align-self:flex-end;font-weight:700}
-.av.bot{background:var(--navy);color:#fff;font-size:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px}
-.av.user{background:var(--red);color:#fff;font-size:14px}
-.bub{max-width:84%;padding:11px 15px;border-radius:16px;font-size:14px;line-height:1.65;font-family:'Barlow',sans-serif}
-.msg.user .bub{background:var(--navy);color:#fff;border-radius:16px 16px 4px 16px}
-.msg.bot .bub{background:#fff;color:var(--text);border-radius:16px 16px 16px 4px;border:1px solid var(--border);white-space:pre-line;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-
-.input-area{background:#fff;border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;align-items:flex-end;position:sticky;bottom:0;max-width:740px;width:100%;margin:0 auto;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+.av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;align-self:flex-end;font-weight:800}
+.av.bot{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px}
+.av.user{background:linear-gradient(135deg,var(--red),#a93226);color:#fff;font-size:14px}
+.bub{max-width:84%;padding:11px 15px;border-radius:16px;font-size:14px;line-height:1.65}
+.msg.user .bub{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:16px 16px 4px 16px;box-shadow:0 3px 12px rgba(10,22,40,.25)}
+.msg.bot .bub{background:#fff;color:var(--text);border-radius:16px 16px 16px 4px;border:1px solid var(--border);white-space:pre-line;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.input-area{background:#fff;border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;align-items:flex-end;position:sticky;bottom:0;max-width:740px;width:100%;margin:0 auto;box-shadow:0 -6px 24px rgba(0,0,0,.07)}
 #chat-input{flex:1;padding:10px 15px;border:1.5px solid var(--border);border-radius:22px;font-size:14px;font-family:'Barlow',sans-serif;resize:none;max-height:90px;line-height:1.4;outline:none;background:#f8f9fc;transition:.2s}
 #chat-input:focus{border-color:var(--navy);background:#fff}
-.send-btn{width:42px;height:42px;background:var(--navy);border:none;border-radius:50%;color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
-.send-btn:hover{background:var(--red);transform:scale(1.05)}
-.send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.send-btn{width:42px;height:42px;background:linear-gradient(135deg,var(--navy),var(--navy2));border:none;border-radius:50%;color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s;box-shadow:0 4px 12px rgba(10,22,40,.3)}
+.send-btn:hover{background:linear-gradient(135deg,var(--red),#a93226);transform:scale(1.08)}
+.send-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
 .clear-btn{width:36px;height:36px;background:transparent;border:1.5px solid var(--border);border-radius:50%;color:var(--muted);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s}
 .clear-btn:hover{border-color:var(--red);color:var(--red)}
-.fn{text-align:center;font-size:10px;color:#bbb;padding:4px 0 7px;max-width:740px;margin:0 auto;width:100%;letter-spacing:0.5px}
-
-/* QUICK TOPICS */
-.topics-wrap{padding:10px 0 6px}
-.topics-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
-.quick-topics{display:flex;flex-wrap:wrap;gap:6px}
-.qt{padding:6px 13px;background:#fff;border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;color:var(--navy);white-space:nowrap;font-family:'Barlow',sans-serif;letter-spacing:0.2px}
-.qt:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.qt.red:hover{background:var(--red);border-color:var(--red)}
-
-/* THINKING DOTS */
+.fn{text-align:center;font-size:10px;color:#bbb;padding:4px 0 7px;max-width:740px;margin:0 auto;width:100%}
 .dots span{animation:bl 1.2s infinite;color:#ccc;font-size:20px}
 .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
 @keyframes bl{0%,80%,100%{opacity:.15}40%{opacity:1}}
-
-/* ===== DOCS ===== */
 .docs-wrap{max-width:740px;width:100%;margin:0 auto;padding:14px 12px;flex:1;overflow-y:auto}
 .doc-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.dt{padding:7px 16px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;background:#fff;color:var(--muted);transition:.15s;font-family:'Barlow',sans-serif;letter-spacing:0.2px}
-.dt.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.dt{padding:7px 16px;border:1.5px solid var(--border);border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;background:#fff;color:var(--muted);transition:.2s;font-family:'Barlow',sans-serif}
+.dt.active{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-color:var(--navy)}
 .dt:hover:not(.active){border-color:var(--navy);color:var(--navy)}
 .doc-section{display:none}.doc-section.active{display:block}
-.doc-card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.doc-card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .doc-card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--gray)}
-.doc-card-header .icon{width:36px;height:36px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.doc-card-header h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:0.3px}
+.doc-card-header .icon{width:36px;height:36px;background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.doc-card-header h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--navy);letter-spacing:.3px}
 .step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
-.sn{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:'Barlow Condensed',sans-serif}
-.sb{flex:1;font-size:13px;line-height:1.55;color:var(--text)}
-.sb strong{color:var(--navy);font-weight:700}
+.sn{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Barlow Condensed',sans-serif}
+.sb{flex:1;font-size:13px;line-height:1.55;color:var(--text)}.sb strong{color:var(--navy);font-weight:700}
 .warn{background:#fff8e6;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 13px;font-size:12.5px;color:#7a5200;margin:10px 0;display:flex;gap:8px;align-items:flex-start}
 .ok{background:#eafaf2;border-left:3px solid #27ae60;border-radius:0 8px 8px 0;padding:10px 13px;font-size:12.5px;color:#1a5c38;margin:10px 0;display:flex;gap:8px;align-items:flex-start}
 .fg{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:10px 0;font-size:12.5px}
-.fg-n{font-weight:800;color:var(--red);text-align:right;padding-top:1px;font-family:'Barlow Condensed',sans-serif;font-size:14px}
-.fg-d{color:var(--text);line-height:1.45;padding:1px 0}
-.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;margin-left:5px;letter-spacing:0.3px}
+.fg-n{font-weight:800;color:var(--red);text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:14px}
+.fg-d{color:var(--text);line-height:1.45}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;margin-left:5px}
 .req{background:#ffe0e0;color:var(--red)}.opt{background:#e8f4e8;color:#27ae60}
-
-/* CONTACTS */
-.cr{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border-radius:10px;border:1px solid var(--border);margin-bottom:6px;transition:.15s}
-.cr:hover{border-color:var(--navy);box-shadow:0 2px 8px rgba(13,27,53,.08)}
+.contacts-wrap{max-width:740px;width:100%;margin:0 auto;padding:14px 12px;flex:1;overflow-y:auto}
+.section-header{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:12px;padding:13px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 14px rgba(10,22,40,.2)}
+.section-header h2{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:#fff;letter-spacing:.5px;text-transform:uppercase}
+.section-header .sh-icon{font-size:20px}
+.cgroup{margin-bottom:16px}
+.cg-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cg-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.cr{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border-radius:10px;border:1px solid var(--border);margin-bottom:6px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.cr:hover{border-color:var(--navy);box-shadow:0 3px 12px rgba(10,22,40,.1);transform:translateY(-1px)}
 .ci{font-size:20px;flex-shrink:0}
 .cinfo{flex:1}
-.crole{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
-.cval{font-size:14px;font-weight:700;color:var(--navy);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px}
-.ccall{background:var(--navy);color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;font-family:'Barlow',sans-serif;transition:.15s}
-.ccall:hover{background:var(--red)}
-
-/* ACCIDENT */
+.crole{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.cval{font-size:14px;font-weight:800;color:var(--navy);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px}
+.ccall{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;font-family:'Barlow',sans-serif;transition:.2s}
+.ccall:hover{background:linear-gradient(135deg,var(--red),#a93226)}
 .acc-wrap{max-width:740px;width:100%;margin:0 auto;padding:14px 12px;flex:1;overflow-y:auto}
-.acc-card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
-.acc-card h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:10px;letter-spacing:0.3px}
-.car-svg{width:100%;max-width:240px;display:block;margin:0 auto 10px;cursor:pointer}
-.impact-zone{cursor:pointer;transition:.2s;opacity:.5}
-.impact-zone:hover{opacity:.8}.impact-zone.hit{opacity:1}
-#impact-result{text-align:center;font-size:13px;font-weight:700;color:var(--red);min-height:20px;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px}
-.field-row{background:var(--gray);border-radius:8px;padding:10px 13px;border:1.5px solid transparent;cursor:pointer;margin-bottom:5px;transition:.15s}
-.field-row:hover{background:#eef1fb;border-color:var(--navy)}
+.acc-card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.acc-card h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:.3px;text-transform:uppercase}
+.emstrip{background:linear-gradient(135deg,var(--red),#a93226);border-radius:12px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 5px 18px rgba(192,57,43,.3)}
+.emstrip-l{font-size:10px;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.emstrip-n{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:1px}
+.emstrip-btn{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;font-family:'Barlow',sans-serif}
+.car-svg{width:100%;max-width:220px;display:block;margin:0 auto 10px;cursor:pointer;filter:drop-shadow(0 3px 10px rgba(0,0,0,.1))}
+.impact-zone{cursor:pointer;transition:.2s;opacity:.45}
+.impact-zone:hover{opacity:.8}
+#impact-result{text-align:center;font-size:13px;font-weight:800;color:var(--red);min-height:20px;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px}
+.field-row{background:var(--gray);border-radius:8px;padding:10px 13px;border:1.5px solid transparent;cursor:pointer;margin-bottom:5px;transition:.2s}
+.field-row:hover{background:#eef1fb;border-color:var(--navy);transform:translateX(2px)}
 .fr-head{display:flex;justify-content:space-between;align-items:center}
-.fr-num{font-size:11px;font-weight:800;color:var(--red);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px}
+.fr-num{font-size:10px;font-weight:900;color:var(--red);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase}
 .fr-name{font-size:12.5px;font-weight:700;color:var(--navy);margin-left:6px}
-.fr-chk{font-size:11px;color:var(--muted)}
+.fr-chk{font-size:11px;color:var(--muted);transition:.2s}
 .fr-desc{font-size:12px;color:var(--muted);margin-top:5px;display:none;line-height:1.55;padding-top:5px;border-top:1px solid var(--border)}
 .field-row.open .fr-desc{display:block}
 .field-row.open{border-color:var(--navy);background:#f0f4ff}
-
-/* SECTION HEADER */
-.section-header{background:var(--navy);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.section-header h2{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:0.5px}
-.section-header .sh-icon{font-size:20px}
+.field-row.open .fr-chk{transform:rotate(180deg)}
 </style>
 </head>
 <body>
-
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo-wrap">
-      <div class="login-logo-icon">🚛</div>
-      <div class="login-logo-text">
-        <div class="brand">GRICIUS LOGISTICS</div>
-        <div class="sub">Driver Assistant</div>
-      </div>
+      <div class="login-logo-icon">&#x1F69B;</div>
+      <div><div class="brand">GRICIUS LOGISTICS</div><div class="brandsub">Driver Assistant &bull; 2026</div></div>
     </div>
-    <div class="login-divider"></div>
-    <div class="login-desc" id="login-desc">Vairuotojo pagalbininkas kelyje — prisijunkite, kad galėtumėte naudotis.</div>
-    <!-- NFC LOGIN -->
-    <div id="nfc-section">
-      <div id="nfc-status" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;margin-bottom:14px;text-align:center">
-        <div style="font-size:32px;margin-bottom:6px">📡</div>
-        <div id="nfc-text" style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5">Prikabinkite NFC raktą prie telefono</div>
-        <div id="nfc-name" style="font-size:15px;font-weight:700;color:#fff;margin-top:4px;display:none"></div>
-      </div>
+    <div class="login-line"></div>
+    <div class="login-desc" id="login-desc">Vairuotojo pagalbininkas kelyje &mdash; prisijunkite, kad gal&#279;tum&#279;te naudotis sistema.</div>
+    <div class="nfc-box" id="nfc-section">
+      <div class="nfc-icon">&#x1F4E1;</div>
+      <div id="nfc-text">Prikabinkite NFC rakt&#261; prie telefono</div>
+      <div id="nfc-name"></div>
     </div>
-
-    <!-- DIVIDER -->
-    <div style="display:flex;align-items:center;gap:10px;margin:10px 0">
-      <div style="flex:1;height:1px;background:rgba(255,255,255,.1)"></div>
-      <span id="or-text" style="font-size:11px;color:rgba(255,255,255,.3);letter-spacing:1px">ARBA</span>
-      <div style="flex:1;height:1px;background:rgba(255,255,255,.1)"></div>
-    </div>
-
-    <!-- PASSWORD LOGIN -->
-    <input type="password" id="pw-input" class="login-input" placeholder="• • • • • • • •" autocomplete="current-password">
+    <div class="divider"><div class="div-line"></div><span class="div-txt" id="or-text">ARBA SLAPTAŽODIS</span><div class="div-line"></div></div>
+    <input type="password" id="pw-input" class="login-input" placeholder="&bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull;" autocomplete="current-password">
     <button class="login-btn" id="login-btn" onclick="doLogin()">Prisijungti</button>
     <div class="login-error" id="login-error">Neteisingas slaptažodis</div>
     <div class="login-langs">
@@ -206,15 +173,11 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
   </div>
 </div>
 
-<!-- APP -->
 <div id="app-screen">
   <div class="header">
     <div class="header-logo">
-      <div class="header-icon">🚛</div>
-      <div class="header-brand">
-        Gricius Logistics
-        <span>Vairuotojo pagalbininkas</span>
-      </div>
+      <div class="header-icon">&#x1F69B;</div>
+      <div class="header-brand" id="hdr-brand">Gricius Logistics<span id="hdr-sub">Vairuotojo pagalbininkas</span></div>
     </div>
     <div class="hdr-btns">
       <span class="lang-ind" id="lang-ind">LT</span>
@@ -223,41 +186,40 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="showTab('chat')" id="tab-chat">💬 Pagalbininkas</button>
-    <button class="tab" onclick="showTab('docs')" id="tab-docs">📄 Dokumentai</button>
-    <button class="tab" onclick="showTab('accident')" id="tab-accident">🚨 Autoįvykiai</button>
-    <button class="tab" onclick="showTab('contacts')" id="tab-contacts">📞 Kontaktai</button>
+    <button class="tab active" onclick="showTab('chat')" id="tab-chat">&#x1F4AC; Pagalbininkas</button>
+    <button class="tab" onclick="showTab('docs')" id="tab-docs">&#x1F4C4; Dokumentai</button>
+    <button class="tab" onclick="showTab('accident')" id="tab-accident">&#x1F6A8; Auto&#303;vykiai</button>
+    <button class="tab" onclick="showTab('contacts')" id="tab-contacts">&#x1F4DE; Kontaktai</button>
   </div>
 
-  <!-- CHAT PANEL -->
   <div class="panel active" id="panel-chat">
     <div class="chat-wrap">
+      <div class="welcome-banner" id="welcome-banner">
+        <div class="wb-icon">&#x1F916;</div>
+        <div class="wb-text"><h3 id="wb-title">Sveiki atvyk&#279;!</h3><p id="wb-sub">Pasirinkite tem&#261; arba para&#353;ykite klausim&#261;</p></div>
+      </div>
       <div class="topics-wrap">
-        <div class="topics-label">Dažniausios situacijos</div>
+        <div class="topics-label">Da&#382;niausios situacijos</div>
         <div class="quick-topics" id="quick-topics"></div>
       </div>
       <div id="chat-messages"></div>
     </div>
     <div class="input-area">
-      <button class="clear-btn" onclick="clearHistory()" title="Naujas pokalbis">🗑</button>
-      <textarea id="chat-input" rows="1" placeholder="Rašykite klausimą..."></textarea>
-      <button class="send-btn" id="send-btn" onclick="sendMsg()">➤</button>
+      <button class="clear-btn" onclick="clearHistory()" title="Naujas pokalbis">&#x1F5D1;</button>
+      <textarea id="chat-input" rows="1" placeholder="Ra&#353;ykite klausim&#261;..."></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMsg()">&#x27A4;</button>
     </div>
-    <div class="fn">Gricius Logistics · Vairuotojo pagalbininkas 2026</div>
+    <div class="fn">Gricius Logistics &middot; Vairuotojo pagalbininkas 2026</div>
   </div>
 
-  <!-- DOCS PANEL -->
   <div class="panel" id="panel-docs">
     <div class="docs-wrap">
-      <div class="section-header">
-        <span class="sh-icon">📄</span>
-        <h2>Dokumentų instrukcijos</h2>
-      </div>
+      <div class="section-header"><span class="sh-icon">&#x1F4C4;</span><h2>Dokument&#371; instrukcijos</h2></div>
       <div class="doc-tabs">
-        <button class="dt active" onclick="showDoc('cmr')" id="dt-cmr">📋 CMR</button>
-        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">🚛 Vilkikas</button>
-        <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">📦 Paletės</button>
-        <button class="dt" onclick="showDoc('medicine')" id="dt-medicine">💊 Vaistai</button>
+        <button class="dt active" onclick="showDoc('cmr')" id="dt-cmr">&#x1F4CB; CMR</button>
+        <button class="dt" onclick="showDoc('trailer')" id="dt-trailer">&#x1F69B; Treileris</button>
+        <button class="dt" onclick="showDoc('pallets')" id="dt-pallets">&#x1F4E6; Palet&#279;s</button>
+        <button class="dt" onclick="showDoc('medicine')" id="dt-medicine">&#x1F48A; Vaistai</button>
       </div>
       <div id="doc-cmr" class="doc-section active"></div>
       <div id="doc-trailer" class="doc-section"></div>
@@ -266,16 +228,16 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
     </div>
   </div>
 
-  <!-- ACCIDENT PANEL -->
   <div class="panel" id="panel-accident">
     <div class="acc-wrap">
-      <div class="section-header">
-        <span class="sh-icon">🚨</span>
-        <h2>Autoįvykio deklaracija</h2>
+      <div class="section-header"><span class="sh-icon">&#x1F6A8;</span><h2>Auto&#303;vykio deklaracija</h2></div>
+      <div class="emstrip">
+        <div><div class="emstrip-l">&#x17D;al&#371; skyrius 24/7</div><div class="emstrip-n">+370 656 69809</div></div>
+        <a class="emstrip-btn" href="tel:+37065669809">&#x1F4DE; Skambinti</a>
       </div>
       <div class="acc-card">
-        <div class="warn"><span>⚠️</span><span>DRAUDŽIAMA pasirašyti deklaraciją nesuprantama kalba! Pildykite tik savo stulpelį.</span></div>
-        <p style="font-size:12px;color:var(--muted);margin:10px 0 4px;text-align:center;font-weight:600;letter-spacing:0.5px;text-transform:uppercase">Paspauskite kur buvo smūgis:</p>
+        <div class="warn"><span>&#x26A0;&#xFE0F;</span><span>DRAUD&#x17D;IAMA pasira&#353;yti deklaracij&#261; nesuprantama kalba!</span></div>
+        <p style="font-size:11px;color:var(--muted);margin:10px 0 6px;text-align:center;font-weight:700;letter-spacing:1px;text-transform:uppercase">Paspauskite kur buvo sm&#363;gis:</p>
         <svg class="car-svg" viewBox="0 0 200 360" xmlns="http://www.w3.org/2000/svg">
           <rect x="30" y="70" width="140" height="220" rx="18" fill="#e8eaf0" stroke="#b0b8cc" stroke-width="2"/>
           <rect x="50" y="42" width="100" height="55" rx="12" fill="#d0d6e8" stroke="#b0b8cc" stroke-width="1.5"/>
@@ -290,16 +252,16 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
           <rect x="139" y="73" width="26" height="14" rx="4" fill="#fff9c4" stroke="#ccc" stroke-width="1"/>
           <rect x="35" y="273" width="26" height="14" rx="4" fill="#ffcdd2" stroke="#ccc" stroke-width="1"/>
           <rect x="139" y="273" width="26" height="14" rx="4" fill="#ffcdd2" stroke="#ccc" stroke-width="1"/>
-          <text x="100" y="24" text-anchor="middle" font-size="10" fill="#0d1b35" font-weight="700" font-family="Barlow Condensed">▲ PRIEKIS</text>
-          <text x="100" y="352" text-anchor="middle" font-size="9" fill="#888">▼ Galas</text>
+          <text x="100" y="22" text-anchor="middle" font-size="9" fill="#0d1b35" font-weight="700">PRIEKIS</text>
+          <text x="100" y="354" text-anchor="middle" font-size="8" fill="#999">Galas</text>
           <rect class="impact-zone" id="z-front" x="38" y="44" width="124" height="30" rx="6" fill="#3498db" onclick="toggleZone('front')"/>
           <text x="100" y="63" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" pointer-events="none">PRIEKIS</text>
           <rect class="impact-zone" id="z-rear" x="38" y="278" width="124" height="26" rx="6" fill="#3498db" onclick="toggleZone('rear')"/>
           <text x="100" y="295" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" pointer-events="none">GALAS</text>
           <rect class="impact-zone" id="z-left" x="13" y="94" width="26" height="172" rx="6" fill="#3498db" onclick="toggleZone('left')"/>
-          <text x="26" y="184" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" pointer-events="none" transform="rotate(-90,26,184)">KAIRĖ</text>
+          <text x="26" y="184" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" pointer-events="none" transform="rotate(-90,26,184)">KAIRE</text>
           <rect class="impact-zone" id="z-right" x="161" y="94" width="26" height="172" rx="6" fill="#3498db" onclick="toggleZone('right')"/>
-          <text x="174" y="184" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" pointer-events="none" transform="rotate(90,174,184)">DEŠINĖ</text>
+          <text x="174" y="184" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" pointer-events="none" transform="rotate(90,174,184)">DESINE</text>
           <rect class="impact-zone" id="z-fl" x="13" y="48" width="32" height="50" rx="5" fill="#8e44ad" onclick="toggleZone('fl')"/>
           <text x="29" y="77" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" pointer-events="none">KP</text>
           <rect class="impact-zone" id="z-fr" x="155" y="48" width="32" height="50" rx="5" fill="#8e44ad" onclick="toggleZone('fr')"/>
@@ -311,359 +273,75 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
         </svg>
         <div id="impact-result"></div>
       </div>
-      <div class="acc-card">
-        <h3>📝 Deklaracijos grafos — ką rašyti</h3>
-        <div id="acc-fields"></div>
-      </div>
-      <div class="acc-card">
-        <h3>🔢 Žingsniai po avarijos</h3>
-        <div id="acc-steps"></div>
-      </div>
-      <div class="acc-card">
-        <h3>📞 Skubūs kontaktai</h3>
-        <div class="cr"><span class="ci">📋</span><div class="cinfo"><div class="crole">Draudiminiai atvejai / Žalos</div><div class="cval">+370 656 69809</div></div><a class="ccall" href="tel:+37065669809">📞 Skambinti</a></div>
-        <div class="cr"><span class="ci">📞</span><div class="cinfo"><div class="crole">Dispečeris 24/7</div><div class="cval">+370 656 66206</div></div><a class="ccall" href="tel:+37065666206">📞 Skambinti</a></div>
-        <div class="cr"><span class="ci">🚨</span><div class="cinfo"><div class="crole">Policija / Europa</div><div class="cval">112</div></div><a class="ccall" href="tel:112">📞 Skambinti</a></div>
-      </div>
+      <div class="acc-card"><h3>Deklaracijos grafos</h3><div id="acc-fields"></div></div>
+      <div class="acc-card"><h3>Žingsniai po avarijos</h3><div id="acc-steps"></div></div>
     </div>
   </div>
 
-  <!-- CONTACTS PANEL -->
   <div class="panel" id="panel-contacts">
-    <div class="docs-wrap">
-      <div class="section-header">
-        <span class="sh-icon">📞</span>
-        <h2>Administracijos kontaktai</h2>
-      </div>
+    <div class="contacts-wrap">
+      <div class="section-header"><span class="sh-icon">&#x1F4DE;</span><h2>Administracijos kontaktai</h2></div>
       <div id="contacts-list"></div>
     </div>
   </div>
 </div>
 
 <script>
-let LANG = 'lt';
-let isLoading = false;
-
-const loginTexts = {
-  lt:{desc:'Vairuotojo pagalbininkas kelyje — prisijunkite, kad galėtumėte naudotis.',btn:'Prisijungti',err:'Neteisingas slaptažodis'},
-  ru:{desc:'Помощник водителя в дороге — войдите, чтобы использовать.',btn:'Войти',err:'Неверный пароль'},
-  en:{desc:'Driver road assistant — log in to continue.',btn:'Login',err:'Wrong password'},
+let LANG='lt',isLoading=false;
+const loginTexts={
+  lt:{desc:'Vairuotojo pagalbininkas kelyje — prisijunkite, kad galėtumėte naudotis sistema.',btn:'Prisijungti',err:'Neteisingas slaptažodis',or:'ARBA SLAPTAŽODIS'},
+  ru:{desc:'Помощник водителя — войдите для использования системы.',btn:'Войти',err:'Неверный пароль',or:'ИЛИ ПАРОЛЬ'},
+  en:{desc:'Driver road assistant — log in to use.',btn:'Login',err:'Wrong password',or:'OR PASSWORD'},
 };
-
-function setLoginLang(lang) {
-  LANG = lang;
-  document.querySelectorAll('.ll').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
-  const t = loginTexts[lang];
-  document.getElementById('login-desc').textContent = t.desc;
-  document.getElementById('login-btn').textContent = t.btn;
-  document.getElementById('login-error').textContent = t.err;
+function setLoginLang(l){LANG=l;document.querySelectorAll('.ll').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));const t=loginTexts[l];document.getElementById('login-desc').textContent=t.desc;document.getElementById('login-btn').textContent=t.btn;document.getElementById('login-error').textContent=t.err;document.getElementById('or-text').textContent=t.or;}
+document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+async function doLogin(){const pw=document.getElementById('pw-input').value.trim();const btn=document.getElementById('login-btn');btn.disabled=true;btn.textContent='...';try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});if(r.ok){const d=await r.json();enterApp(d.name||'');}else{document.getElementById('login-error').style.display='block';document.getElementById('pw-input').value='';}}catch(e){document.getElementById('login-error').style.display='block';}btn.disabled=false;btn.textContent=loginTexts[LANG].btn;}
+function enterApp(name){document.getElementById('login-screen').style.display='none';document.getElementById('app-screen').style.display='flex';initApp(name);}
+async function startNFC(){if(!('NDEFReader' in window))return;try{const reader=new NDEFReader();await reader.scan();reader.onreading=async(ev)=>{let uid=ev.serialNumber?ev.serialNumber.toUpperCase().replace(/:/g,''):'';if(!uid)return;const st=document.getElementById('nfc-text'),nm=document.getElementById('nfc-name');st.textContent='Tikrinama...';try{const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId:uid})});const d=await r.json();if(d.ok){nm.textContent='✅ '+d.name;nm.style.display='block';st.textContent='Prisijungta!';setTimeout(()=>enterApp(d.name),700);}else{st.textContent='❌ Raktas neatpažintas.';setTimeout(()=>{st.textContent='Prikabinkite NFC raktą prie telefono';nm.style.display='none';},3000);}}catch(e){st.textContent='Klaida.';}}}catch(e){const s=document.getElementById('nfc-section');if(s)s.style.display='none';}}
+async function doLogout(){await fetch('/api/logout',{method:'POST'});location.reload();}
+function initApp(driverName){renderTopics();renderDocs();renderAccident();renderContacts();document.getElementById('lang-ind').textContent=LANG.toUpperCase();if(driverName&&driverName!=='Admin'){document.getElementById('hdr-sub').textContent=driverName;document.getElementById('wb-title').textContent='Sveiki, '+driverName.split(' ')[0]+'!';}addBotMsg(greeting());}
+function greeting(){return{lt:'Sveiki! Esu jūsų pagalbininkas kelyje. Pasirinkite temą iš sąrašo arba parašykite klausimą bet kuria kalba — atsakysiu lietuviškai, rusiškai arba angliškai.',ru:'Здравствуйте! Я ваш помощник в дороге. Выберите тему или задайте вопрос на любом языке.',en:'Hello! I am your road assistant. Choose a topic or ask any question in any language.'}[LANG];}
+const TOPICS={lt:['🚨 Eismo įvykis','🔧 Techninis gedimas','📵 Vadybininkas neatsiliepia','🌿 ECO vairavimas','💰 Atlyginimas','🗺️ Navigacija','⛽ Kuras','🛣️ Kelių mokesčiai','🅿️ Parkingai','⏱ Darbo laikas','📦 Krovinio problema','🚫 Vagystės / nelegalai','👮 Inspekcija / policija','🌨️ Oro sąlygos','🏥 Sveikata / trauma','🔄 Puspriekabės keitimas'],ru:['🚨 ДТП / Авария','🔧 Поломка','📵 Менеджер не отвечает','🌿 ECO вождение','💰 Зарплата','🗺️ Навигация','⛽ Топливо','🛣️ Оплата дорог','🅿️ Парковки','⏱ Рабочее время','📦 Проблема с грузом','🚫 Кражи / нелегалы','👮 Инспекция / полиция','🌨️ Погода','🏥 Здоровье / травма','🔄 Смена прицепа'],en:['🚨 Accident','🔧 Breakdown','📵 Manager not answering','🌿 ECO driving','💰 Salary','🗺️ Navigation','⛽ Fuel','🛣️ Road tolls','🅿️ Parking','⏱ Working hours','📦 Cargo issue','🚫 Theft / stowaways','👮 Inspection / police','🌨️ Weather','🏥 Health / injury','🔄 Trailer handover']};
+function renderTopics(){const bar=document.getElementById('quick-topics');bar.innerHTML='';TOPICS[LANG].forEach(t=>{const b=document.createElement('button');b.className='qt';b.textContent=t;b.onclick=()=>{document.getElementById('chat-input').value=t.replace(/^\S+\s/,'');sendMsg();};bar.appendChild(b);});}
+async function sendMsg(){if(isLoading)return;const inp=document.getElementById('chat-input');const q=inp.value.trim();if(!q)return;inp.value='';inp.style.height='auto';const wb=document.getElementById('welcome-banner');if(wb)wb.style.display='none';addUserMsg(q);isLoading=true;document.getElementById('send-btn').disabled=true;const th=addThinking();try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});th.remove();if(r.status===401){location.reload();return;}if(!r.ok){const e=await r.json().catch(()=>({}));addBotMsg('❌ Klaida: '+(e.error||r.status));}else{const d=await r.json();addBotMsg(d.reply);}}catch(e){th.remove();addBotMsg('❌ Ryšio klaida.');}isLoading=false;document.getElementById('send-btn').disabled=false;}
+async function clearHistory(){await fetch('/api/clear-history',{method:'POST'});document.getElementById('chat-messages').innerHTML='';const wb=document.getElementById('welcome-banner');if(wb)wb.style.display='flex';addBotMsg(greeting());}
+function addUserMsg(t){const d=document.createElement('div');d.className='msg user';d.innerHTML='<div class="av user">👤</div><div class="bub">'+esc(t)+'</div>';document.getElementById('chat-messages').appendChild(d);scrollDown();}
+function addBotMsg(t){const d=document.createElement('div');d.className='msg bot';d.innerHTML='<div class="av bot">AI</div><div class="bub">'+esc(t)+'</div>';document.getElementById('chat-messages').appendChild(d);scrollDown();}
+function addThinking(){const d=document.createElement('div');d.className='msg bot';d.innerHTML='<div class="av bot">AI</div><div class="bub"><div class="dots"><span>●</span><span>●</span><span>●</span></div></div>';document.getElementById('chat-messages').appendChild(d);scrollDown();return d;}
+function scrollDown(){const m=document.getElementById('chat-messages');m.scrollTop=m.scrollHeight;}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function showTab(t){['chat','docs','accident','contacts'].forEach(p=>{document.getElementById('panel-'+p).classList.toggle('active',p===t);document.getElementById('tab-'+p).classList.toggle('active',p===t);});}
+function showDoc(d){['cmr','trailer','pallets','medicine'].forEach(s=>{document.getElementById('doc-'+s).classList.toggle('active',s===d);document.getElementById('dt-'+s).classList.toggle('active',s===d);});}
+function mkStep(n,t,b){return '<div class="step"><div class="sn">'+n+'</div><div class="sb"><strong>'+t+'</strong><br>'+b+'</div></div>';}
+function renderDocs(){
+  document.getElementById('doc-cmr').innerHTML='<div class="doc-card"><div class="doc-card-header"><div class="icon">📋</div><h3>CMR blankas — kaip pildyti</h3></div><div class="warn"><span>⚠️</span><span>DRAUDŽIAMA taisyti be vadybininko leidimo!</span></div><div class="fg"><div class="fg-n">1</div><div class="fg-d">Siuntėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div><div class="fg-n">2</div><div class="fg-d">Gavėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div><div class="fg-n">3</div><div class="fg-d">Iškrovimo vieta (adresas, šalis) <span class="badge req">Privaloma</span></div><div class="fg-n">4</div><div class="fg-d">Pakrovimo vieta (adresas, šalis) <span class="badge req">Privaloma</span></div><div class="fg-n">5</div><div class="fg-d">Lydimieji dokumentai (Invoice Nr, data; TIR Nr, data) <span class="badge req">Privaloma</span></div><div class="fg-n">6–11</div><div class="fg-d">Krovinio pavadinimas, pakuočių sk., brt. svoris, plombos Nr. <span class="badge req">Privaloma</span></div><div class="fg-n">16</div><div class="fg-d">Vežėjo rekvizitai — UAB Gricius Logistics <span class="badge req">Privaloma</span></div><div class="fg-n">18</div><div class="fg-d">Vežėjo pastabos ir išlygos <span class="badge opt">Papild.</span></div><div class="fg-n">21</div><div class="fg-d">Vieta ir data <span class="badge req">Privaloma</span></div><div class="fg-n">22</div><div class="fg-d">Siuntėjas: parašas ir antspaudas po pakrovimo <span class="badge req">Privaloma</span></div><div class="fg-n">23</div><div class="fg-d">Vairuotojo pavardė, parašas, vežėjo antspaudas <span class="badge req">Privaloma</span></div><div class="fg-n">24</div><div class="fg-d"><strong>GAVĖJAS</strong> pildymas po iškrovimo: laikas, antspaudas, parašas <span class="badge req">Privaloma</span></div><div class="fg-n">25</div><div class="fg-d">Transporto priemonių valst. Nr. <span class="badge req">Privaloma</span></div></div><div class="ok"><span>✅</span><span>Po iškrovimo NUSKENUOTI visus dokumentus planšetu ir siųsti vadybininkui. Dokumentus sudėti į voką. Be vadybininko leidimo — nepalikti!</span></div></div>';
+  document.getElementById('doc-trailer').innerHTML='<div class="doc-card"><div class="doc-card-header"><div class="icon">🚛</div><h3>Treilerio lapas</h3></div><div class="warn"><span>⚠️</span><span>Be abiejų parašų — lapas negalioja!</span></div>'+mkStep(1,'Kas pildyti','Kiekvienas vairuotojas, priimantis arba perduodantis puspriekabę — pildyti FM programoje.')+mkStep(2,'Ką pažymėti','Visi pažeidimai, kuro kiekis, moto valandos, komplektacija (4 štangos, spyna, atsarginis ratas).')+mkStep(3,'Parašai','PRIVALOMI abu parašai: vairuotojo kuris ATIDUODA ir kuris PRIIMA.')+mkStep(4,'4 nuotraukos','Priekis, galas, kairė, dešinė — siųsti per planšetą vadybininkui.')+mkStep(5,'SMS','Priekaba XX123 priimta, kuro 129L, moto val. 6859, lapas užpildytas ir pasirašytas.')+'</div>';
+  document.getElementById('doc-pallets').innerHTML='<div class="doc-card"><div class="doc-card-header"><div class="icon">📦</div><h3>Palečių apsikeitimas</h3></div><div class="warn"><span>⚠️</span><span>1 paletė = 13–15 EUR. Be antspauduoto dokumento — nuostoliai vairuotojui!</span></div>'+mkStep(1,'Kada keisti','Tik gavus vadybininko nurodymą. Tik euro paletės. Neimti dažytų, supuvusių!')+mkStep(2,'Kur krauti','Tik parkinge — ne įmonės teritorijoje. Max laikas: 30 min.')+mkStep(3,'Dokumentas','Gavėjas PRIVALO pasirašyti ir antspauduoti firminį Gricius Logistics paletės lapą.')+mkStep(4,'Pildymas','"changed" — kiek atiduota. "pallets back" — kiek grąžinta. Taisyti DRAUDŽIAMA!')+mkStep(5,'Pranešimas','Po keitimo — pranešimas vadybininkui: kiek pakeitėte, kiek grąžinote, kiek pakrovėte.')+'</div>';
+  document.getElementById('doc-medicine').innerHTML='<div class="doc-card"><div class="doc-card-header"><div class="icon">💊</div><h3>Vaistų pervežimas (GDP)</h3></div><div class="ok"><span>ℹ️</span><span>GDP — Gera platinimo praktika. Privaloma visiems farmacijos kroviniams.</span></div>'+mkStep(1,'Puspriekabė','Švari, sausa, be kvapų. Dokumentuotas valymas min. kas 6 mėn.')+mkStep(2,'Prieš pakrovimą','Išvėsinti min. 1 val. iš anksto. Dokumentuoti registratoriumi.')+mkStep(3,'Temperatūra','Min. 3 paletose: prie agregato, viduryje, prie durų. Kalibruotas zondas.')+mkStep(4,'Neatitikimas','Neatitinka → NESIKRAUTI. Pranešti vadybininkui ir laukti nurodymų.')+mkStep(5,'Saugumas','Tik saugomuose parkinguose! Dokumentai saugomi 10 metų.')+'</div>';
 }
-
-document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-
-async function doLogin() {
-  const pw = document.getElementById('pw-input').value.trim();
-  const btn = document.getElementById('login-btn');
-  btn.disabled = true; btn.textContent = '...';
-  try {
-    const r = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({password:pw}) });
-    if (r.ok) {
-      const d = await r.json();
-      enterApp(d.name || '');
-    } else {
-      document.getElementById('login-error').style.display = 'block';
-      document.getElementById('pw-input').value = '';
-    }
-  } catch(e) { document.getElementById('login-error').style.display = 'block'; }
-  btn.disabled = false;
-  btn.textContent = loginTexts[LANG].btn;
-}
-
-function enterApp(name) {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app-screen').style.display = 'flex';
-  initApp(name);
-}
-
-// NFC Web API
-async function startNFC() {
-  if (!('NDEFReader' in window)) return; // NFC not supported
-  try {
-    const reader = new NDEFReader();
-    await reader.scan();
-    reader.onreading = async (event) => {
-      // Try serial number first
-      let uid = event.serialNumber ? event.serialNumber.toUpperCase().replace(/:/g,'') : '';
-      if (!uid) return;
-      const statusEl = document.getElementById('nfc-text');
-      const nameEl = document.getElementById('nfc-name');
-      statusEl.textContent = 'Tikrinama...';
-      try {
-        const r = await fetch('/api/nfc-login', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({nfcId: uid}) });
-        const d = await r.json();
-        if (d.ok) {
-          nameEl.textContent = '✅ ' + d.name;
-          nameEl.style.display = 'block';
-          statusEl.textContent = 'Prisijungta sėkmingai!';
-          setTimeout(() => enterApp(d.name), 800);
-        } else {
-          statusEl.textContent = '❌ Raktas neatpažintas. Bandykite slaptažodžiu.';
-          setTimeout(() => { statusEl.textContent = 'Prikabinkite NFC raktą prie telefono'; }, 3000);
-        }
-      } catch(e) { statusEl.textContent = 'Klaida. Bandykite slaptažodžiu.'; }
-    };
-  } catch(e) {
-    // NFC not available or permission denied - hide NFC section
-    const nfcSec = document.getElementById('nfc-section');
-    if (nfcSec) nfcSec.style.display = 'none';
+let hitZones=new Set();
+function toggleZone(z){const el=document.getElementById('z-'+z);if(hitZones.has(z)){hitZones.delete(z);el.setAttribute('fill',z.length===2?'#8e44ad':'#3498db');el.setAttribute('opacity','0.45');}else{hitZones.add(z);el.setAttribute('fill','#c0392b');el.setAttribute('opacity','1');}const zn={front:'Priekis',rear:'Galas',left:'Kairė',right:'Dešinė',fl:'Kairysis priekinis kampas',fr:'Dešinysis priekinis kampas',rl:'Kairysis galinis kampas',rr:'Dešinysis galinis kampas'};document.getElementById('impact-result').textContent=hitZones.size?'💥 SMŪGIS: '+[...hitZones].map(z=>zn[z]).join(', '):'';}
+function renderAccident(){const fields=[['1','Įvykio data, laikas, vieta','Tikslus laikas (hh:mm), šalis, miestas, kelias/gatvė.'],['2','Sužeistieji','Žymėkite "NE" jei nėra. Jei yra — KVIESKITE 112 nedelsiant!'],['3','Materialinė žala','Ar yra žalos ne tik automobiliams.'],['4+5','Kito vairuotojo duomenys','Vardas, pavardė, draudimo įmonė ir poliso Nr.'],['8','Jūsų Žalioji kortelė','Draudimo įmonė, poliso Nr., galiojimo data.'],['10','Smūgio vieta','Pažymėkite rodyklę ir smūgio tašką.'],['12','Aplinkybės','Pažymėkite visus tinkamus langelius — kiekvienas žymi savo stulpelį.'],['13','Įvykio schema','Nubrėžkite gatvę, rodykles, automobilių padėtį.'],['14','14 grafa — DĖMESIO','Pasirašo TIK KALTAS vairuotojas. Jei nekaltas — NEPASIRAŠINĖKITE!'],['15','Jūsų parašas','Nekalto vairuotojo parašas — TIK čia (grafoje 15).'],['16','Pastabos','Liudytojai, papildomos aplinkybės.']];const fl=document.getElementById('acc-fields');fl.innerHTML='';fields.forEach(([n,name,desc])=>{const d=document.createElement('div');d.className='field-row';d.innerHTML='<div class="fr-head"><div><span class="fr-num">GRAFA '+n+'</span><span class="fr-name">'+name+'</span></div><span class="fr-chk">▼</span></div><div class="fr-desc">'+desc+'</div>';d.onclick=()=>{d.classList.toggle('open');d.querySelector('.fr-chk').textContent=d.classList.contains('open')?'▲':'▼';};fl.appendChild(d);});document.getElementById('acc-steps').innerHTML=[['Saugumas','Sustoti saugioje vietoje. Avarines šviesas. Įspėjamuosius trikampius.'],['Fotografuoti','Abu TP numeriai, žala, bendra padėtis, kelio ženklai.'],['Skambinti','Žalų skyrius: +370 656 69809'],['Deklaracija','Pildyti Europrotokolo deklaraciją. Nesuprantama kalba — nepasirašyti!'],['Policija','Kviesti 112 jei: abu nevadina kaltės / nukentėjo tretieji / yra sužeistų.'],['Grįžus','Jei nekaltas → tech. skyriaus vadovui; jei kaltas → vadybininkui.']].map((s,i)=>mkStep(i+1,s[0],s[1])).join('');}
+const CG=[{g:'🚨 Skubūs / 24/7',i:[{i:'🚨',r:'Bendra pagalba — Europa 24/7',v:'112'},{i:'📞',r:'Transporto planuotojas',v:'+370 656 66206'},{i:'📋',r:'Draudiminiai atvejai / Žalos',v:'+370 656 69809'}]},{g:'🔧 Techniniai / Mechanikai',i:[{i:'💳',r:'Korteles / Kelių mokesčiai — Darius Gricius',v:'+370 656 90811'},{i:'📱',r:'Planšetai / Telemetrija',v:'+370 602 94000'},{i:'🔧',r:'Vilkikų mechanikas — Rudys Paulius',v:'+370 658 14901'},{i:'🔧',r:'Vilkikų mechanikas — Robertas Žilys',v:'+370 658 14200'},{i:'🔧',r:'Puspriekabių mechanikas — Aivaras Ignatavičius',v:'+370 667 39423'},{i:'🔧',r:'Techninis skyrius 24/7',v:'+370 637 69400'}]},{g:'👤 HR / Mokymai',i:[{i:'👤',r:'HR — Nataliia Andriushchenko',v:'+370 658 49162'},{i:'👤',r:'HR — Khrystyna Radvilė',v:'+370 656 01395'},{i:'👤',r:'HR — Skaidra Blaževičienė',v:'+370 636 21833'},{i:'👤',r:'HR — Natalja Antanaitienė',v:'+370 656 25613'},{i:'🎓',r:'Darbo org. vadovas — Saulius Mažrimas',v:'+370 652 39045'},{i:'🎓',r:'Mokymai — Jevgenij Burgan',v:'+370 660 94905'},{i:'🎓',r:'Mokymai — Vilma Rustamova',v:'+370 659 05616'},{i:'🎓',r:'Instruktorius — Kęstutis Mikelevičius',v:'+370 650 26258'}]},{g:'🌍 Užsienio',i:[{i:'🇫🇷',r:'Prancūzija — inspekcija RU/FR',v:'+33 9 50 53 44 65'}]}];
+function renderContacts(){document.getElementById('contacts-list').innerHTML=CG.map(g=>'<div class="cgroup"><div class="cg-label">'+g.g+'</div>'+g.i.map(c=>'<div class="cr"><span class="ci">'+c.i+'</span><div class="cinfo"><div class="crole">'+c.r+'</div><div class="cval">'+c.v+'</div></div><a class="ccall" href="tel:'+c.v.replace(/\s/g,'')+'">📞 Skambinti</a></div>').join('')+'</div>').join('');}
+document.getElementById('chat-input').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px';});
+document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
+(async()=>{
+  const params=new URLSearchParams(window.location.search);
+  const nfcId=params.get('nfc');
+  if(nfcId){
+    const st=document.getElementById('nfc-text');
+    if(st)st.textContent='Tikrinama NFC raktas...';
+    try{
+      const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId})});
+      const d=await r.json();
+      if(d.ok){window.history.replaceState({},'/','/');setTimeout(()=>enterApp(d.name),500);return;}
+      else if(st)st.textContent='❌ Raktas neatpažintas. Bandykite slaptažodžiu.';
+    }catch(e){}
   }
-}
-
-async function doLogout() { await fetch('/api/logout',{method:'POST'}); location.reload(); }
-
-function initApp(driverName) {
-  renderTopics(); renderDocs(); renderAccident(); renderContacts(); updateLangInd();
-  if (driverName) {
-    document.getElementById('hdr-brand').innerHTML = 'Gricius Logistics <span>' + driverName + '</span>';
-  }
-  addBotMsg(greeting());
-}
-
-function greeting() {
-  return {
-    lt:'Sveiki! Esu jūsų pagalbininkas kelyje. Pasirinkite temą iš sąrašo arba parašykite klausimą bet kuria kalba.',
-    ru:'Здравствуйте! Я ваш помощник в дороге. Выберите тему из списка или задайте вопрос на любом языке.',
-    en:'Hello! I am your road assistant. Choose a topic or ask any question in any language.',
-  }[LANG];
-}
-
-const TOPICS = {
-  lt:['🚨 Eismo įvykis','🔧 Techninis gedimas','📵 Vadybininkas neatsiliepia','🌿 ECO vairavimas','💰 Atlyginimas','🗺️ Navigacija','⛽ Kuras','🛣️ Kelių mokesčiai','🅿️ Parkingai','⏱ Darbo laikas','📦 Krovinio problema','🚫 Vagystės / nelegalai','👮 Inspekcija / policija','🌨️ Oro sąlygos','🏥 Sveikata / trauma','🔄 Puspriekabės keitimas'],
-  ru:['🚨 ДТП / Авария','🔧 Поломка','📵 Менеджер не отвечает','🌿 ECO вождение','💰 Зарплата','🗺️ Навигация','⛽ Топливо','🛣️ Оплата дорог','🅿️ Парковки','⏱ Рабочее время','📦 Проблема с грузом','🚫 Кражи / нелегалы','👮 Инспекция / полиция','🌨️ Погода','🏥 Здоровье / травма','🔄 Смена прицепа'],
-  en:['🚨 Accident','🔧 Breakdown','📵 Manager not answering','🌿 ECO driving','💰 Salary','🗺️ Navigation','⛽ Fuel','🛣️ Road tolls','🅿️ Parking','⏱ Working hours','📦 Cargo issue','🚫 Theft / stowaways','👮 Inspection / police','🌨️ Weather','🏥 Health / injury','🔄 Trailer handover'],
-};
-
-function renderTopics() {
-  const bar = document.getElementById('quick-topics');
-  bar.innerHTML = '';
-  TOPICS[LANG].forEach(t => {
-    const b = document.createElement('button');
-    b.className = 'qt';
-    b.textContent = t;
-    b.onclick = () => { document.getElementById('chat-input').value = t.replace(/^[^ ]+ /,''); sendMsg(); };
-    bar.appendChild(b);
-  });
-}
-
-async function sendMsg() {
-  if (isLoading) return;
-  const inp = document.getElementById('chat-input');
-  const q = inp.value.trim();
-  if (!q) return;
-  inp.value = ''; inp.style.height = 'auto';
-  addUserMsg(q);
-  isLoading = true;
-  document.getElementById('send-btn').disabled = true;
-  const th = addThinking();
-  try {
-    const r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:q}) });
-    th.remove();
-    if (r.status === 401) { location.reload(); return; }
-    if (!r.ok) { const e = await r.json().catch(()=>({})); addBotMsg('❌ Klaida: '+(e.error||r.status)); }
-    else { const d = await r.json(); addBotMsg(d.reply); }
-  } catch(e) { th.remove(); addBotMsg('❌ Ryšio klaida. Patikrinkite interneto ryšį.'); }
-  isLoading = false;
-  document.getElementById('send-btn').disabled = false;
-}
-
-async function clearHistory() {
-  await fetch('/api/clear-history',{method:'POST'});
-  document.getElementById('chat-messages').innerHTML = '';
-  addBotMsg(greeting());
-}
-
-function addUserMsg(t) {
-  const d = document.createElement('div'); d.className = 'msg user';
-  d.innerHTML = `<div class="av user">👤</div><div class="bub">${esc(t)}</div>`;
-  document.getElementById('chat-messages').appendChild(d); scrollDown();
-}
-function addBotMsg(t) {
-  const d = document.createElement('div'); d.className = 'msg bot';
-  d.innerHTML = `<div class="av bot">AI</div><div class="bub">${esc(t)}</div>`;
-  document.getElementById('chat-messages').appendChild(d); scrollDown();
-}
-function addThinking() {
-  const d = document.createElement('div'); d.className = 'msg bot';
-  d.innerHTML = `<div class="av bot">AI</div><div class="bub"><div class="dots"><span>●</span><span>●</span><span>●</span></div></div>`;
-  document.getElementById('chat-messages').appendChild(d); scrollDown(); return d;
-}
-function scrollDown() { const m = document.getElementById('chat-messages'); m.scrollTop = m.scrollHeight; }
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function updateLangInd() { document.getElementById('lang-ind').textContent = LANG.toUpperCase(); }
-
-function showTab(t) {
-  ['chat','docs','accident','contacts'].forEach(p => {
-    document.getElementById('panel-'+p).classList.toggle('active',p===t);
-    document.getElementById('tab-'+p).classList.toggle('active',p===t);
-  });
-}
-function showDoc(d) {
-  ['cmr','trailer','pallets','medicine'].forEach(s => {
-    document.getElementById('doc-'+s).classList.toggle('active',s===d);
-    document.getElementById('dt-'+s).classList.toggle('active',s===d);
-  });
-}
-
-function mkStep(n,t,b) {
-  return `<div class="step"><div class="sn">${n}</div><div class="sb"><strong>${t}</strong><br>${b}</div></div>`;
-}
-
-function renderDocs() {
-  document.getElementById('doc-cmr').innerHTML = `
-    <div class="doc-card">
-      <div class="doc-card-header"><div class="icon">📋</div><h3>CMR blankas — kaip pildyti</h3></div>
-      <div class="warn"><span>⚠️</span><span>DRAUDŽIAMA taisyti be vadybininko leidimo!</span></div>
-      <div class="fg">
-        <div class="fg-n">1</div><div class="fg-d">Siuntėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">2</div><div class="fg-d">Gavėjas (vardas, adresas, šalis) <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">3</div><div class="fg-d">Iškrovimo vieta (adresas, šalis) <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">4</div><div class="fg-d">Pakrovimo vieta (adresas, šalis) <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">5</div><div class="fg-d">Lydimieji dokumentai (Invoice Nr, data; TIR Nr, data) <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">6–11</div><div class="fg-d">Krovinio pavadinimas, pakuočių sk., brt. svoris, plombos Nr. <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">16</div><div class="fg-d">Vežėjo rekvizitai — UAB Gricius Logistics  <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">18</div><div class="fg-d">Vežėjo pastabos ir išlygos <span class="badge opt">Papild.</span></div>
-        <div class="fg-n">21</div><div class="fg-d">Vieta ir data <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">22</div><div class="fg-d">Siuntėjas: parašas ir antspaudas po pakrovimo <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">23</div><div class="fg-d">Vairuotojo pavardė, parašas, vežėjo antspaudas <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">24</div><div class="fg-d"><strong>GAVĖJAS</strong> pildymas po iškrovimo: laikas, antspaudas, parašas <span class="badge req">Privaloma</span></div>
-        <div class="fg-n">25</div><div class="fg-d">Transporto priemonių valst. Nr. <span class="badge req">Privaloma</span></div>
-      </div>
-      <div class="ok"><span>✅</span><span>Po iškrovimo NUSKENUOTI visus dokumentus planšetu ir siųsti vadybininkui. Dokumentus sudėti į dokumentų voką. Be vadybininko leidimo — nepalikti iškrovimo vietos!</span></div>
-    </div>`;
-
-  document.getElementById('doc-trailer').innerHTML = `
-    <div class="doc-card">
-      <div class="doc-card-header"><div class="icon">🚛</div><h3>Treilerio lapas</h3></div>
-      <div class="warn"><span>⚠️</span><span>Be abiejų parašų — lapas negalioja!</span></div>
-      ${mkStep(1,'Kas pildyti','Kiekvienas vairuotojas, priimantis arba perduodantis puspriekabę — pildyti FM programoje/Perdavimo/Priėmimo aktas.')}
-      ${mkStep(2,'Ką pažymėti','Visi išoriniai ir vidiniai pažeidimai, likusio kuro kiekis, moto valandos, komplektacija (4 štangos, spyna, atsarginis ratas).')}
-      ${mkStep(3,'Parašai','PRIVALOMI abu parašai: vairuotojo kuris ATIDUODA ir vairuotojo kuris PRIIMA.')}
-      ${mkStep(4,'4 nuotraukos','Priekis, galas, kairė, dešinė — siųsti kartu su lapu per planšetą vadybininkui.')}
-      ${mkStep(5,'SMS vadybininkui','„Priekaba XX123 priimta, kuro 129L, moto val. 6859, lapas užpildytas ir pasirašytas."')}
-    </div>`;
-
-  document.getElementById('doc-pallets').innerHTML = `
-    <div class="doc-card">
-      <div class="doc-card-header"><div class="icon">📦</div><h3>Palečių apsikeitimas</h3></div>
-      <div class="warn"><span>⚠️</span><span>1 paletė = 13–15 EUR. Be antspauduoto dokumento — nuostoliai vairuotojui!</span></div>
-      ${mkStep(1,'Kada keisti','Tik gavus vadybininko nurodymą. Tik euro paletės. Neimti dažytų, supuvusių, sulaužytų!')}
-      ${mkStep(2,'Kur krauti','Tik parkinge — ne įmonės teritorijoje. Max laikas: 30 min.')}
-      ${mkStep(3,'Dokumentas','Gavėjas/siuntėjas NE/PRIVALO pasirašyti ir antspauduoti firminį Gricius Logistics palečių lapą.')}
-      ${mkStep(4,'Pildymas','"changed" — kiek atiduota. "pallets back" — kiek grąžinta. Taisyti DRAUDŽIAMA!')}
-      ${mkStep(5,'Pranešimas','Po kiekvieno keitimo — pranešimas vadybininkui: kiek pakeitėte, kiek grąžinote, kiek pakrovėte.')}
-    </div>`;
-
-  document.getElementById('doc-medicine').innerHTML = `
-    <div class="doc-card">
-      <div class="doc-card-header"><div class="icon">💊</div><h3>Vaistų pervežimas (GDP)</h3></div>
-      <div class="ok"><span>ℹ️</span><span>GDP — Gera platinimo praktika. Privaloma visiems farmacijos kroviniams.</span></div>
-      ${mkStep(1,'Puspriekabė','Švari, sausa, be kvapų. Dokumentuotas valymas min. kas 6 mėn.')}
-      ${mkStep(2,'Prieš pakrovimą','Išvėsinti min. 1 val. iš anksto. Vėsinimas dokumentuojamas registratoriumi.')}
-      ${mkStep(3,'Temperatūros tikrinimas','Min. 3 paletose: prie agregato, viduryje, prie durų. Naudoti kalibruotą zondą.')}
-      ${mkStep(4,'Neatitikimas','Temperatūra neatitinka → NESIKRAUTI. Pranešti vadybininkui ir laukti nurodymų.')}
-      ${mkStep(5,'Saugumas','Tik saugomuose parkinguose! Dokumentai saugomi 10 metų.')}
-    </div>`;
-}
-
-let hitZones = new Set();
-function toggleZone(z) {
-  const el = document.getElementById('z-'+z);
-  if (hitZones.has(z)) { hitZones.delete(z); el.setAttribute('fill',z.length===2?'#8e44ad':'#3498db'); el.setAttribute('opacity','0.5'); }
-  else { hitZones.add(z); el.setAttribute('fill','#c0392b'); el.setAttribute('opacity','1'); }
-  const zn = {front:'Priekis',rear:'Galas',left:'Kairė',right:'Dešinė',fl:'Kairysis priekinis kampas',fr:'Dešinysis priekinis kampas',rl:'Kairysis galinis kampas',rr:'Dešinysis galinis kampas'};
-  document.getElementById('impact-result').textContent = hitZones.size ? '💥 SMŪGIS: '+[...hitZones].map(z=>zn[z]).join(', ') : '';
-}
-
-function renderAccident() {
-  const fields = [
-    ['1','Įvykio data, laikas, vieta','Tikslus laikas (hh:mm), šalis, miestas, kelias/gatvė.'],
-    ['2','Sužeistieji','Žymėkite "NE" jei nėra. Jei yra — KVIESKITE 112 nedelsiant!'],
-    ['3','Materialinė žala','Ar yra žalos ne tik automobiliams (tvoroms, stulpams...).'],
-    ['4+5','Kito vairuotojo duomenys','Vardas, pavardė, draudimo įmonė ir poliso Nr.'],
-    ['8','Jūsų Žalioji kortelė','Draudimo įmonė, poliso Nr., galiojimo data.'],
-    ['10','Smūgio vieta','Pažymėkite rodyklę ir smūgio tašką. Naudokite diagramą viršuje.'],
-    ['12','Aplinkybės','Pažymėkite visus tinkamus langelius — kiekvienas vairuotojas žymi savo stulpelį.'],
-    ['13','Įvykio schema','Nubrėžkite gatvę, rodykles, automobilių padėtį, judėjimo kryptį.'],
-    ['14','⚠️ 14 grafa — DĖMESIO','Šioje grafoje pasirašo TIK KALTAS vairuotojas. Jei nekaltas — NEPASIRAŠINĖKITE!'],
-    ['15','Jūsų parašas','Nekalto vairuotojo parašas — TIK čia (grafoje 15), po schema.'],
-    ['16','Pastabos','Liudytojai, papildomos aplinkybės.'],
-  ];
-  const fl = document.getElementById('acc-fields');
-  fl.innerHTML = '';
-  fields.forEach(([n,name,desc]) => {
-    const d = document.createElement('div'); d.className = 'field-row';
-    d.innerHTML = `<div class="fr-head"><div><span class="fr-num">GRAFA ${n}</span><span class="fr-name">${name}</span></div><span class="fr-chk">▼</span></div><div class="fr-desc">${desc}</div>`;
-    d.onclick = () => { d.classList.toggle('open'); d.querySelector('.fr-chk').textContent = d.classList.contains('open')?'▲':'▼'; };
-    fl.appendChild(d);
-  });
-  document.getElementById('acc-steps').innerHTML = [
-    ['Saugumas','Sustoti saugioje vietoje. Avarines šviesas. Įspėjamuosius trikampius.'],
-    ['Fotografuoti','Abu TP numeriai, žala, bendra padėtis, kelio ženklai — kuo daugiau nuotraukų.'],
-    ['Skambinti','Žalų skyrius: +370 656 69809 | Dispečeris: +370 656 66206'],
-    ['Deklaracija','Pildyti Europrotokolo deklaraciją. Nesuprantama kalba — nepasirašyti!'],
-    ['Policija','Kviesti 112 jei: abu nevadina kaltės / nukentėjo tretieji / yra sužeistų.'],
-    ['Grįžus','Aiškinamasis raštas: jei nekaltas → tech. skyriaus vadovui; jei kaltas → vadybininkui.'],
-  ].map((s,i) => mkStep(i+1,s[0],s[1])).join('');
-}
-
-const CONTACTS = [
-  {icon:'🚨',role:'Bendra pagalba — Europa 24/7',val:'112'},
-  {icon:'📞',role:'Transporto planuotojas',val:'+370 656 66206'},
-  {icon:'📋',role:'Draudiminiai atvejai / Žalos',val:'+370 656 69809'},
-  {icon:'💳',role:'Korteles / Kelių mokesčiai — Darius Gricius',val:'+370 656 90811'},
-  {icon:'📱',role:'Planšetai / Telemetrija',val:'+370 602 94000'},
-  {icon:'🔧',role:'Vilkikų mechanikas — Rudys Paulius',val:'+370 658 14901'},
-  {icon:'🔧',role:'Vilkikų mechanikas — Robertas Žilys',val:'+370 658 14200'},
-  {icon:'🔧',role:'Puspriekabių mechanikas — Aivaras Ignatavičius',val:'+370 667 39423'},
-  {icon:'🔧',role:'Techninis skyrius 24/7',val:'+370 637 69400'},
-  {icon:'👤',role:'HR — Nataliia Andriushchenko/dokumentai',val:'+370 658 49162'},
-  {icon:'👤',role:'HR — Khrystyna Radvilė/dokumentai',val:'+370 656 01395'},
-  {icon:'👤',role:'HR — Skaidra Blaževičienė/atranka',val:'+370 636 21833'},
-  {icon:'👤',role:'HR — Natalja Antanaitienė/atranka',val:'+370 656 25613'},
-  {icon:'🎓',role:'Vairuotojų darbo org. vadovas — Saulius Mažrimas',val:'+370 652 39045'},
-  {icon:'🎓',role:'Mokymų vadybininkas — Jevgenij Burgan',val:'+370 660 94905'},
-  {icon:'🎓',role:'Mokymų vadybininkė — Vilma Rustamova',val:'+370 659 05616'},
-  {icon:'🎓',role:'Instruktorius — Kęstutis Mikelevičius',val:'+370 650 26258'},
-  {icon:'🇫🇷',role:'Prancūzija — inspekcija RU/FR',val:'+33 9 50 53 44 65'},
-];
-
-function renderContacts() {
-  const groups = [
-    {label:'🚨 Skubūs / 24/7', items: CONTACTS.slice(0,2)},
-    {label:'🔧 Techniniai / Mechanikai', items: CONTACTS.slice(2,9)},
-    {label:'👤 HR / Mokymai', items: CONTACTS.slice(9,16)},
-    {label:'🌍 Užsienio kontaktai', items: CONTACTS.slice(16)},
-  ];
-  document.getElementById('contacts-list').innerHTML = groups.map(g =>
-    `<div style="margin-bottom:16px">
-      <div style="font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;padding-left:2px">${g.label}</div>
-      ${g.items.map(c=>`<div class="cr"><span class="ci">${c.icon}</span><div class="cinfo"><div class="crole">${c.role}</div><div class="cval">${c.val}</div></div><a class="ccall" href="tel:${c.val.replace(/\s/g,'')}">📞</a></div>`).join('')}
-    </div>`
-  ).join('');
-}
-
-document.getElementById('chat-input').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight,90)+'px';
-});
-document.getElementById('chat-input').addEventListener('keydown', e => {
-  if (e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
-});
-
-startNFC();
-fetch('/api/auth-check').then(r=>r.json()).then(d=>{
-  if(d.authenticated){ enterApp(d.name||''); }
-});
+  startNFC();
+  fetch('/api/auth-check').then(r=>r.json()).then(d=>{if(d.authenticated)enterApp(d.name||'');});
+})();
 </script>
 </body>
 </html>
