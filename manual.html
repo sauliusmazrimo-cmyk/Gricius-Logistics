@@ -31,7 +31,7 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 .search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;display:none;padding:0}
 .search-stats{font-size:12px;color:var(--muted);white-space:nowrap;font-weight:600}
 
-.app-body{display:flex;flex:1;overflow:hidden;height:calc(100vh - 114px)}
+.app-body{display:flex;flex:1;min-height:calc(100vh - 114px);align-items:flex-start}
 
 .sidebar{width:var(--sidebar-w);flex-shrink:0;background:linear-gradient(180deg,#1a2f52 0%,#0d1b35 100%);overflow-y:auto;height:100%;box-shadow:4px 0 16px rgba(0,0,0,.15)}
 .sidebar::-webkit-scrollbar{width:4px}
@@ -49,7 +49,7 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 .nav-item.active .nav-text{color:#fff;font-weight:700}
 .nav-item.hidden{display:none}
 
-.content{flex:1;overflow-y:auto;padding:20px 24px;height:100%}
+.content{flex:1;overflow-y:auto;padding:20px 24px;height:calc(100vh - 114px);position:sticky;top:114px}
 .content::-webkit-scrollbar{width:6px}
 .content::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
@@ -291,22 +291,32 @@ function doSearch(q) {
     if (!q) {
       card.classList.add('visible');
       if(nav) nav.classList.remove('hidden');
-      if(body) body.innerHTML = '<p>'+esc(fmt(LANG==='ru'?s.content:(cache[i+'_'+LANG]||s.content)))+'</p>';
+      const dispText = LANG==='ru' ? s.content : (cache[i+'_'+LANG] || s.content);
+      if(body) body.innerHTML = fmt(dispText);
       found++;
     } else {
-      const searchIn = (s.title+' '+s.content+' '+(cache[i+'_'+LANG]||'')).toLowerCase();
+      const searchIn = (s.title + ' ' + s.content + ' ' + (cache[i+'_'+LANG]||'')).toLowerCase();
       if (searchIn.includes(lower)) {
         card.classList.add('visible');
         if(nav) nav.classList.remove('hidden');
-        const disp = LANG==='ru'?s.content:(cache[i+'_'+LANG]||s.content);
-        const safe = q.replace(/[.*+?^${}()|\[\]\\]/g,'\\$&');
-        const highlighted = fmt(disp).replace(
-          new RegExp('('+esc(q)+')','gi'),
+        const dispText = LANG==='ru' ? s.content : (cache[i+'_'+LANG] || s.content);
+        // Highlight: replace in formatted HTML
+        const safe = lower.replace(/[.*+?^${}()|\[\]\\]/g,'\\$&');
+        const fmted = fmt(dispText);
+        const highlighted = fmted.replace(
+          new RegExp('('+safe+')','gi'),
           '<mark style="background:#fff3a3;padding:1px 3px;border-radius:3px;font-weight:700">$1</mark>'
         );
         if(body) body.innerHTML = highlighted;
-        // Scroll to first result
-        if(found === 0) setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);
+        // Scroll content to first found card
+        if(found === 0) {
+          const ct = document.getElementById('content');
+          if(ct && card) {
+            let top = 0;
+            for(let j=0;j<i;j++){const c=document.getElementById('card-'+j);if(c&&c.classList.contains('visible'))top+=c.offsetHeight+18;}
+            ct.scrollTop = top;
+          }
+        }
         found++;
       } else {
         card.classList.remove('visible');
