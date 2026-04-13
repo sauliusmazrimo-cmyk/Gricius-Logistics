@@ -345,8 +345,30 @@ CMR накладная на груз
 ветеринарной службы, таможни, экспедиции и проч.
 Пустую CMR накладную водитель предоставляет для заполнения на месте погрузки груза.
 Отравитель груза может заполнить свою накладную, которую водитель обязан забрать и подписать после
-погрузки груза.
-Если в 16-ой графе отправитель не написал UAB Gricius Logistics, водитель обязан их вписать своей рукой.
+погрузки
+
+груза.
+
+Если
+
+в
+
+16-ой
+
+графе
+
+отправитель
+
+не
+
+написал
+
+AUTOTRANSPORTO ĮMONĖ, водитель обязан их вписать своей рукой.
+реквизиты
+
+A.
+
+GRICIAUS
 
 Получив CMR накладную на месте погрузки, водитель обязан проверить все данные накладной,
 совпадают ли они с данными в других документах (Invois, Packing List, Сертификат).
@@ -375,7 +397,13 @@ CMR накладная на груз
 
 Trip/Tour 5624789
 
-если нету или несовпадает в 16 графе перевозчик замечание о грузе, имиа фамилия, подпис Lieferschein НОМЕР ПЛОМБЫ (SEAL)
+если нету или несовпадает в 16 графе перевозчик
+
+замечание о грузе, имиа фамилия, подпис
+
+Lieferschein
+
+НОМЕР ПЛОМБЫ (SEAL)
 
 Имя, Фамилия, Подпись
 
@@ -521,7 +549,22 @@ CMR накладную в трех экземлярах, в которых в 24
 действующие водительские права
 действительное удостоверение личности и/или паспорт
 действительный сертификат ATP для используемого прицепа
-необходимые водительские права для индивидуального транспорта (ЕС/CEMT/двусторонние разрешения) подтверждение занятости и соблюдения закона о минимальной заработной плате
+необходимые
+
+водительские
+
+права
+
+для
+
+индивидуального
+
+транспорта
+
+(ЕС/CEMT/двусторонние
+
+разрешения)
+подтверждение занятости и соблюдения закона о минимальной заработной плате
 
 2. Охрана труда и общая гигиена для водителей
 Во время погрузки и разгрузки вы обязаны носить средства индивидуальной защиты (защитную обувь,
@@ -719,9 +762,26 @@ STI, необходимо немедленно уведомить об этом 
 
 •
 
-Место погрузки несет ответственность за документирование номера пломбы в товаросопроводительных документах; водитель должен сравнить номер пломбы с номером,
-указанным в товаросопроводительных документх.
+Место
 
+погрузки
+
+несет
+
+ответственность
+
+за
+
+документирование
+
+номера
+
+пломбы
+
+в
+
+товаросопроводительных документах; водитель должен сравнить номер пломбы с номером,
+указанным в товаросопроводительных документх.
 •
 
 Если на месте погрузки отказываются пломбировать прицеп или номер пломбы не соответствует
@@ -1651,6 +1711,276 @@ Petromiralles - Заправка в Испании
 
 ---
 
+Минимальный словарь водителя
+RU
+
+GB
+
+PL
+
+D
+
+F
+
+I
+
+Е
+
+Привет
+
+хелло
+
+дзен добры
+
+морген
+
+бонжур
+
+бон джорно
+
+олиа
+
+Тягач
+
+трак
+
+тир
+
+ЛКВ
+
+камион
+
+мерчи
+
+камион
+
+Номер
+Регистрация
+Грузится
+
+намба
+рецепшен
+лоудинг
+
+номер
+бюpо
+ладовач
+
+кеицаихен
+амелдунг
+ладен
+
+нюмеро
+аксюел
+шарже i
+
+тар га
+рецепшин
+карикари
+
+каргар
+
+Разгрузить
+
+анлоудинг
+
+разладовач
+
+апладен
+
+дешарже
+
+скарикари
+
+дескарга
+
+Лево
+Право
+Выезд
+
+лефт
+раит
+exsit
+
+лиево
+право
+
+линкс
+рехт
+ausfarht
+
+агош
+адуат
+sortie
+
+синистра
+адестра
+uscita
+
+искиерда
+адерета
+salida
+
+Весы
+Ремень
+Улица
+
+скеилс
+дропс
+стрит
+
+виесы
+пас
+улица
+
+ваген
+гортел
+страccе
+
+баскуль;
+сангле :
+руе
+
+пйезо
+цинге
+виа
+
+номер загрузки number
+
+arba
+reference
+of loading
+номер загрузки
+
+присутствовать на погрузке/выгрузке
+
+EN - number reference of loading
+PL -numer referencyjny załadunku
+DE- nummernreferenz der Beladung
+ESP - número de referencia de carga
+F - numéro de référence du chargement
+
+EN - to participate in loading/unloading
+PL- być obecnym przy ładowaniu
+DE- beim Laden anwesend sein
+ESP - estar presente en la carga
+F - être présent au chargement
+
+считать продукцию
+
+мерить температуру
+
+EN - to calculate goods
+P L- liczyć produkty
+DE - Produkte zählen
+ESP - contar productos
+F- compter les produits
+
+EN- to measure temperature
+PL - zmierzyć temperaturę
+DE - Temperatur messen
+ESP - medir temperatura
+F - mesurer la température
+
+менять палеты
+
+рампа
+
+EN - to change pallets
+PL - zmienić palety
+DE - Paletten wechseln
+ESP - cambiar paletas
+F - changer de palette
+
+EN - ramp of loading
+PL - rampa załadunku
+DE – Laderampe
+ESP - rampa de carga
+F - rampe de chargement
+
+документы груза
+
+вес груза
+
+EN - shipment documents
+PL - dokumenty wysyłki
+DE - Versanddokumente
+ESP - documentos de envío
+F - documents d'expédition
+
+EN - weight of cargo
+PL - waga ładunku
+DE - Gewicht der Ladung
+ESP - peso de la carga
+F - poids de la cargaison
+
+вес на ведущую ось
+EN -weight on main ( driving) axis
+
+темперетура перевозки
+EN - transportation temperature
+
+PL - ciężar na głównej osi (napędowej)
+DE - Gewicht auf der Hauptachse (Fahrachse)
+ESP - peso en el eje principal (conducción)
+F - poids sur l'axe principal (moteur)
+
+PL - temperatura transportu
+DE - Transporttemperatur
+ESP - temperatura de transporte
+F - température de transport
+
+взвеситься перед погрузкой
+EN - to weight before loading
+
+взвеситься после погрузки
+EN - to weight after loading
+
+PL - do masy przed załadowaniem
+DE - vor dem Laden zu beschweren
+ESP - al peso antes de cargar
+F - peser avant de charger
+
+PL - do masy po załadowaniu
+DE - nach dem Laden zu beschweren
+ESP - al peso después de cargar
+F - peser après le chargement
+
+распределение груза
+EN - cargo layout ( allotment)
+
+крепление груза
+EN - fastening of cargo
+
+PL - układ ładunku
+DE - Ladungslayout
+ESP - diseño de carga
+F - disposition de la cargaison
+
+PL - mocowanie ładunku
+DE - Befestigung der Ladung
+ESP - fijación de carga
+F - fixation de la cargaison
+
+-Kein paletten tausch/каин палеттентауч-по германский/
+
+не меняются
+
+-No paletts change
+
+/но палеттс чеинч
+
+-по английский/ не меняются
+
+-Pas de changement de paletts
+
+/пас де шанжемент палет
+
+-по французики/ не меняются
+
+-to change pallet -
+
+палеты меняются
 
 НАЧАЛО РАБОЧЕГО ДНЯ - КОНЕЦ РАБОТЫ С ЧИПОМ
 В окне тахографа введите: ОК
@@ -1696,6 +2026,25 @@ Petromiralles - Заправка в Испании
 8. Километраж начала смены
 9. Пробег за смену.
 
+1.
+2.
+3.
+
+В жёлтом квадрате время от 00:00 до 12:00, В синем квадрате время
+от 12:00 до 24:00
+
+В квадратах надо указивать пересечение границы (Страну)
+
+4.
+
+6.
+5.
+
+7.
+
+8.
+
+9.
 
 Краткая инструкция по работе с тахографом DTCO 1381 версии 1.3u.
 
@@ -1788,7 +2137,14 @@ Petromiralles - Заправка в Испании
 завершении печати отчета оторвите бумагу, просто
 потянув ее вниз или вверх, как показано на рисунке.
 
-Нажмите кнопку возврата отмены действия для стандартный экран индикации:
+Нажмите кнопку возврата
+отмены
+действия)
+для
+стандартный экран индикации:
+
+(или
+возврата в
 
 Таким образом, последовательность нажатий
 кнопок будет следующая:
