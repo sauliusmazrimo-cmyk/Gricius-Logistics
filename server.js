@@ -2790,6 +2790,58 @@ app.post('/api/clear-history', (req, res) => {
   res.json({ ok: true });
 });
 
+
+// ===================== TRANSLATION ROUTE =====================
+const translationCache = {}; // { "title_lang": "translated text" }
+
+app.post('/api/translate', async (req, res) => {
+  if (!req.session.authenticated) return res.status(401).json({ error: 'Not authenticated' });
+  if (!ANTHROPIC_KEY) return res.status(500).json({ error: 'No API key' });
+
+  const { text, title, lang } = req.body;
+  if (!text || !lang) return res.status(400).json({ error: 'Missing text or lang' });
+
+  const cacheKey = `${title}_${lang}`;
+  if (translationCache[cacheKey]) {
+    return res.json({ translated: translationCache[cacheKey], cached: true });
+  }
+
+  const langName = lang === 'lt' ? 'Lithuanian' : 'English';
+  
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 4000,
+        system: `You are a professional transport/logistics document translator. Translate the given Russian text to ${langName}. Rules:
+- Keep all phone numbers, codes, and numbers exactly as-is
+- Keep technical terms accurate for truck drivers
+- Keep the same structure and line breaks
+- Do NOT add explanations or notes
+- Return ONLY the translated text, nothing else`,
+        messages: [{ role: 'user', content: `Translate this Russian driver manual section to ${langName}:\n\n${text}` }]
+      })
+    });
+
+    if (!response.ok) throw new Error('API error ' + response.status);
+    const data = await response.json();
+    const translated = data.content.map(b => b.text || '').join('');
+    
+    translationCache[cacheKey] = translated;
+    res.json({ translated, cached: false });
+
+  } catch (e) {
+    console.error('Translation error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // ===================== START =====================
 app.listen(PORT, () => {
   console.log(`✅ Gricius Logistics Driver Assistant running on port ${PORT}`);
