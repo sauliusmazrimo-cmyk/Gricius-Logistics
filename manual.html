@@ -235,16 +235,18 @@ function init() {
     nav.onclick = () => {
     const card = document.getElementById('card-'+i);
     if (!card) return;
+    // Block scroll listener temporarily
     window._manualScrolling = true;
     clearTimeout(window._scrollTimer);
-    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    // Update active nav
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     nav.classList.add('active');
     nav.scrollIntoView({block:'nearest'});
-    // Scroll inside the content container, not the whole page
-    const contentEl = document.getElementById('content');
-    const cardTop = card.offsetTop - 20;
-    contentEl.scrollTo({top: cardTop, behavior: 'smooth'});
-    window._scrollTimer = setTimeout(() => { window._manualScrolling = false; }, 1200);
+    // Scroll content div to card
+    const ct = document.getElementById('content');
+    ct.scrollTo({top: card.offsetTop - 20, behavior:'smooth'});
+    // Re-enable after animation completes
+    window._scrollTimer = setTimeout(() => { window._manualScrolling = false; }, 800);
   };
     navList.appendChild(nav);
 
@@ -260,19 +262,24 @@ function init() {
     wrap.appendChild(card);
   });
 
-  // Active nav on scroll
-  const obs = new IntersectionObserver(entries => {
+  // Track active section on scroll
+  const contentEl = document.getElementById('content');
+  contentEl.addEventListener('scroll', () => {
     if (window._manualScrolling) return;
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id.replace('card-','');
-        document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-        const n = document.getElementById('nav-'+id);
-        if (n) { n.classList.add('active'); n.scrollIntoView({block:'nearest'}); }
-      }
+    const scrollTop = contentEl.scrollTop;
+    let activeIdx = 0;
+    SECTIONS.forEach((s, i) => {
+      const card = document.getElementById('card-'+i);
+      if (!card || !card.classList.contains('visible')) return;
+      if (card.offsetTop - 60 <= scrollTop) activeIdx = i;
     });
-  }, {threshold:0.15, rootMargin:'-5% 0px -80% 0px'});
-  document.querySelectorAll('.section-card').forEach(c=>obs.observe(c));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const activeNav = document.getElementById('nav-'+activeIdx);
+    if (activeNav) {
+      activeNav.classList.add('active');
+      activeNav.scrollIntoView({block:'nearest'});
+    }
+  }, {passive: true});
 
   updateStats(SECTIONS.length);
 }
