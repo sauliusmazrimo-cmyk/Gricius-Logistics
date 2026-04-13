@@ -59,7 +59,7 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 
 .card-header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 20px;display:flex;align-items:center;gap:12px;border-left:5px solid var(--red)}
 .card-num{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.card-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:#fff;letter-spacing:.3px;flex:1}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:.5px;flex:1;text-transform:uppercase}
 .translate-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s;white-space:nowrap;flex-shrink:0}
 .translate-btn:hover{background:rgba(255,255,255,.25)}
 .translate-btn:disabled{opacity:.5;cursor:not-allowed}
@@ -75,7 +75,7 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 .doc-img{max-width:100%;border-radius:8px;border:1px solid var(--border);cursor:zoom-in;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:.2s;display:block}
 .doc-img:hover{transform:scale(1.01);box-shadow:0 4px 16px rgba(0,0,0,.15)}
 
-.section-body{font-size:14px;line-height:1.9;color:var(--text);word-break:break-word;white-space:normal;text-align:justify;hyphens:auto;width:100%;display:block}
+.section-body{font-size:15.5px;line-height:2;color:var(--text);word-break:break-word;white-space:normal;text-align:justify;hyphens:auto;width:100%;display:block}
 .section-body p{margin-bottom:12px;width:100%;display:block}
 .section-body p:last-child{margin-bottom:0}
 .translating{color:var(--muted);font-style:italic;font-size:13px;padding:20px;text-align:center}
@@ -293,19 +293,28 @@ function doSearch(q) {
     const nav = document.getElementById('nav-'+i);
     const body = document.getElementById('body-'+i);
     if (!q) {
-      card.classList.add('visible'); nav.classList.remove('hidden');
-      if(body) body.innerHTML = esc(fmt(LANG==='ru'?s.content:(cache[i+'_'+LANG]||s.content)));
+      card.classList.add('visible');
+      if(nav) nav.classList.remove('hidden');
+      if(body) body.innerHTML = '<p>'+esc(fmt(LANG==='ru'?s.content:(cache[i+'_'+LANG]||s.content)))+'</p>';
       found++;
     } else {
-      const txt = s.title+' '+s.content+' '+(cache[i+'_'+LANG]||'');
-      if (txt.toLowerCase().includes(lower)) {
-        card.classList.add('visible'); nav.classList.remove('hidden');
+      const searchIn = (s.title+' '+s.content+' '+(cache[i+'_'+LANG]||'')).toLowerCase();
+      if (searchIn.includes(lower)) {
+        card.classList.add('visible');
+        if(nav) nav.classList.remove('hidden');
         const disp = LANG==='ru'?s.content:(cache[i+'_'+LANG]||s.content);
-        const safe = q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-        if(body) body.innerHTML = '<p>'+esc(fmt(disp)).replace(new RegExp('('+safe+')','gi'),'<mark style="background:#fff3a3;padding:1px 2px;border-radius:3px">$1</mark>')+'</p>';
+        const safe = q.replace(/[.*+?^${}()|\[\]\\]/g,'\\$&');
+        const highlighted = esc(fmt(disp)).replace(
+          new RegExp('('+safe+')','gi'),
+          '<mark style="background:#fff3a3;padding:1px 3px;border-radius:3px;font-weight:700">$1</mark>'
+        );
+        if(body) body.innerHTML = '<p>'+highlighted+'</p>';
+        // Scroll to first result
+        if(found === 0) setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'start'}),100);
         found++;
       } else {
-        card.classList.remove('visible'); nav.classList.add('hidden');
+        card.classList.remove('visible');
+        if(nav) nav.classList.add('hidden');
       }
     }
   });
