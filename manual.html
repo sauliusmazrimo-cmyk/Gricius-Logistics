@@ -235,16 +235,16 @@ function init() {
     nav.onclick = () => {
     const card = document.getElementById('card-'+i);
     if (!card) return;
-    // Temporarily disable observer updates
     window._manualScrolling = true;
     clearTimeout(window._scrollTimer);
-    // Update nav immediately
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
     nav.classList.add('active');
     nav.scrollIntoView({block:'nearest'});
-    card.scrollIntoView({behavior:'smooth',block:'start'});
-    // Re-enable observer after scroll finishes
-    window._scrollTimer = setTimeout(() => { window._manualScrolling = false; }, 1000);
+    // Scroll inside the content container, not the whole page
+    const contentEl = document.getElementById('content');
+    const cardTop = card.offsetTop - 20;
+    contentEl.scrollTo({top: cardTop, behavior: 'smooth'});
+    window._scrollTimer = setTimeout(() => { window._manualScrolling = false; }, 1200);
   };
     navList.appendChild(nav);
 
