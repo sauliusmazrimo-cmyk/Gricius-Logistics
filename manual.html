@@ -236,20 +236,18 @@ function init() {
     const card = document.getElementById('card-'+i);
     const ct = document.getElementById('content');
     if (!card || !ct) return;
-    // Flag to block scroll listener
     window._navClicking = true;
     clearTimeout(window._navTimer);
-    // Update nav active state
+    // Update nav
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     nav.classList.add('active');
     nav.scrollIntoView({block:'nearest'});
-    // Calculate scroll position relative to content container
-    const cardRect = card.getBoundingClientRect();
-    const ctRect = ct.getBoundingClientRect();
-    const scrollTarget = ct.scrollTop + (cardRect.top - ctRect.top) - 16;
-    ct.scrollTo({top: scrollTarget, behavior:'smooth'});
-    // Release flag after scroll settles
-    window._navTimer = setTimeout(() => { window._navClicking = false; }, 900);
+    // Scroll: use getBoundingClientRect for accurate position
+    const cardTop = card.getBoundingClientRect().top;
+    const ctTop = ct.getBoundingClientRect().top;
+    const target = ct.scrollTop + cardTop - ctTop - 8;
+    ct.scrollTop = target;
+    window._navTimer = setTimeout(() => { window._navClicking = false; }, 500);
   };
     navList.appendChild(nav);
 
