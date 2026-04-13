@@ -75,7 +75,9 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 .doc-img{max-width:100%;border-radius:8px;border:1px solid var(--border);cursor:zoom-in;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:.2s;display:block}
 .doc-img:hover{transform:scale(1.01);box-shadow:0 4px 16px rgba(0,0,0,.15)}
 
-.section-body{font-size:14px;line-height:1.9;color:var(--text);word-break:break-word;white-space:pre-line;text-align:justify}
+.section-body{font-size:14px;line-height:1.9;color:var(--text);word-break:break-word;white-space:normal;text-align:justify;hyphens:auto}
+.section-body p{margin-bottom:12px}
+.section-body p:last-child{margin-bottom:0}
 .translating{color:var(--muted);font-style:italic;font-size:13px;padding:20px;text-align:center}
 
 .no-results{text-align:center;padding:80px 20px;color:var(--muted);background:#fff;border-radius:16px;border:1px solid var(--border)}
@@ -156,7 +158,22 @@ function setLang(l) {
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function fmt(text) {
-  return text.split('\n').map(l => l.trim()).filter((l,i,a) => l || (a[i-1] && a[i-1] !== '')).join('\n');
+  // Clean up lines
+  const lines = text.split('\n').map(l => l.trim());
+  const result = [];
+  let prevEmpty = false;
+  for (const line of lines) {
+    if (!line) {
+      if (!prevEmpty) result.push('');
+      prevEmpty = true;
+    } else {
+      result.push(line);
+      prevEmpty = false;
+    }
+  }
+  // Convert to HTML with proper paragraph breaks
+  return result.map(l => l === '' ? '</p><p>' : l).join(' ')
+    .replace(/^<\/p>/, '').replace(/<p>$/, '');
 }
 
 function refreshBody(i) {
@@ -166,19 +183,19 @@ function refreshBody(i) {
   const s = SECTIONS[i];
   if (!body) return;
   if (LANG === 'ru') {
-    body.innerHTML = esc(fmt(s.content));
+    body.innerHTML = '<p>'+esc(fmt(s.content))+'</p>';
     if (btn) btn.style.display = 'none';
     if (note) note.style.display = 'none';
     return;
   }
   const ck = i+'_'+LANG;
   if (cache[ck]) {
-    body.innerHTML = esc(fmt(cache[ck]));
+    body.innerHTML = '<p>'+esc(fmt(cache[ck]))+'</p>';
     if (btn) btn.style.display = 'none';
     if (note) { note.className='trans-note'; note.style.display='block'; note.textContent = LANG==='lt' ? '&#x2705; I&#353;versta &#x12F; lietuvi&#x173; kalb&#x105;' : '&#x2705; Translated to English'; }
     return;
   }
-  body.innerHTML = esc(fmt(s.content));
+  body.innerHTML = '<p>'+esc(fmt(s.content))+'</p>';
   if (btn) btn.style.display = 'inline-block';
   if (note) note.style.display = 'none';
 }
@@ -197,7 +214,7 @@ async function translateSection(i) {
     if (d.translated) { cache[i+'_'+LANG]=d.translated; refreshBody(i); }
     else throw new Error(d.error||'Klaida');
   } catch(e) {
-    body.innerHTML = esc(fmt(s.content));
+    body.innerHTML = '<p>'+esc(fmt(s.content))+'</p>';
     btn.disabled=false; btn.textContent='&#x1F310; Versti / Translate';
     if (note) { note.className='trans-err'; note.style.display='block'; note.textContent='&#x274C; '+e.message; }
   }
@@ -226,7 +243,7 @@ function init() {
     card.id = 'card-'+i;
     card.innerHTML =
       '<div class="card-header"><div class="card-num">'+(i+1)+'</div><div class="card-title">'+esc(s.title)+'</div><button class="translate-btn" id="tbtn-'+i+'" style="display:none" onclick="translateSection('+i+')">&#x1F310; Versti</button></div>'+
-      '<div class="card-body"><div id="note-'+i+'" style="display:none"></div>'+imgsHtml+'<div class="section-body" id="body-'+i+'">'+esc(fmt(s.content))+'</div></div>';
+      '<div class="card-body"><div id="note-'+i+'" style="display:none"></div>'+imgsHtml+'<div class="section-body" id="body-'+i+'"><p>'+esc(fmt(s.content))+'</p></div></div>';
     wrap.appendChild(card);
   });
 
@@ -271,7 +288,7 @@ function doSearch(q) {
         card.classList.add('visible'); nav.classList.remove('hidden');
         const disp = LANG==='ru'?s.content:(cache[i+'_'+LANG]||s.content);
         const safe = q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-        if(body) body.innerHTML = esc(fmt(disp)).replace(new RegExp('('+safe+')','gi'),'<mark style="background:#fff3a3;padding:1px 2px;border-radius:3px">$1</mark>');
+        if(body) body.innerHTML = '<p>'+esc(fmt(disp)).replace(new RegExp('('+safe+')','gi'),'<mark style="background:#fff3a3;padding:1px 2px;border-radius:3px">$1</mark>')+'</p>';
         found++;
       } else {
         card.classList.remove('visible'); nav.classList.add('hidden');
