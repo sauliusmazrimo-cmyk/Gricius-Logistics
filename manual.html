@@ -234,19 +234,22 @@ function init() {
     nav.innerHTML = '<div class="nav-num">'+(i+1)+'</div><div class="nav-text">'+esc(s.title)+'</div>';
     nav.onclick = () => {
     const card = document.getElementById('card-'+i);
-    if (!card) return;
-    // Block scroll listener temporarily
-    window._manualScrolling = true;
-    clearTimeout(window._scrollTimer);
-    // Update active nav
+    const ct = document.getElementById('content');
+    if (!card || !ct) return;
+    // Flag to block scroll listener
+    window._navClicking = true;
+    clearTimeout(window._navTimer);
+    // Update nav active state
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     nav.classList.add('active');
     nav.scrollIntoView({block:'nearest'});
-    // Scroll content div to card
-    const ct = document.getElementById('content');
-    ct.scrollTo({top: card.offsetTop - 20, behavior:'smooth'});
-    // Re-enable after animation completes
-    window._scrollTimer = setTimeout(() => { window._manualScrolling = false; }, 800);
+    // Calculate scroll position relative to content container
+    const cardRect = card.getBoundingClientRect();
+    const ctRect = ct.getBoundingClientRect();
+    const scrollTarget = ct.scrollTop + (cardRect.top - ctRect.top) - 16;
+    ct.scrollTo({top: scrollTarget, behavior:'smooth'});
+    // Release flag after scroll settles
+    window._navTimer = setTimeout(() => { window._navClicking = false; }, 900);
   };
     navList.appendChild(nav);
 
@@ -262,24 +265,20 @@ function init() {
     wrap.appendChild(card);
   });
 
-  // Track active section on scroll
-  const contentEl = document.getElementById('content');
-  contentEl.addEventListener('scroll', () => {
-    if (window._manualScrolling) return;
-    const scrollTop = contentEl.scrollTop;
-    let activeIdx = 0;
-    SECTIONS.forEach((s, i) => {
-      const card = document.getElementById('card-'+i);
-      if (!card || !card.classList.contains('visible')) return;
-      if (card.offsetTop - 60 <= scrollTop) activeIdx = i;
-    });
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    const activeNav = document.getElementById('nav-'+activeIdx);
-    if (activeNav) {
-      activeNav.classList.add('active');
-      activeNav.scrollIntoView({block:'nearest'});
+  // Track active section on scroll using content div
+  const contentDiv = document.getElementById('content');
+  contentDiv.addEventListener('scroll', function() {
+    if (window._navClicking) return;
+    const st = contentDiv.scrollTop + 80;
+    let cur = 0;
+    for (let j = 0; j < SECTIONS.length; j++) {
+      const c = document.getElementById('card-'+j);
+      if (c && c.classList.contains('visible') && c.offsetTop <= st) cur = j;
     }
-  }, {passive: true});
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const an = document.getElementById('nav-'+cur);
+    if (an) { an.classList.add('active'); an.scrollIntoView({block:'nearest'}); }
+  }, {passive:true});
 
   updateStats(SECTIONS.length);
 }
