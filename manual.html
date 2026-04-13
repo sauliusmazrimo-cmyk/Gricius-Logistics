@@ -64,7 +64,7 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 .translate-btn:hover{background:rgba(255,255,255,.25)}
 .translate-btn:disabled{opacity:.5;cursor:not-allowed}
 
-.card-body{padding:20px}
+.card-body{padding:20px;width:100%}
 .trans-note{background:#eafaf2;border-left:3px solid #27ae60;border-radius:0 8px 8px 0;padding:8px 14px;font-size:12px;color:#1a5c38;margin-bottom:14px;display:none}
 .trans-err{background:#ffe8e8;border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:8px 14px;font-size:12px;color:#a93226;margin-bottom:14px;display:none}
 
@@ -75,8 +75,8 @@ body{font-family:'Barlow',sans-serif;background:#e8ecf2;color:var(--text);min-he
 .doc-img{max-width:100%;border-radius:8px;border:1px solid var(--border);cursor:zoom-in;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:.2s;display:block}
 .doc-img:hover{transform:scale(1.01);box-shadow:0 4px 16px rgba(0,0,0,.15)}
 
-.section-body{font-size:14px;line-height:1.9;color:var(--text);word-break:break-word;white-space:normal;text-align:justify;hyphens:auto}
-.section-body p{margin-bottom:12px}
+.section-body{font-size:14px;line-height:1.9;color:var(--text);word-break:break-word;white-space:normal;text-align:justify;hyphens:auto;width:100%;display:block}
+.section-body p{margin-bottom:12px;width:100%;display:block}
 .section-body p:last-child{margin-bottom:0}
 .translating{color:var(--muted);font-style:italic;font-size:13px;padding:20px;text-align:center}
 
@@ -232,7 +232,20 @@ function init() {
     nav.className = 'nav-item';
     nav.id = 'nav-'+i;
     nav.innerHTML = '<div class="nav-num">'+(i+1)+'</div><div class="nav-text">'+esc(s.title)+'</div>';
-    nav.onclick = () => { document.getElementById('card-'+i).scrollIntoView({behavior:'smooth',block:'start'}); };
+    nav.onclick = () => {
+    const card = document.getElementById('card-'+i);
+    if (!card) return;
+    // Temporarily disable observer updates
+    window._manualScrolling = true;
+    clearTimeout(window._scrollTimer);
+    // Update nav immediately
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    nav.classList.add('active');
+    nav.scrollIntoView({block:'nearest'});
+    card.scrollIntoView({behavior:'smooth',block:'start'});
+    // Re-enable observer after scroll finishes
+    window._scrollTimer = setTimeout(() => { window._manualScrolling = false; }, 1000);
+  };
     navList.appendChild(nav);
 
     const imgs = SECTION_IMAGES[i]||[];
@@ -249,6 +262,7 @@ function init() {
 
   // Active nav on scroll
   const obs = new IntersectionObserver(entries => {
+    if (window._manualScrolling) return;
     entries.forEach(e => {
       if (e.isIntersecting) {
         const id = e.target.id.replace('card-','');
