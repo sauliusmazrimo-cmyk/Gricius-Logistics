@@ -44,7 +44,7 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);mi
 .translate-btn:hover{background:var(--red)}
 .translate-btn:disabled{opacity:.5;cursor:not-allowed}
 .translate-btn.cached{background:#27ae60}
-.section-body{font-size:13.5px;line-height:1.8;color:var(--text);white-space:pre-wrap;word-break:break-word}
+.section-body{font-size:13.5px;line-height:1.8;color:var(--text);white-space:pre-line;word-break:break-word;max-width:100%}
 .section-body mark{background:#fff3cd;padding:1px 3px;border-radius:3px;font-weight:600}
 .translating{color:var(--muted);font-style:italic;font-size:13px;padding:10px 0}
 .no-results{text-align:center;padding:60px 20px;color:var(--muted)}
@@ -108,14 +108,14 @@ const SECTIONS = [{"title": "Įvadas / Введение", "content": "ИНСТР
 
 // Document images mapped to section indices
 const SECTION_IMAGES = {
-  6:  ['/cmr-example.jpg', '/cmr-example2.jpg', '/cmr-example3.jpg'],  // CMR
-  7:  ['/cmr-example.jpg'],  // Plomba/Seal - also CMR
-  11: ['/prastova.jpg', '/prastova2.jpg'],   // Простой/Prastova
-  12: ['/tir1.jpg', '/tir2.jpg'],             // TIR
-  13: ['/paletes.jpg', '/paletes2.jpg', '/paletes3.jpg'], // Paletės
-  15: ['/korteles.jpg', '/korteles2.jpg'],    // Kortelės
-  16: ['/korteles3.jpg', '/korteles4.jpg'],   // Kortelės 2
-  1:  ['/treileris.jpg', '/treileris2.jpg'],  // Treileris
+  6:  ['/docs/cmr-example.jpg', '/docs/cmr-example2.jpg', '/docs/cmr-example3.jpg'],  // CMR
+  7:  ['/docs/cmr-example.jpg'],  // Plomba/Seal - also CMR
+  11: ['/docs/prastova.jpg', '/docs/prastova2.jpg'],   // Простой/Prastova
+  12: ['/docs/tir1.jpg', '/docs/tir2.jpg'],             // TIR
+  13: ['/docs/paletes.jpg', '/docs/paletes2.jpg', '/docs/paletes3.jpg'], // Paletės
+  15: ['/docs/korteles.jpg', '/docs/korteles2.jpg'],    // Kortelės
+  16: ['/docs/korteles3.jpg', '/docs/korteles4.jpg'],   // Kortelės 2
+  1:  ['/docs/treileris.jpg', '/docs/treileris2.jpg'],  // Treileris
 };
 
 let LANG = 'ru';
