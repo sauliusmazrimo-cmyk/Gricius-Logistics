@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static('.'));
+app.use('/docs', express.static('public/docs'));
 
 // Session setup
 app.use(session({
