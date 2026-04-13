@@ -224,21 +224,21 @@ function init() {
     nav.id = 'nav-'+i;
     nav.innerHTML = '<div class="nav-num">'+(i+1)+'</div><div class="nav-text">'+esc(s.title)+'</div>';
     nav.onclick = () => {
-    const ct = document.getElementById('content');
-    if (!ct) return;
-    window._navClicking = true;
-    clearTimeout(window._navTimer);
+    // Update active nav immediately
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     nav.classList.add('active');
     nav.scrollIntoView({block:'nearest'});
-    // Find target card and scroll
-    const target = document.getElementById('card-'+i);
-    if (target) {
-      // Scroll the content div so the card is at top
-      const ctRect = ct.getBoundingClientRect();
-      const cardRect = target.getBoundingClientRect();
-      ct.scrollTop = ct.scrollTop + (cardRect.top - ctRect.top) - 8;
+    // Scroll content to card - calculate position by summing card heights
+    const ct = document.getElementById('content');
+    if (!ct) return;
+    let top = 0;
+    for (let j = 0; j < i; j++) {
+      const c = document.getElementById('card-'+j);
+      if (c && c.classList.contains('visible')) top += c.offsetHeight + 18;
     }
+    window._navClicking = true;
+    clearTimeout(window._navTimer);
+    ct.scrollTop = top;
     window._navTimer = setTimeout(() => { window._navClicking = false; }, 600);
   };
     navList.appendChild(nav);
