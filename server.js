@@ -2190,7 +2190,7 @@ SVARBU: Nepasirašyti deklaracijos nesuprantama kalba!
 Jei radote jau apgadintą vilkiką/puspriekabę — fotografuoti ir nedelsiant informuoti vadybininką.
 
 📞 Žalų skyrius: +370 656 69809
-📞 Vadybininkas: +370 656 66206
+📞 Transporto planuotojas: +370 656 66206
 🚨 Policija: 112`
   },
   {
@@ -2279,7 +2279,7 @@ SPRENDIMAI:
 ✅ Turėti atsarginį planą (spausdintas maršrutas)
 ✅ Jei klaida adrese — informuoti vadybininką ir paprašyti pagalbos
 
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   },
   {
     title: "Kuras / degalai",
@@ -2338,7 +2338,7 @@ JEIGU VIRŠIJOTE LAIKĄ:
 2. Pasidaryti spausdinį ir parašyti priežastį (vardas, pavardė, kortelės nr., laikas)
 3. Saugoti spaustinius 56 dienas
 
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   },
   {
     title: "Darbo laikas / tachografas",
@@ -2386,7 +2386,7 @@ PERKROVA:
 → Jei svoris per didelis — NEVAŽIUOTI, informuoti vadybininką
 → Max ES: 40t bendra, 11.5t ašiai
 
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   },
   {
     title: "Vagystės / nelegalai",
@@ -2414,7 +2414,7 @@ PREVENCIJA:
 ✅ Naudoti vagysčių žemėlapį
 ✅ Rinktis saugius, apšviestus parkingus
 
-📞 Vadybininkas: +370 656 66206
+📞 Transporto planuotojas: +370 656 66206
 📞 Žalų skyrius: +370 656 69809
 🚨 Policija: 112`
   },
@@ -2439,7 +2439,7 @@ PRANCŪZIJA:
 → Turėti SIPSI deklaraciją, A1 formą, darbo sutarties kopiją
 → Problemos: +33 9 50 53 44 65
 
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   },
   {
     title: "Oro sąlygos / blogas oras",
@@ -2462,7 +2462,7 @@ JEIGU NESAUGU → STOTI ir laukti
 → Tikrinti vietinius įspėjimus (weather apps)
 → Informuoti vadybininką
 
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   },
   {
     title: "Sveikata / trauma / blogai jaučiasi",
@@ -2485,7 +2485,7 @@ SVARBU: Nedirbti per jėgą — tai pavojinga ir tau, ir kitiems!
 Visais atvejais informuoti vadybininką bet kokiu paros metu.
 
 🚨 Pagalba Europa: 112
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   },
   {
     title: "Puspriekabės keitimas / perkabinimas",
@@ -2504,7 +2504,7 @@ KOMPLEKTACIJA TIKRINTI:
 ✅ Atsarginis ratas
 ✅ TIR kabelis (jei taikoma)
 
-📞 Vadybininkas: +370 656 66206`
+📞 Transporto planuotojas: +370 656 66206`
   }
 ];
 
@@ -2532,7 +2532,7 @@ ATSAKYMO STILIUS:
 - NIEKADA nerašyk daugiau nei 4 eilutes
 
 DRAUDŽIAMA:
-- Rašyti "+370 656 66206" šalia žodžio "vadybininkas" — tik "informuoti vadybininką". Šis numeris yra TRANSPORTO PLANUOTOJO, NE vadybininko!
+- NIEKADA nerašyti "+370 656 66206" šalia žodžio "vadybininkas". +370 656 66206 = TRANSPORTO PLANUOTOJAS, NE vadybininkas. Vadybininko numerio nežinai — nerašyk jokio numerio!
 - Sugalvoti neegzistuojančias vietas ar sąvokas
 - Naudoti **bold** markdown, ## headers, - bullet points — rašyti paprastai be jokio formatavimo. Tik paprastas tekstas!
 - Meluoti ar spėlioti faktus
