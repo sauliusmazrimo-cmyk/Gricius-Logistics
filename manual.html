@@ -158,11 +158,28 @@ function setLang(l) {
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function fmt(text) {
-  // Split into paragraphs by double newlines
-  const paras = text.split(/\n\n+/);
-  return paras
-    .map(p => p.split('\n').map(l => l.trim()).filter(l => l).join(' '))
-    .filter(p => p)
+  const lines = text.split('\n');
+  const result = [];
+  let para = [];
+
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line) {
+      // Empty line = paragraph break
+      if (para.length) { result.push(para.join(' ')); para = []; }
+    } else if (/^\d+[\.\)]/.test(line) || /^[•\-\*]/.test(line) || /^\d+\.\d+/.test(line)) {
+      // Numbered point or bullet = always new paragraph
+      if (para.length) { result.push(para.join(' ')); para = []; }
+      para.push(line);
+      result.push(para.join(' ')); para = [];
+    } else {
+      para.push(line);
+    }
+  }
+  if (para.length) result.push(para.join(' '));
+
+  return result
+    .filter(p => p.trim())
     .map(p => '<p>' + esc(p) + '</p>')
     .join('');
 }
