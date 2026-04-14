@@ -335,14 +335,23 @@ const loginTexts={
 function setAppLang(l){
   LANG=l;
   document.querySelectorAll('.app-lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));
-  // Re-render current tab content if needed
-  const ind = document.getElementById('lang-ind');
-  if(ind) ind.textContent = l.toUpperCase();
+  // Update quick topic buttons language
+  renderTopics();
+  // Update welcome message language
+  const wt = {lt:'Pasirinkite temą arba parašykite klausimą',ru:'Выберите тему или напишите вопрос',en:'Select a topic or type a question'};
+  const ws = document.getElementById('welcome-sub');
+  if(ws) ws.textContent = wt[l]||wt.lt;
 }
 function setLoginLang(l){LANG=l;document.querySelectorAll('.ll').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));const t=loginTexts[l];document.getElementById('login-desc').textContent=t.desc;document.getElementById('login-btn').textContent=t.btn;document.getElementById('login-error').textContent=t.err;document.getElementById('or-text').textContent=t.or;}
 document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 async function doLogin(){const pw=document.getElementById('pw-input').value.trim();const btn=document.getElementById('login-btn');btn.disabled=true;btn.textContent='...';try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});if(r.ok){const d=await r.json();enterApp(d.name||'');}else{document.getElementById('login-error').style.display='block';document.getElementById('pw-input').value='';}}catch(e){document.getElementById('login-error').style.display='block';}btn.disabled=false;btn.textContent=loginTexts[LANG].btn;}
-function enterApp(name){document.getElementById('login-screen').style.display='none';document.getElementById('app-screen').style.display='flex';initApp(name);}
+function enterApp(name){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app-screen').style.display='flex';
+  // Sync app language buttons with current language
+  document.querySelectorAll('.app-lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===LANG.toUpperCase()));
+  initApp(name);
+}
 async function startNFC(){if(!('NDEFReader' in window))return;try{const reader=new NDEFReader();await reader.scan();reader.onreading=async(ev)=>{let uid=ev.serialNumber?ev.serialNumber.toUpperCase().replace(/:/g,''):'';if(!uid)return;const st=document.getElementById('nfc-text'),nm=document.getElementById('nfc-name');st.textContent='Tikrinama...';try{const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId:uid})});const d=await r.json();if(d.ok){nm.textContent='✅ '+d.name;nm.style.display='block';st.textContent='Prisijungta!';setTimeout(()=>enterApp(d.name),700);}else{st.textContent='❌ Raktas neatpažintas.';setTimeout(()=>{st.textContent='Prikabinkite NFC raktą prie telefono';nm.style.display='none';},3000);}}catch(e){st.textContent='Klaida.';}}}catch(e){const s=document.getElementById('nfc-section');if(s)s.style.display='none';}}
 async function doLogout(){await fetch('/api/logout',{method:'POST'});location.reload();}
 function initApp(driverName){renderTopics();renderDocs();renderAccident();renderContacts();document.getElementById('lang-ind').textContent=LANG.toUpperCase();if(driverName&&driverName!=='Admin'){document.getElementById('hdr-sub').textContent=driverName;document.getElementById('wb-title').textContent='Sveiki, '+driverName.split(' ')[0]+'!';}addBotMsg(greeting());}
