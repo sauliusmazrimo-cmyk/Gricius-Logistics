@@ -49,9 +49,43 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
 .logout-btn:hover{background:rgba(255,255,255,.07);color:#fff}
 .tabs{display:flex;background:linear-gradient(90deg,#0f1e3a,#152448);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:64px;z-index:100;overflow-x:auto}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:1;min-width:90px;padding:16px 8px;font-size:15px;font-weight:800;color:rgba(255,255,255,.75);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;text-align:center;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;letter-spacing:1.5px;text-transform:uppercase}
-.tab.active{color:#fff;border-bottom-color:var(--gold);background:rgba(255,255,255,.06)}
-.tab:hover:not(.active){color:#fff}
+.tab{
+  flex:1;min-width:90px;padding:10px 8px;font-size:15px;font-weight:800;
+  color:rgba(255,255,255,.85);border:none;cursor:pointer;
+  white-space:nowrap;font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:1.5px;text-transform:uppercase;text-align:center;
+  background:linear-gradient(180deg,#1e3560 0%,#142040 60%,#0d1828 100%);
+  border-top:1px solid rgba(255,255,255,.15);
+  border-left:1px solid rgba(255,255,255,.08);
+  border-right:1px solid rgba(0,0,0,.4);
+  border-bottom:3px solid rgba(0,0,0,.5);
+  box-shadow:0 2px 4px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);
+  transition:.1s;
+  transform:translateY(0);
+  position:relative;top:0;
+}
+.tab:hover:not(.active){
+  color:#fff;
+  background:linear-gradient(180deg,#24407a 0%,#1a3060 60%,#111f40 100%);
+  border-top-color:rgba(255,255,255,.2);
+}
+.tab:active{
+  transform:translateY(2px);
+  box-shadow:0 0 2px rgba(0,0,0,.3),inset 0 1px 3px rgba(0,0,0,.3);
+  border-bottom-width:1px;
+  top:2px;
+}
+.tab.active{
+  color:#fff;
+  background:linear-gradient(180deg,#0d1828 0%,#142040 100%);
+  border-top:1px solid var(--gold);
+  border-bottom:3px solid rgba(0,0,0,.6);
+  box-shadow:0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.2);
+  transform:translateY(1px);
+  top:1px;
+  text-shadow:0 0 12px rgba(232,147,42,.6);
+  color:var(--gold);
+}
 .panel{display:none;flex:1;flex-direction:column}.panel.active{display:flex}
 .chat-wrap{flex:1;max-width:740px;width:100%;margin:0 auto;display:flex;flex-direction:column;padding:12px 12px 0}
 .welcome-banner{background:linear-gradient(135deg,var(--navy),var(--navy2));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px;animation:sIn .4s ease}
