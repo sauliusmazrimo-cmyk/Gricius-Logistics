@@ -357,7 +357,41 @@ function renderDocs(){
 let hitZones=new Set();
 function toggleZone(z){const el=document.getElementById('z-'+z);if(hitZones.has(z)){hitZones.delete(z);el.setAttribute('fill',z.length===2?'#8e44ad':'#3498db');el.setAttribute('opacity','0.45');}else{hitZones.add(z);el.setAttribute('fill','#c0392b');el.setAttribute('opacity','1');}const zn={front:'Priekis',rear:'Galas',left:'Kairė',right:'Dešinė',fl:'Kairysis priekinis kampas',fr:'Dešinysis priekinis kampas',rl:'Kairysis galinis kampas',rr:'Dešinysis galinis kampas'};document.getElementById('impact-result').textContent=hitZones.size?'💥 SMŪGIS: '+[...hitZones].map(z=>zn[z]).join(', '):'';}
 function renderAccident(){const fields=[['1','Įvykio data, laikas, vieta','Tikslus laikas (hh:mm), šalis, miestas, kelias/gatvė.'],['2','Sužeistieji','Žymėkite "NE" jei nėra. Jei yra — KVIESKITE 112 nedelsiant!'],['3','Materialinė žala','Ar yra žalos ne tik automobiliams.'],['4+5','Kito vairuotojo duomenys','Vardas, pavardė, draudimo įmonė ir poliso Nr.'],['8','Jūsų Žalioji kortelė','Draudimo įmonė, poliso Nr., galiojimo data.'],['10','Smūgio vieta','Pažymėkite rodyklę ir smūgio tašką.'],['12','Aplinkybės','Pažymėkite visus tinkamus langelius — kiekvienas žymi savo stulpelį.'],['13','Įvykio schema','Nubrėžkite gatvę, rodykles, automobilių padėtį.'],['14','14 grafa — DĖMESIO','Pasirašo TIK KALTAS vairuotojas. Jei nekaltas — NEPASIRAŠINĖKITE!'],['15','Jūsų parašas','Nekalto vairuotojo parašas — TIK čia (grafoje 15).'],['16','Pastabos','Liudytojai, papildomos aplinkybės.']];const fl=document.getElementById('acc-fields');fl.innerHTML='';fields.forEach(([n,name,desc])=>{const d=document.createElement('div');d.className='field-row';d.innerHTML='<div class="fr-head"><div><span class="fr-num">GRAFA '+n+'</span><span class="fr-name">'+name+'</span></div><span class="fr-chk">▼</span></div><div class="fr-desc">'+desc+'</div>';d.onclick=()=>{d.classList.toggle('open');d.querySelector('.fr-chk').textContent=d.classList.contains('open')?'▲':'▼';};fl.appendChild(d);});document.getElementById('acc-steps').innerHTML=[['Saugumas','Sustoti saugioje vietoje. Avarines šviesas. Įspėjamuosius trikampius.'],['Fotografuoti','Abu TP numeriai, žala, bendra padėtis, kelio ženklai.'],['Skambinti','Žalų skyrius: +370 656 69809'],['Deklaracija','Pildyti Europrotokolo deklaraciją. Nesuprantama kalba — nepasirašyti!'],['Policija','Kviesti 112 jei: abu nevadina kaltės / nukentėjo tretieji / yra sužeistų.'],['Grįžus','Jei nekaltas → tech. skyriaus vadovui; jei kaltas → vadybininkui.']].map((s,i)=>mkStep(i+1,s[0],s[1])).join('');}
-const CG=[{g:'🚨 Skubūs / 24/7',i:[{i:'🚨',r:'Bendra pagalba — Europa 24/7',v:'112'},{i:'📞',r:'Transporto planuotojas',v:'+370 656 66206'},{i:'📋',r:'Draudiminiai atvejai / Žalos',v:'+370 656 69809'}]},{g:'🔧 Techniniai / Mechanikai',i:[{i:'💳',r:'Korteles / Kelių mokesčiai — Darius Gricius',v:'+370 656 90811'},{i:'📱',r:'Planšetai / Telemetrija',v:'+370 602 94000'},{i:'🔧',r:'Vilkikų mechanikas — Rudys Paulius',v:'+370 658 14901'},{i:'🔧',r:'Vilkikų mechanikas — Robertas Žilys',v:'+370 658 14200'},{i:'🔧',r:'Puspriekabių mechanikas — Aivaras Ignatavičius',v:'+370 667 39423'},{i:'🔧',r:'Techninis skyrius 24/7',v:'+370 637 69400'}]},{g:'👤 HR / Mokymai',i:[{i:'👤',r:'HR — Nataliia Andriushchenko',v:'+370 658 49162'},{i:'👤',r:'HR — Khrystyna Radvilė',v:'+370 656 01395'},{i:'👤',r:'HR — Skaidra Blaževičienė',v:'+370 636 21833'},{i:'👤',r:'HR — Natalja Antanaitienė',v:'+370 656 25613'},{i:'🎓',r:'Darbo org. vadovas — Saulius Mažrimas',v:'+370 652 39045'},{i:'🎓',r:'Mokymai — Jevgenij Burgan',v:'+370 660 94905'},{i:'🎓',r:'Mokymai — Vilma Rustamova',v:'+370 659 05616'},{i:'🎓',r:'Instruktorius — Kęstutis Mikelevičius',v:'+370 650 26258'}]},{g:'🌍 Užsienio',i:[{i:'🇫🇷',r:'Prancūzija — inspekcija RU/FR',v:'+33 9 50 53 44 65'}]}];
+const CG=[
+{g:'🚨 Skubūs / 24/7',i:[
+  {i:'🚨',r:'Bendra pagalba — Europa 24/7',v:'112'},
+  {i:'📞',r:'Transporto planuotojas',v:'+370 656 66206'},
+  {i:'📋',r:'Žalų skyrius / ДТП',v:'+370 656 69809'}
+]},
+{g:'🔧 Techniniai / Mechanikai',i:[
+  {i:'💳',r:'Korteles / Kelių mokesčiai — Darius Gricius',v:'+370 656 90811'},
+  {i:'📱',r:'Planšetai / Telemetrija',v:'+370 602 94000'},
+  {i:'🔧',r:'Vilkikų mechanikas — Rudys Paulius',v:'+370 658 14723'},
+  {i:'🔧',r:'Vilkikų mechanikas — Robertas Žilys',v:'+370 658 14200'},
+  {i:'🔧',r:'Puspriekabių mechanikas — Aivaras Ignatavičius',v:'+370 667 39423'},
+  {i:'🔧',r:'Puspriekabių mechanikas — Andrius Šlionskis',v:'+370 628 15349'},
+  {i:'🔧',r:'Puspriek./Vilkikų mechanikas — Vitalijus Žukauskas',v:'+370 684 76261'},
+  {i:'🔧',r:'Techninis skyrius 24/7',v:'+370 637 69400'}
+]},
+{g:'👤 HR / Mokymai',i:[
+  {i:'👤',r:'HR — Nataliia Andriushchenko',v:'+370 658 49162'},
+  {i:'👤',r:'HR — Natalja Antanaitienė',v:'+370 656 25613'},
+  {i:'👤',r:'HR — Skaidra Blaževičienė',v:'+370 636 21833'},
+  {i:'👤',r:'HR — Khrystyna Radvile',v:'+370 656 01395'},
+  {i:'🎓',r:'Darbo org. vadovas — Saulius Mažrimas',v:'+370 652 39045'},
+  {i:'🎓',r:'Mokymai — Kęstutis Mikelevičius',v:'+370 650 26258'},
+  {i:'🎓',r:'Mokymai — Vilma Rustamova',v:'+370 659 05616'},
+  {i:'🎓',r:'Mokymai — Jevgenij Burgan',v:'+370 660 94905'}
+]},
+{g:'📋 Vadovybė',i:[
+  {i:'📋',r:'Eksporto sk. vadovas — Edgaras Šėperys',v:'+370 658 76039'},
+  {i:'📋',r:'Transporto paslaugų dept. vadovas — Valdemaras Keblys',v:'+370 656 66208'},
+  {i:'📋',r:'Vakarų šalių padalinio vadovas — Donatas Stūrys',v:'+370 656 23089'}
+]},
+{g:'🌍 Užsienio',i:[
+  {i:'🇫🇷',r:'Prancūzija — inspekcija RU/FR',v:'+33 9 50 53 44 65'}
+]}
+];
 function renderContacts(){document.getElementById('contacts-list').innerHTML=CG.map(g=>'<div class="cgroup"><div class="cg-label">'+g.g+'</div>'+g.i.map(c=>'<div class="cr"><span class="ci">'+c.i+'</span><div class="cinfo"><div class="crole">'+c.r+'</div><div class="cval">'+c.v+'</div></div><a class="ccall" href="tel:'+c.v.replace(/\s/g,'')+'">📞 Skambinti</a></div>').join('')+'</div>').join('');}
 document.getElementById('chat-input').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px';});
 document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
