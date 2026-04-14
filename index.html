@@ -44,7 +44,9 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
 .header-brand{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
 .header-brand span{display:block;font-size:10px;font-weight:500;letter-spacing:1.5px;opacity:.45;text-transform:uppercase;font-family:'Barlow',sans-serif}
 .hdr-btns{display:flex;gap:6px;align-items:center}
-.lang-ind{font-size:10px;font-weight:800;color:rgba(255,255,255,.5);padding:3px 8px;border:1px solid rgba(255,255,255,.12);border-radius:4px;letter-spacing:1.5px}
+.app-lang-btn{font-size:10px;font-weight:800;color:rgba(255,255,255,.45);padding:3px 8px;border:1px solid rgba(255,255,255,.12);border-radius:4px;letter-spacing:1.5px;background:transparent;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s}
+.app-lang-btn.active{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1)}
+.app-lang-btn:hover:not(.active){color:rgba(255,255,255,.75)}
 .logout-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:600;transition:.15s}
 .logout-btn:hover{background:rgba(255,255,255,.07);color:#fff}
 .tabs{display:flex;background:linear-gradient(90deg,#0f1e3a,#152448);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:64px;z-index:100;overflow-x:auto}
@@ -214,7 +216,9 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
       <div class="header-brand" id="hdr-brand">Gricius Logistics<span id="hdr-sub">Vairuotojo pagalbininkas</span></div>
     </div>
     <div class="hdr-btns">
-      <span class="lang-ind" id="lang-ind">LT</span>
+      <button class="app-lang-btn active" onclick="setAppLang('lt')">LT</button>
+      <button class="app-lang-btn" onclick="setAppLang('ru')">RU</button>
+      <button class="app-lang-btn" onclick="setAppLang('en')">EN</button>
       <button class="logout-btn" onclick="doLogout()">Atsijungti</button>
     </div>
   </div>
@@ -328,6 +332,13 @@ const loginTexts={
   ru:{desc:'Помощник водителя — войдите для использования системы.',btn:'Войти',err:'Неверный пароль',or:'ИЛИ ПАРОЛЬ'},
   en:{desc:'Driver road assistant — log in to use.',btn:'Login',err:'Wrong password',or:'OR PASSWORD'},
 };
+function setAppLang(l){
+  LANG=l;
+  document.querySelectorAll('.app-lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));
+  // Re-render current tab content if needed
+  const ind = document.getElementById('lang-ind');
+  if(ind) ind.textContent = l.toUpperCase();
+}
 function setLoginLang(l){LANG=l;document.querySelectorAll('.ll').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));const t=loginTexts[l];document.getElementById('login-desc').textContent=t.desc;document.getElementById('login-btn').textContent=t.btn;document.getElementById('login-error').textContent=t.err;document.getElementById('or-text').textContent=t.or;}
 document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 async function doLogin(){const pw=document.getElementById('pw-input').value.trim();const btn=document.getElementById('login-btn');btn.disabled=true;btn.textContent='...';try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});if(r.ok){const d=await r.json();enterApp(d.name||'');}else{document.getElementById('login-error').style.display='block';document.getElementById('pw-input').value='';}}catch(e){document.getElementById('login-error').style.display='block';}btn.disabled=false;btn.textContent=loginTexts[LANG].btn;}
