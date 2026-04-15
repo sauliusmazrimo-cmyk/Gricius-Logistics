@@ -47,6 +47,8 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
 .app-lang-btn{font-size:10px;font-weight:800;color:rgba(255,255,255,.45);padding:3px 8px;border:1px solid rgba(255,255,255,.12);border-radius:4px;letter-spacing:1.5px;background:transparent;cursor:pointer;font-family:'Barlow',sans-serif;transition:.15s}
 .app-lang-btn.active{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1)}
 .app-lang-btn:hover:not(.active){color:rgba(255,255,255,.75)}
+.stats-btn{background:rgba(232,147,42,.2);border:1px solid rgba(232,147,42,.4);color:var(--gold);padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;text-decoration:none;font-family:'Barlow',sans-serif;transition:.15s}
+.stats-btn:hover{background:rgba(232,147,42,.3)}
 .logout-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);padding:5px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:600;transition:.15s}
 .logout-btn:hover{background:rgba(255,255,255,.07);color:#fff}
 .tabs{display:flex;background:linear-gradient(90deg,#0f1e3a,#152448);border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:64px;z-index:100;overflow-x:auto}
@@ -219,7 +221,7 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);min-height:100vh;dis
       <button class="app-lang-btn active" onclick="setAppLang('lt')">LT</button>
       <button class="app-lang-btn" onclick="setAppLang('ru')">RU</button>
       <button class="app-lang-btn" onclick="setAppLang('en')">EN</button>
-      <button class="logout-btn" onclick="doLogout()">Atsijungti</button>
+      <a class="stats-btn" id="stats-btn" href="/stats.html" style="display:none">📊 Statistika</a><button class="logout-btn" onclick="doLogout()">Atsijungti</button>
     </div>
   </div>
 
@@ -351,13 +353,23 @@ function enterApp(name){
   if(ls) ls.style.display='none';
   if(as) as.style.display='flex';
   document.querySelectorAll('.app-lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===LANG.toUpperCase()));
-  // Log session start for statistics
-  fetch('/api/session-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,action:'login',ts:Date.now()})}).catch(()=>{});
+  // Log session start
+  const _sessionStart = Date.now();
+  window._sessionName = name;
+  fetch('/api/session-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,action:'login',ts:_sessionStart})}).catch(()=>{});
+  
+  // Log session end on page close
+  window.addEventListener('beforeunload', () => {
+    const duration = Math.round((Date.now() - _sessionStart) / 1000);
+    navigator.sendBeacon('/api/session-log', JSON.stringify({name:window._sessionName, action:'logout', ts:Date.now(), duration}));
+  });
   initApp(name);
 }
 async function startNFC(){if(!('NDEFReader' in window))return;try{const reader=new NDEFReader();await reader.scan();reader.onreading=async(ev)=>{let uid=ev.serialNumber?ev.serialNumber.toUpperCase().replace(/:/g,''):'';if(!uid)return;const st=document.getElementById('nfc-text'),nm=document.getElementById('nfc-name');st.textContent='Tikrinama...';try{const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId:uid})});const d=await r.json();if(d.ok){nm.textContent='✅ '+d.name;nm.style.display='block';st.textContent='Prisijungta!';setTimeout(()=>enterApp(d.name),700);}else{st.textContent='❌ Raktas neatpažintas.';setTimeout(()=>{st.textContent='Prikabinkite NFC raktą prie telefono';nm.style.display='none';},3000);}}catch(e){st.textContent='Klaida.';}}}catch(e){const s=document.getElementById('nfc-section');if(s)s.style.display='none';}}
 async function doLogout(){await fetch('/api/logout',{method:'POST'});location.reload();}
 function initApp(driverName){renderTopics();renderDocs();renderAccident();renderContacts();document.getElementById('lang-ind').textContent=LANG.toUpperCase();document.getElementById('hdr-sub').textContent=driverName||'';
+  const statsBtn = document.getElementById('stats-btn');
+  if(statsBtn) statsBtn.style.display = driverName==='Admin' ? 'inline-block' : 'none';
   if(driverName&&driverName!=='Admin'){
     document.getElementById('wb-title').textContent='Sveiki, '+driverName.split(' ')[0]+'!';
   }addBotMsg(greeting());}
