@@ -2716,10 +2716,11 @@ const sessionLog = []; // {name, action, ts}
 
 app.post('/api/session-log', (req, res) => {
   if (!req.session.authenticated) return res.status(401).end();
-  const { name, action, ts } = req.body;
-  sessionLog.push({ name: name || req.session.driverName, action, ts, date: new Date().toISOString() });
-  // Keep last 1000 entries
-  if (sessionLog.length > 1000) sessionLog.shift();
+  const { name, action, ts, duration } = req.body;
+  const entry = { name: name || req.session.driverName, action, ts, date: new Date().toISOString() };
+  if (duration) entry.duration = duration; // seconds spent on page
+  sessionLog.push(entry);
+  if (sessionLog.length > 2000) sessionLog.shift();
   res.json({ ok: true });
 });
 
@@ -2727,15 +2728,29 @@ app.get('/api/stats', (req, res) => {
   if (!req.session.authenticated || req.session.driverName !== 'Admin') {
     return res.status(403).json({ error: 'Admin only' });
   }
-  // Count logins per user
-  const logins = {};
+  // Count logins and total time per user
+  const userData = {};
   sessionLog.forEach(e => {
-    if (e.action === 'login') {
-      logins[e.name] = (logins[e.name] || 0) + 1;
+    if (!userData[e.name]) userData[e.name] = { logins: 0, totalSec: 0, sessions: [] };
+    if (e.action === 'login') userData[e.name].logins++;
+    if (e.action === 'logout' && e.duration) {
+      userData[e.name].totalSec += e.duration;
+      userData[e.name].sessions.push({ date: e.date, duration: e.duration });
     }
   });
-  const sorted = Object.entries(logins).sort((a,b) => b[1]-a[1]);
-  res.json({ total: sessionLog.length, logins: sorted, recent: sessionLog.slice(-20).reverse() });
+  const users = Object.entries(userData).map(([name, d]) => ({
+    name,
+    logins: d.logins,
+    totalSec: d.totalSec,
+    avgSec: d.logins > 0 ? Math.round(d.totalSec / d.logins) : 0,
+    sessions: d.sessions.slice(-5)
+  })).sort((a,b) => b.logins - a.logins);
+
+  res.json({
+    total: sessionLog.filter(e=>e.action==='login').length,
+    users,
+    recent: sessionLog.filter(e=>e.action==='login').slice(-30).reverse()
+  });
 });
 
 // ===================== AUTH ROUTES =====================
