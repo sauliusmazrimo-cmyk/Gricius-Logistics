@@ -450,9 +450,8 @@ document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key===
   fetch('/api/auth-check').then(r=>r.json()).then(d=>{
     if(d.authenticated && d.name){
       enterApp(d.name);
-      // Show stats btn for admin
       const sb = document.getElementById('stats-btn');
-      if(sb && d.name==='Admin') sb.style.display='inline-block';
+      if(sb) sb.style.display='inline-block';
     } else {
       document.getElementById('login-screen').style.display='flex';
       document.getElementById('app-screen').style.display='none';
