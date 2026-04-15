@@ -73,7 +73,7 @@ async function loadStats() {
   try {
     const r = await fetch('/api/stats');
     if (r.status === 403) {
-      document.body.innerHTML = '<div style="text-align:center;padding:80px;font-size:18px;color:#c0392b">⛔ Tik Admin gali matyti statistiką.<br><br><a href="/">← Grįžti</a></div>';
+      document.body.innerHTML = '<div style="text-align:center;padding:80px;font-size:18px;color:#c0392b">⛔ Tik Admin gali naudotis šia funkcija.<br><br><a href="/">← Grįžti</a></div>';
       return;
     }
     const d = await r.json();
