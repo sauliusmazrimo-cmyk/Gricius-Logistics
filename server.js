@@ -2751,7 +2751,7 @@ app.get('/api/stats', (req, res) => {
     logins: d.logins,
     totalSec: d.totalSec,
     avgSec: d.logins > 0 ? Math.round(d.totalSec / d.logins) : 0,
-    sessions: d.sessions.slice(-5)
+    sessions: []
   })).sort((a,b) => b.logins - a.logins);
 
   res.json({
