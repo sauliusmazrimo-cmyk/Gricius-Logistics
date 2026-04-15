@@ -2717,9 +2717,18 @@ const sessionLog = []; // {name, action, ts}
 app.post('/api/session-log', (req, res) => {
   if (!req.session.authenticated) return res.status(401).end();
   const { name, action, ts, duration } = req.body;
-  const entry = { name: name || req.session.driverName, action, ts, date: new Date().toISOString() };
-  if (duration) entry.duration = duration; // seconds spent on page
-  sessionLog.push(entry);
+  const driverName = name || req.session.driverName;
+  if (action === 'login') {
+    sessionLog.push({ name: driverName, action: 'login', ts, date: new Date().toISOString() });
+  } else if (action === 'logout' && duration) {
+    // Update last login entry with duration instead of adding new
+    for (let i = sessionLog.length - 1; i >= 0; i--) {
+      if (sessionLog[i].name === driverName && sessionLog[i].action === 'login') {
+        sessionLog[i].duration = duration;
+        break;
+      }
+    }
+  }
   if (sessionLog.length > 2000) sessionLog.shift();
   res.json({ ok: true });
 });
@@ -2731,11 +2740,10 @@ app.get('/api/stats', (req, res) => {
   // Count logins and total time per user
   const userData = {};
   sessionLog.forEach(e => {
-    if (!userData[e.name]) userData[e.name] = { logins: 0, totalSec: 0, sessions: [] };
-    if (e.action === 'login') userData[e.name].logins++;
-    if (e.action === 'logout' && e.duration) {
-      userData[e.name].totalSec += e.duration;
-      userData[e.name].sessions.push({ date: e.date, duration: e.duration });
+    if (!userData[e.name]) userData[e.name] = { logins: 0, totalSec: 0 };
+    if (e.action === 'login') {
+      userData[e.name].logins++;
+      if (e.duration) userData[e.name].totalSec += e.duration;
     }
   });
   const users = Object.entries(userData).map(([name, d]) => ({
