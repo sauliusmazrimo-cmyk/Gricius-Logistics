@@ -346,10 +346,13 @@ function setLoginLang(l){LANG=l;document.querySelectorAll('.ll').forEach(b=>b.cl
 document.getElementById('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 async function doLogin(){const pw=document.getElementById('pw-input').value.trim();const btn=document.getElementById('login-btn');btn.disabled=true;btn.textContent='...';try{const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});if(r.ok){const d=await r.json();enterApp(d.name||'');}else{document.getElementById('login-error').style.display='block';document.getElementById('pw-input').value='';}}catch(e){document.getElementById('login-error').style.display='block';}btn.disabled=false;btn.textContent=loginTexts[LANG].btn;}
 function enterApp(name){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('app-screen').style.display='flex';
-  // Sync app language buttons with current language
+  const ls = document.getElementById('login-screen');
+  const as = document.getElementById('app-screen');
+  if(ls) ls.style.display='none';
+  if(as) as.style.display='flex';
   document.querySelectorAll('.app-lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===LANG.toUpperCase()));
+  // Log session start for statistics
+  fetch('/api/session-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,action:'login',ts:Date.now()})}).catch(()=>{});
   initApp(name);
 }
 async function startNFC(){if(!('NDEFReader' in window))return;try{const reader=new NDEFReader();await reader.scan();reader.onreading=async(ev)=>{let uid=ev.serialNumber?ev.serialNumber.toUpperCase().replace(/:/g,''):'';if(!uid)return;const st=document.getElementById('nfc-text'),nm=document.getElementById('nfc-name');st.textContent='Tikrinama...';try{const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId:uid})});const d=await r.json();if(d.ok){nm.textContent='✅ '+d.name;nm.style.display='block';st.textContent='Prisijungta!';setTimeout(()=>enterApp(d.name),700);}else{st.textContent='❌ Raktas neatpažintas.';setTimeout(()=>{st.textContent='Prikabinkite NFC raktą prie telefono';nm.style.display='none';},3000);}}catch(e){st.textContent='Klaida.';}}}catch(e){const s=document.getElementById('nfc-section');if(s)s.style.display='none';}}
