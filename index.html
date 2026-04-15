@@ -365,11 +365,11 @@ function enterApp(name){
   });
   initApp(name);
 }
-async function startNFC(){if(!('NDEFReader' in window))return;try{const reader=new NDEFReader();await reader.scan();reader.onreading=async(ev)=>{let uid=ev.serialNumber?ev.serialNumber.toUpperCase().replace(/:/g,''):'';if(!uid)return;const st=document.getElementById('nfc-text'),nm=document.getElementById('nfc-name');st.textContent='Tikrinama...';try{const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId:uid})});const d=await r.json();if(d.ok){nm.textContent='✅ '+d.name;nm.style.display='block';st.textContent='Prisijungta!';setTimeout(()=>enterApp(d.name),700);}else{st.textContent='❌ Raktas neatpažintas.';setTimeout(()=>{st.textContent='Prikabinkite NFC raktą prie telefono';nm.style.display='none';},3000);}}catch(e){st.textContent='Klaida.';}}}catch(e){const s=document.getElementById('nfc-section');if(s)s.style.display='none';}}
+async function startNFC(){if(!('NDEFReader' in window))return;try{const reader=new NDEFReader();await reader.scan();reader.onreading=async(ev)=>{let uid=ev.serialNumber?ev.serialNumber.toUpperCase().replace(/:/g,''):'';if(!uid)return;const st=document.getElementById('nfc-text'),nm=document.getElementById('nfc-name');st.textContent='Tikrinama...';try{const r=await fetch('/api/nfc-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nfcId:uid})});const d=await r.json();if(d.ok){nm.textContent='✅ '+d.name;nm.style.display='block';st.textContent='Prisijungta!';setTimeout(()=>{enterApp(d.name);if(d.name==='Admin'){const sb=document.getElementById('stats-btn');if(sb)sb.style.display='inline-block';}},700);}else{st.textContent='❌ Raktas neatpažintas.';setTimeout(()=>{st.textContent='Prikabinkite NFC raktą prie telefono';nm.style.display='none';},3000);}}catch(e){st.textContent='Klaida.';}}}catch(e){const s=document.getElementById('nfc-section');if(s)s.style.display='none';}}
 async function doLogout(){await fetch('/api/logout',{method:'POST'});location.reload();}
 function initApp(driverName){renderTopics();renderDocs();renderAccident();renderContacts();document.getElementById('lang-ind').textContent=LANG.toUpperCase();document.getElementById('hdr-sub').textContent=driverName||'';
   const statsBtn = document.getElementById('stats-btn');
-  if(statsBtn) statsBtn.style.display = driverName==='Admin' ? 'inline-block' : 'none';
+  if(statsBtn) statsBtn.style.display = 'inline-block';
   if(driverName&&driverName!=='Admin'){
     document.getElementById('wb-title').textContent='Sveiki, '+driverName.split(' ')[0]+'!';
   }addBotMsg(greeting());}
@@ -450,8 +450,10 @@ document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key===
   fetch('/api/auth-check').then(r=>r.json()).then(d=>{
     if(d.authenticated && d.name){
       enterApp(d.name);
+      // Show stats btn for admin
+      const sb = document.getElementById('stats-btn');
+      if(sb && d.name==='Admin') sb.style.display='inline-block';
     } else {
-      // Make sure login screen is visible
       document.getElementById('login-screen').style.display='flex';
       document.getElementById('app-screen').style.display='none';
     }
