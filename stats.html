@@ -13,63 +13,64 @@ body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);mi
 .h-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--red),#a93226);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
 .h-title h1{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
 .h-title p{font-size:10px;opacity:.45;letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
-.back-btn{margin-left:auto;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'Barlow',sans-serif}
+.hdr-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.back-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'Barlow',sans-serif}
 .back-btn:hover{background:rgba(255,255,255,.2)}
+.refresh-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif}
+.refresh-btn:hover{background:rgba(255,255,255,.25)}
 
 .container{max-width:1100px;margin:0 auto;padding:24px}
-
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
 .stat-card{background:#fff;border-radius:14px;padding:20px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:var(--navy)}
-.stat-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:800;color:var(--navy)}
+.stat-label{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
 
 .section{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.section-head{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 20px;display:flex;align-items:center;gap:10px}
+.section-head{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 20px}
 .section-head h2{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px}
 
 table{width:100%;border-collapse:collapse}
 th{padding:10px 16px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid var(--border);background:#fafbfc}
-td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+td{padding:11px 16px;border-bottom:1px solid var(--border);font-size:14px}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#f8f9fc}
 
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
 .badge-login{background:#e8f5e9;color:#2e7d32}
-.badge-admin{background:#fff3e0;color:#e65100}
+.badge-time{background:#e3f2fd;color:#1565c0}
 
-.bar-wrap{display:flex;align-items:center;gap:10px}
+.bar-wrap{display:flex;align-items:center;gap:8px}
 .bar{height:8px;background:linear-gradient(90deg,var(--navy),var(--red));border-radius:4px;min-width:4px;transition:.3s}
-.bar-num{font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap}
-
-.refresh-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;margin-left:auto}
-.refresh-btn:hover{background:rgba(255,255,255,.25)}
 
 .empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
 .ts{font-size:12px;color:var(--muted)}
+.time-val{font-weight:700;color:var(--navy)}
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="h-icon">📊</div>
   <div class="h-title">
     <h1>Statistika</h1>
     <p>Gricius Logistics &bull; Admin</p>
   </div>
-  <button class="refresh-btn" onclick="loadStats()">🔄 Atnaujinti</button>
-  <a class="back-btn" href="/" style="margin-left:10px">← Grįžti</a>
+  <div class="hdr-right">
+    <button class="refresh-btn" onclick="loadStats()">🔄 Atnaujinti</button>
+    <a class="back-btn" href="/">← Grįžti</a>
+  </div>
 </div>
 
 <div class="container">
-  <div class="stats-grid" id="stats-grid">
+  <div class="stats-grid">
     <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Viso prisijungimų</div></div>
     <div class="stat-card"><div class="stat-num" id="s-users">—</div><div class="stat-label">Unikalių vartotojų</div></div>
     <div class="stat-card"><div class="stat-num" id="s-today">—</div><div class="stat-label">Šiandien</div></div>
+    <div class="stat-card"><div class="stat-num" id="s-avgtime">—</div><div class="stat-label">Vid. laikas puslapyje</div></div>
   </div>
 
   <div class="section">
-    <div class="section-head"><h2>👥 Prisijungimai pagal vartotoją</h2></div>
-    <div id="logins-table"><div class="empty">Kraunama...</div></div>
+    <div class="section-head"><h2>👥 Vartotojai</h2></div>
+    <div id="users-table"><div class="empty">Kraunama...</div></div>
   </div>
 
   <div class="section">
@@ -79,6 +80,13 @@ tr:hover td{background:#f8f9fc}
 </div>
 
 <script>
+function fmtTime(sec) {
+  if (!sec || sec < 1) return '—';
+  if (sec < 60) return sec + 'sek';
+  if (sec < 3600) return Math.floor(sec/60) + 'min ' + (sec%60) + 'sek';
+  return Math.floor(sec/3600) + 'val ' + Math.floor((sec%3600)/60) + 'min';
+}
+
 async function loadStats() {
   try {
     const r = await fetch('/api/stats');
@@ -88,61 +96,66 @@ async function loadStats() {
     }
     const d = await r.json();
 
-    // Summary
     document.getElementById('s-total').textContent = d.total;
-    document.getElementById('s-users').textContent = d.logins.length;
+    document.getElementById('s-users').textContent = d.users.length;
 
-    // Today count
     const today = new Date().toISOString().slice(0,10);
-    const todayCount = d.recent.filter(e => e.date.startsWith(today)).length;
+    const todayCount = d.recent.filter(e => e.date && e.date.startsWith(today)).length;
     document.getElementById('s-today').textContent = todayCount;
 
-    // Logins table
-    const maxLogins = d.logins[0] ? d.logins[0][1] : 1;
-    if (d.logins.length === 0) {
-      document.getElementById('logins-table').innerHTML = '<div class="empty">Dar nėra duomenų</div>';
-    } else {
-      document.getElementById('logins-table').innerHTML = `
-        <table>
-          <thead><tr><th>#</th><th>Vartotojas</th><th>Prisijungimai</th><th>Grafikas</th></tr></thead>
-          <tbody>${d.logins.map(([name, count], i) => `
-            <tr>
-              <td style="color:var(--muted);font-weight:700">${i+1}</td>
-              <td><strong>${name}</strong></td>
-              <td><span class="badge badge-login">${count}</span></td>
-              <td><div class="bar-wrap"><div class="bar" style="width:${Math.round(count/maxLogins*200)}px"></div><span class="bar-num">${count}x</span></div></td>
-            </tr>`).join('')}
-          </tbody>
-        </table>`;
-    }
+    const totalSec = d.users.reduce((s,u) => s + (u.totalSec||0), 0);
+    const withTime = d.users.filter(u => u.totalSec > 0);
+    const avgSec = withTime.length ? Math.round(totalSec / withTime.length) : 0;
+    document.getElementById('s-avgtime').textContent = fmtTime(avgSec);
 
-    // Recent table
-    if (d.recent.length === 0) {
-      document.getElementById('recent-table').innerHTML = '<div class="empty">Dar nėra duomenų</div>';
+    // Users table
+    const maxLogins = d.users[0] ? d.users[0].logins : 1;
+    if (!d.users.length) {
+      document.getElementById('users-table').innerHTML = '<div class="empty">Dar nėra duomenų</div>';
     } else {
-      document.getElementById('recent-table').innerHTML = `
+      document.getElementById('users-table').innerHTML = `
         <table>
-          <thead><tr><th>Laikas</th><th>Vartotojas</th><th>Veiksmas</th></tr></thead>
-          <tbody>${d.recent.map(e => {
-            const dt = new Date(e.date);
-            const dateStr = dt.toLocaleDateString('lt-LT') + ' ' + dt.toLocaleTimeString('lt-LT', {hour:'2-digit',minute:'2-digit'});
+          <thead><tr><th>#</th><th>Vartotojas</th><th>Prisijungimai</th><th>Viso laiko</th><th>Vid. sesija</th><th>Aktyvumas</th></tr></thead>
+          <tbody>${d.users.map(([u,idx] = [null,0], i) => {
+            const user = d.users[i];
             return `<tr>
-              <td class="ts">${dateStr}</td>
-              <td><strong>${e.name}</strong></td>
-              <td><span class="badge ${e.name==='Admin'?'badge-admin':'badge-login'}">${e.action}</span></td>
+              <td style="color:var(--muted);font-weight:700">${i+1}</td>
+              <td><strong>${user.name}</strong></td>
+              <td><span class="badge badge-login">${user.logins}x</span></td>
+              <td class="time-val">${fmtTime(user.totalSec)}</td>
+              <td class="time-val">${fmtTime(user.avgSec)}</td>
+              <td><div class="bar-wrap"><div class="bar" style="width:${Math.round(user.logins/maxLogins*160)}px"></div></div></td>
             </tr>`;
           }).join('')}
           </tbody>
         </table>`;
     }
 
+    // Recent table
+    if (!d.recent.length) {
+      document.getElementById('recent-table').innerHTML = '<div class="empty">Dar nėra duomenų</div>';
+    } else {
+      document.getElementById('recent-table').innerHTML = `
+        <table>
+          <thead><tr><th>Data / Laikas</th><th>Vartotojas</th></tr></thead>
+          <tbody>${d.recent.map(e => {
+            const dt = new Date(e.date);
+            const dateStr = dt.toLocaleDateString('lt-LT') + ' ' + dt.toLocaleTimeString('lt-LT',{hour:'2-digit',minute:'2-digit'});
+            return `<tr>
+              <td class="ts">${dateStr}</td>
+              <td><strong>${e.name}</strong></td>
+            </tr>`;
+          }).join('')}
+          </tbody>
+        </table>`;
+    }
   } catch(e) {
-    document.getElementById('logins-table').innerHTML = '<div class="empty">Klaida: ' + e.message + '</div>';
+    document.getElementById('users-table').innerHTML = '<div class="empty">Klaida: ' + e.message + '</div>';
   }
 }
 
 loadStats();
-setInterval(loadStats, 30000); // Auto-refresh every 30s
+setInterval(loadStats, 30000);
 </script>
 </body>
 </html>
