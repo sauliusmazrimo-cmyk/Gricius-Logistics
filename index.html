@@ -358,7 +358,14 @@ function enterApp(name){
   window._sessionName = name;
   fetch('/api/session-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,action:'login',ts:_sessionStart})}).catch(()=>{});
   
-  // Log session end on page close
+  // Send time every 60 seconds (heartbeat)
+  if(window._heartbeat) clearInterval(window._heartbeat);
+  window._heartbeat = setInterval(() => {
+    const duration = Math.round((Date.now() - _sessionStart) / 1000);
+    fetch('/api/session-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:window._sessionName, action:'logout', ts:Date.now(), duration})}).catch(()=>{});
+  }, 60000);
+  
+  // Also send on page close
   window.addEventListener('beforeunload', () => {
     const duration = Math.round((Date.now() - _sessionStart) / 1000);
     navigator.sendBeacon('/api/session-log', JSON.stringify({name:window._sessionName, action:'logout', ts:Date.now(), duration}));
