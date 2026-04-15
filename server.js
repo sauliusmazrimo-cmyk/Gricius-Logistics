@@ -2711,6 +2711,33 @@ const NFC_DRIVERS = {
 // ===================== IN-MEMORY STORAGE =====================
 const chatSessions = {};
 
+// ===================== STATISTICS =====================
+const sessionLog = []; // {name, action, ts}
+
+app.post('/api/session-log', (req, res) => {
+  if (!req.session.authenticated) return res.status(401).end();
+  const { name, action, ts } = req.body;
+  sessionLog.push({ name: name || req.session.driverName, action, ts, date: new Date().toISOString() });
+  // Keep last 1000 entries
+  if (sessionLog.length > 1000) sessionLog.shift();
+  res.json({ ok: true });
+});
+
+app.get('/api/stats', (req, res) => {
+  if (!req.session.authenticated || req.session.driverName !== 'Admin') {
+    return res.status(403).json({ error: 'Admin only' });
+  }
+  // Count logins per user
+  const logins = {};
+  sessionLog.forEach(e => {
+    if (e.action === 'login') {
+      logins[e.name] = (logins[e.name] || 0) + 1;
+    }
+  });
+  const sorted = Object.entries(logins).sort((a,b) => b[1]-a[1]);
+  res.json({ total: sessionLog.length, logins: sorted, recent: sessionLog.slice(-20).reverse() });
+});
+
 // ===================== AUTH ROUTES =====================
 app.post('/api/login', (req, res) => {
   const { password } = req.body;
