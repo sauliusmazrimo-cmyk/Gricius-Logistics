@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistika | Gricius Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b35;--navy2:#142040;--red:#c0392b;--gold:#e8932a;--gray:#f2f4f8;--border:#dde2ec;--text:#1a2030;--muted:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(90deg,var(--navy),var(--navy2));color:#fff;padding:0 24px;height:60px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.h-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--red),#a93226);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.h-title h1{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.h-title p{font-size:10px;opacity:.45;letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.back-btn{margin-left:auto;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;font-family:'Barlow',sans-serif}
+.back-btn:hover{background:rgba(255,255,255,.2)}
+
+.container{max-width:1100px;margin:0 auto;padding:24px}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{background:#fff;border-radius:14px;padding:20px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:var(--navy)}
+.stat-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
+
+.section{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.section-head{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 20px;display:flex;align-items:center;gap:10px}
+.section-head h2{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+
+table{width:100%;border-collapse:collapse}
+th{padding:10px 16px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid var(--border);background:#fafbfc}
+td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8f9fc}
+
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-login{background:#e8f5e9;color:#2e7d32}
+.badge-admin{background:#fff3e0;color:#e65100}
+
+.bar-wrap{display:flex;align-items:center;gap:10px}
+.bar{height:8px;background:linear-gradient(90deg,var(--navy),var(--red));border-radius:4px;min-width:4px;transition:.3s}
+.bar-num{font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap}
+
+.refresh-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;margin-left:auto}
+.refresh-btn:hover{background:rgba(255,255,255,.25)}
+
+.empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+.ts{font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="h-icon">📊</div>
+  <div class="h-title">
+    <h1>Statistika</h1>
+    <p>Gricius Logistics &bull; Admin</p>
+  </div>
+  <button class="refresh-btn" onclick="loadStats()">🔄 Atnaujinti</button>
+  <a class="back-btn" href="/" style="margin-left:10px">← Grįžti</a>
+</div>
+
+<div class="container">
+  <div class="stats-grid" id="stats-grid">
+    <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Viso prisijungimų</div></div>
+    <div class="stat-card"><div class="stat-num" id="s-users">—</div><div class="stat-label">Unikalių vartotojų</div></div>
+    <div class="stat-card"><div class="stat-num" id="s-today">—</div><div class="stat-label">Šiandien</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>👥 Prisijungimai pagal vartotoją</h2></div>
+    <div id="logins-table"><div class="empty">Kraunama...</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>🕐 Paskutiniai prisijungimai</h2></div>
+    <div id="recent-table"><div class="empty">Kraunama...</div></div>
+  </div>
+</div>
+
+<script>
+async function loadStats() {
+  try {
+    const r = await fetch('/api/stats');
+    if (r.status === 403) {
+      document.body.innerHTML = '<div style="text-align:center;padding:80px;font-size:18px;color:#c0392b">⛔ Tik Admin gali matyti statistiką.<br><br><a href="/">← Grįžti</a></div>';
+      return;
+    }
+    const d = await r.json();
+
+    // Summary
+    document.getElementById('s-total').textContent = d.total;
+    document.getElementById('s-users').textContent = d.logins.length;
+
+    // Today count
+    const today = new Date().toISOString().slice(0,10);
+    const todayCount = d.recent.filter(e => e.date.startsWith(today)).length;
+    document.getElementById('s-today').textContent = todayCount;
+
+    // Logins table
+    const maxLogins = d.logins[0] ? d.logins[0][1] : 1;
+    if (d.logins.length === 0) {
+      document.getElementById('logins-table').innerHTML = '<div class="empty">Dar nėra duomenų</div>';
+    } else {
+      document.getElementById('logins-table').innerHTML = `
+        <table>
+          <thead><tr><th>#</th><th>Vartotojas</th><th>Prisijungimai</th><th>Grafikas</th></tr></thead>
+          <tbody>${d.logins.map(([name, count], i) => `
+            <tr>
+              <td style="color:var(--muted);font-weight:700">${i+1}</td>
+              <td><strong>${name}</strong></td>
+              <td><span class="badge badge-login">${count}</span></td>
+              <td><div class="bar-wrap"><div class="bar" style="width:${Math.round(count/maxLogins*200)}px"></div><span class="bar-num">${count}x</span></div></td>
+            </tr>`).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    // Recent table
+    if (d.recent.length === 0) {
+      document.getElementById('recent-table').innerHTML = '<div class="empty">Dar nėra duomenų</div>';
+    } else {
+      document.getElementById('recent-table').innerHTML = `
+        <table>
+          <thead><tr><th>Laikas</th><th>Vartotojas</th><th>Veiksmas</th></tr></thead>
+          <tbody>${d.recent.map(e => {
+            const dt = new Date(e.date);
+            const dateStr = dt.toLocaleDateString('lt-LT') + ' ' + dt.toLocaleTimeString('lt-LT', {hour:'2-digit',minute:'2-digit'});
+            return `<tr>
+              <td class="ts">${dateStr}</td>
+              <td><strong>${e.name}</strong></td>
+              <td><span class="badge ${e.name==='Admin'?'badge-admin':'badge-login'}">${e.action}</span></td>
+            </tr>`;
+          }).join('')}
+          </tbody>
+        </table>`;
+    }
+
+  } catch(e) {
+    document.getElementById('logins-table').innerHTML = '<div class="empty">Klaida: ' + e.message + '</div>';
+  }
+}
+
+loadStats();
+setInterval(loadStats, 30000); // Auto-refresh every 30s
+</script>
+</body>
+</html>
