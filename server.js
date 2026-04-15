@@ -18,7 +18,7 @@ app.use(session({
 }));
 
 // ===================== CONFIG =====================
-const APP_PASSWORD  = process.env.APP_PASSWORD  || 'Gricius2025';
+const APP_PASSWORD  = process.env.APP_PASSWORD  || 'Gricius5620';
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 const PORT          = process.env.PORT || 3000;
 
