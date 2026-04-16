@@ -2558,7 +2558,7 @@ ${MANUAL_CONTENT}`;
 
 // ===================== NFC DRIVERS DATABASE =====================
 const NFC_DRIVERS = {
-  '7F5752DA':'Saulius','F3C0181B':'Kvitovskyi Oleh','3301001B':'Huliakevich Uladzislau',
+  '7F5752DA':'Ermek Uulu Nursultan','F3C0181B':'Kvitovskyi Oleh','3301001B':'Huliakevich Uladzislau',
   'C346901B':'Zhetigenov Khantenir','73C0B11B':'Abdurahmonzoda Anushervon','13EE8F1B':'Adaev Nurlan',
   '6F738CDA':'Issainov Nurgazy','B3857C25':'Liubashkou Yauheni','1463B3CE':'Tsolukovskiy Vitaliy',
   'D388DB19':'Vasilyeu Aleh','1324ED19':'Politika Viktor','1307241B':'Kovtun Oleh',
@@ -2649,6 +2649,7 @@ const NFC_DRIVERS = {
   '536A261B':'Kapalbekov Askhat','B3A9FA1A':'Minaiev Borys','B33CFD1A':'Diadenko Eduard',
   '73D3E61A':'Husiev Vitalii','A3FA5F1B':'Herasimovich Kiryl','1303CD1A':'Tsurupa Oleh',
   '8F6496DA':'Chupilko Vladyslav','F3B6B71B':'Balakin Kostiantyn','5318DF19':'Dulin Oleksii',
+  'DF9267DA':'Damirov Eldar',
   '7FC96ADA':'Sagyngali Jarilkapov',
   '4F6568DA':'Kodirov Faizali',
   'AF656DDA':'Marat Bukeshov',
