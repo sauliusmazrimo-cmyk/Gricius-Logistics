@@ -2558,7 +2558,7 @@ ${MANUAL_CONTENT}`;
 
 // ===================== NFC DRIVERS DATABASE =====================
 const NFC_DRIVERS = {
-  '7F5752DA':'Ermek Uulu Nursultan','F3C0181B':'Kvitovskyi Oleh','3301001B':'Huliakevich Uladzislau',
+  '7F5752DA':'Saulius','F3C0181B':'Kvitovskyi Oleh','3301001B':'Huliakevich Uladzislau',
   'C346901B':'Zhetigenov Khantenir','73C0B11B':'Abdurahmonzoda Anushervon','13EE8F1B':'Adaev Nurlan',
   '6F738CDA':'Issainov Nurgazy','B3857C25':'Liubashkou Yauheni','1463B3CE':'Tsolukovskiy Vitaliy',
   'D388DB19':'Vasilyeu Aleh','1324ED19':'Politika Viktor','1307241B':'Kovtun Oleh',
