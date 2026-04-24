@@ -2649,6 +2649,7 @@ const NFC_DRIVERS = {
   '536A261B':'Kapalbekov Askhat','B3A9FA1A':'Minaiev Borys','B33CFD1A':'Diadenko Eduard',
   '73D3E61A':'Husiev Vitalii','A3FA5F1B':'Herasimovich Kiryl','1303CD1A':'Tsurupa Oleh',
   '8F6496DA':'Chupilko Vladyslav','F3B6B71B':'Balakin Kostiantyn','5318DF19':'Dulin Oleksii',
+  '6FE166DA':'Ulugbek Narziev',
   'DF9267DA':'Damirov Eldar',
   '7FC96ADA':'Sagyngali Jarilkapov',
   '4F6568DA':'Kodirov Faizali',
