@@ -2707,7 +2707,7 @@ const NFC_DRIVERS = {
   '033BFC1A':'Asanbekov Urmat','3F1D52DA':'Domchev Ihor','6FD269DA':'Dzhoroev Erbolot',
   '8F0455DA':'Ismayilli Elmir','0FBA65DA':'Matskul Dmytro','9FDCA6DA':'USMONOV SANJARBEK',
   'AF4852DA':'TUYAKBAEV KOMILJON','2344AE1B':'Šliauteris Rolandas','33E72A1B':'Ramonas Alvydas',
-  '0F4367DA':'Ortikov Abduhalil',
+  '0F4367DA':'Ortikov Abduhalil','AF8769DA':'Islomkulov Zairbek','3FA146DA':'Esenaliev Tair',
 };
 
 // ===================== IN-MEMORY STORAGE =====================
