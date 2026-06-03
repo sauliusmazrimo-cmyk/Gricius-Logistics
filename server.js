@@ -27,9 +27,9 @@ const MANUAL_CONTENT = `
 ИНСТРУКЦИЯ ВОДИТЕЛЯ
 ()
 ПРАВИЛА ПОВЕДЕНИЯ ВОДИТЕЛЕЙ НА ТЕРИТОРИИ “A.Griciaus
-autotransporto įmonė“ /„ UAB Gricius logistics“
-1. На територию “A.Griciaus autotransporto įmonė“/ „ UAB Gricius logistics“ допускаются только
-водители и сопровождающие лица, работающие в A. Griciaus autotransporto įmonė/ „UAB Gricius
+autotransporto įmonė“ /„ UAB NO LOGO logistics“
+1. На територию “A.Griciaus autotransporto įmonė“/ „ UAB NO LOGO logistics“ допускаются только
+водители и сопровождающие лица, работающие в A. Griciaus autotransporto įmonė/ „UAB NO LOGO
 logistics“
 
 2. Водитель должен зарегистрироватся у диспечера о прибытии грузового автотранспорта и
@@ -2514,7 +2514,7 @@ function buildSystemPrompt() {
     `--- SITUACIJA ${i+1}: ${s.title} ---\n${s.answer}`
   ).join('\n\n');
 
-  return `Tu esi Gricius Logistics / UAB Gricius logistics vairuotojų pagalbininkas kelyje. Turi prieigą prie oficialaus įmonės vairuotojo vadovo (žemiau) ir žinai visas situacijas iš patirties.
+  return `Tu esi NO LOGO Logistics / UAB NO LOGO logistics vairuotojų pagalbininkas kelyje. Turi prieigą prie oficialaus įmonės vairuotojo vadovo (žemiau) ir žinai visas situacijas iš patirties.
 
 KALBA: Automatiškai atpažink klausimo kalbą ir atsakyk ta PAČIA kalba — lietuviškai, rusiškai arba angliškai. Niekada nemaišyk kalbų.
 
@@ -2852,7 +2852,7 @@ app.post('/api/translate', async (req, res) => {
 
 // ===================== START =====================
 app.listen(PORT, () => {
-  console.log(`✅ Gricius Logistics Driver Assistant running on port ${PORT}`);
+  console.log(`✅ NO LOGOLogistics Driver Assistant running on port ${PORT}`);
   console.log(`🔑 App password: ${APP_PASSWORD}`);
   console.log(`🤖 Anthropic API key: ${ANTHROPIC_KEY ? 'SET ✓' : 'NOT SET ✗'}`);
   console.log(`📋 Loaded ${CONFIRMED_SITUATIONS.length} confirmed situations`);
