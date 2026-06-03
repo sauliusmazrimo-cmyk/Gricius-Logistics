@@ -2645,7 +2645,6 @@ const NFC_DRIVERS = {
   'B3CA581B':'Shlapa Vladyslav','D3AFFB1A':'Alamov Shahrom','E34BF71A':'Aliakhnovich Siarhei',
   '3372311B':'Hurin Mykhailo','7360AC1B':'Bondarenko Pavel','03C13A1B':'Pabudzei Andrei',
   'D3C5591B':'Vashurin Roman','532DCD1A':'Pecheniuk Oleh','1F6B8BDA':'Kanapelka Aleksandr',
- ',
 };
 
 // ===================== IN-MEMORY STORAGE =====================
